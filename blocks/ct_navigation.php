@@ -9,7 +9,7 @@ function content_block_nav()
         
     $block = [];
     $myts  = MyTextSanitizer::getInstance();
-    if ($xoopsModule && ('Content' == $xoopsModule->name() || 'content' == $xoopsModule->dirname())) {
+    if ($xoopsModule && ('Content' === $xoopsModule->name() || 'content' === $xoopsModule->dirname())) {
         $result = $xoopsDB->query("SELECT CASE parent_id WHEN 0 THEN storyid ELSE parent_id END 'sortorder' FROM "
                             . $xoopsDB->prefix('content')
                             . " WHERE visible='1' AND storyid="

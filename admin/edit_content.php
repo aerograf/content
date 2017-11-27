@@ -27,7 +27,7 @@ if (!$groupPermHandler->checkRight('content_page_write', $id, $groups, $module->
 // ------------------------------------------------------------------------- //
 // Do the edit of the Content                                                //
 // ------------------------------------------------------------------------- //
-if ('add' == $op || 'link' == $op) {
+if ('add' === $op || 'link' === $op) {
     $myts = MyTextSanitizer::getInstance();
 
     $title       = $myts->htmlSpecialChars($title);
@@ -44,7 +44,7 @@ if ('add' == $op || 'link' == $op) {
         $uploadpath      = XOOPS_ROOT_PATH . '/modules/content/headers/';
         $source          = $_FILES['imageupload']['tmp_name'];
         $fileupload_name = $_FILES['imageupload']['name'];
-        if (('none' != $source) && ('' != $source)) {
+        if (('none' !== $source) && ('' != $source)) {
             $dest=$uploadpath.$fileupload_name;
             if (file_exists($uploadpath.$fileupload_name)) {
                 redirect_header('add_content.php', 2, _AM_CONTENT_ERRORUPL);
@@ -59,7 +59,7 @@ if ('add' == $op || 'link' == $op) {
         }
     }
     
-    if ('add' == $op) {
+    if ('add' === $op) {
         $externalURL = '';
     }
     
@@ -98,7 +98,7 @@ if ('add' == $op || 'link' == $op) {
     } else {
         redirect_header('manage_content.php' . (isset($showshort) ? '?showshort=' . $showshort : ''), 2, _AM_CONTENT_DBUPDATED);
     }
-} elseif ('pagewrap' == $op) {
+} elseif ('pagewrap' === $op) {
     $myts = MyTextSanitizer::getInstance();
     
     $title       = $myts->htmlSpecialChars($title);
@@ -111,7 +111,7 @@ if ('add' == $op || 'link' == $op) {
         $uploadpath      = XOOPS_ROOT_PATH . '/modules/content/content/';
         $source          = $_FILES[fileupload][tmp_name];
         $fileupload_name = $_FILES[fileupload][name];
-        if (('none' != $source) && ('' != $source)) {
+        if (('none' !== $source) && ('' != $source)) {
             $dest=$uploadpath.$fileupload_name;
             if (file_exists($uploadpath.$fileupload_name)) {
                 redirect_header('add_content.php', 2, _AM_CONTENT_ERRORUPL);
@@ -216,7 +216,7 @@ if ('add' == $op || 'link' == $op) {
     $option_tray->addElement($newwindow_checkbox);
     $option_tray->addElement($visible_checkbox);
     
-    if ('textarea' != $xoopsModuleConfig['cont_form_options']) {
+    if ('textarea' !== $xoopsModuleConfig['cont_form_options']) {
         $nohtmlb = new XoopsFormHidden(_DISABLEHTML, 0);
         $nosmile = new XoopsFormHidden(_DISABLESMILEY, 0);
     } else {
@@ -224,7 +224,7 @@ if ('add' == $op || 'link' == $op) {
         $nohtml_checkbox->addOption(1, _DISABLEHTML);
         $option_tray->addElement($nohtml_checkbox);
     }
-    if ('textarea' != $xoopsModuleConfig['cont_form_options']) {
+    if ('textarea' !== $xoopsModuleConfig['cont_form_options']) {
         $form->addElement(new XoopsFormHidden('nobreaks', 1));
     } else {
         $breaks_checkbox = new XoopsFormCheckBox('', 'nobreaks', 0);
@@ -257,7 +257,7 @@ if ('add' == $op || 'link' == $op) {
     $address_select->addOption('', _AM_CONTENT_NONE);
     $folder       = dir('../content/');
     while ($file     = $folder->read()) {
-        if ('.' != $file && '..' != $file) {
+        if ('.' !== $file && '..' !== $file) {
             $address_select->addOption($file, '' . $file . '');
         }
     }
@@ -269,7 +269,7 @@ if ('add' == $op || 'link' == $op) {
     $folder   = dir(XOOPS_ROOT_PATH . '/modules/content/headers/');
     $header_img->addOption('', _AM_CONTENT_NONE);
     while ($file = $folder->read()) {
-        if ('.' != $file && '..' != $file) {
+        if ('.' !== $file && '..' !== $file) {
             $header_img->addOption($file, '' . $file . '');
         }
     }

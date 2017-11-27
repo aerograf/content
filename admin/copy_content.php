@@ -20,13 +20,13 @@ switch ($op) {
         $oldrecord = $xoopsDB->fetchArray($result);
         
         foreach ($oldrecord as $key => $value) {
-            if ('storyid' != $key) {
+            if ('storyid' !== $key) {
                 if (isset($dbFields)) {
                     $dbFields .= ', ';
                     $dbValues .= ', ';
                 }
                 $dbFields .= '`' . $key . '`';
-                $dbValues .= "'" . (('title' == $key) ? 'Copy of ' . addslashes($value) : addslashes($value)) . "'";
+                $dbValues .= "'" . (('title' === $key) ? 'Copy of ' . addslashes($value) : addslashes($value)) . "'";
             }
         }
         

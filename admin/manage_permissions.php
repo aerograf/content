@@ -15,7 +15,7 @@ $module           = $module_handler->getByDirname('content');
 // ------------------------------------------------------------------------- //
 // Update Content -> Show Content Page                                       //
 // ------------------------------------------------------------------------- //
-if ('update' == $op) {
+if ('update' === $op) {
     foreach ($id as $storyid) {
         $groupPermHandler->DeleteByModule($module->getVar('mid'), 'content_page_view', $storyid);
 

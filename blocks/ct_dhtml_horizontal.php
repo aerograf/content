@@ -101,7 +101,7 @@ function print_menu($menuItems, $fullList, $level, $depth)
     foreach ($menuItems as $menuItem) {
         $currentPosition = '';
         $currentPosition++;
-        if ('content' == $menuItem['type']) {
+        if ('content' === $menuItem['type']) {
             if ($menuItem['address'] && 1 != $menuItem['link']) {
                 $contentURL = $menuItem['address'];
             } else {
@@ -116,7 +116,7 @@ function print_menu($menuItems, $fullList, $level, $depth)
             $MyList .= ' class="nav-item-' . $currentPosition . '"';
         }
         $MyList .= '><a href="' . $contentURL . '">' . $menuItem['title'] . '</a>';
-        if ('content' == $menuItem['type']) {
+        if ('content' === $menuItem['type']) {
             if (return_children($fullList, $menuItem['storyid'])) {
                 $MyList .= '<ul>' . print_menu(return_children($fullList, $menuItem['storyid']), $fullList, $level + 1, $depth) . '</ul>';
             }

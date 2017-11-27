@@ -66,7 +66,7 @@ function show_form()
         $folder = dir('../content/');
     }
     while ($file = $folder->read()) {
-        if ('.' != $file && '..' != $file) {
+        if ('.' !== $file && '..' !== $file) {
             $address_select->addOption($file, $file);
         }
     }

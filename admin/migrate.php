@@ -1,7 +1,7 @@
 <?php
 
     include_once 'admin_header.php';
-    if ('Yes' == $HTTP_POST_VARS['submit']) {
+    if ('Yes' === $HTTP_POST_VARS['submit']) {
         $xoopsDB->queryF('DELETE FROM '
                          . $xoopsDB->prefix('content'));
         if (!$result = $xoopsDB->query('INSERT INTO '

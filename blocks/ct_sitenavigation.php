@@ -59,7 +59,7 @@ function site_block_nav($options)
         }
     }
     global $allParents, $currentpage;
-    if ($xoopsModule && ('Content' == $xoopsModule->name() || 'content' == $xoopsModule->dirname())) {
+    if ($xoopsModule && ('Content' === $xoopsModule->name() || 'content' === $xoopsModule->dirname())) {
         $currentpage = $_GET['id'];
     } elseif ($xoopsModule) {
         $result = $xoopsDB->query('SELECT storyid FROM '
@@ -165,7 +165,7 @@ function print_menu($menuItems, $fullList, $level, $depth)
     $MyList     = '';
     foreach ($menuItems as $menuItem) {
         $temp = ($level * 9) + 3;
-        if ('content' == $menuItem['type']) {
+        if ('content' === $menuItem['type']) {
             if (0 == $menuItem['link'] && $menuItem['address']) {
                 $contentURL = $menuItem['address'];
             } else {

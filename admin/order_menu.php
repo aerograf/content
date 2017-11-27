@@ -1,9 +1,9 @@
 <?php
 
     include_once 'admin_header.php';
-    if (isset($_GET['op']) && 'order' == $_GET['op']) {
+    if (isset($_GET['op']) && 'order' === $_GET['op']) {
         for ($j = 1; $j <= $_POST['total']; $j++) {
-            if ('module' == $_POST['type' . $j]) {
+            if ('module' === $_POST['type' . $j]) {
                 if (!$result = $xoopsDB->query('UPDATE '
                                                . $xoopsDB->prefix('modules')
                                                . " SET weight = '"
@@ -13,7 +13,7 @@
                                                . "'")) {
                     echo _AM_CONTENT_ERRORINSERT;
                 }
-            } elseif ('content' == $_POST['type' . $j]) {
+            } elseif ('content' === $_POST['type' . $j]) {
                 if (!$result = $xoopsDB->query('UPDATE '
                                                . $xoopsDB->prefix('content')
                                                . " SET blockid = '"
@@ -66,7 +66,7 @@
         $block = [];
         $myts  = MyTextSanitizer::getInstance();
         
-        if ($xoopsModule && ('Content' == $xoopsModule->name() || 'content' == $xoopsModule->dirname()) && isset($_GET['id'])) {
+        if ($xoopsModule && ('Content' === $xoopsModule->name() || 'content' === $xoopsModule->dirname()) && isset($_GET['id'])) {
             $result = $xoopsDB->query("SELECT CASE parent_id WHEN 0 THEN storyid ELSE parent_id END 'sortorder' FROM "
                             . $xoopsDB->prefix('content')
                             . " WHERE visible='1' AND storyid="

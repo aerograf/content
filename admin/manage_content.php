@@ -8,7 +8,7 @@ global $op;
 // ------------------------------------------------------------------------- //
 // Update Content -> Show Content Page                                       //
 // ------------------------------------------------------------------------- //
-if ('update' == $op) {
+if ('update' === $op) {
     foreach ($id as $storyid) {
         ($storyid == (int)$homepage[0]) ? $hp = 1 : $hp = 0;
         ($storyid == (int)$epage[0]) ? $ep = 1 : $ep = 0;
