@@ -3,14 +3,14 @@
 [![XOOPS CMS Module](https://img.shields.io/badge/XOOPS%20CMS-Module-blue.svg)](https://xoops.org)
 [![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](LICENSE)
 
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/XoopsModules25x/content.svg?style=flat)](https://scrutinizer-ci.com/g/XoopsModules25x/content/?branch=master)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/mambax7/content.svg?style=flat)](https://scrutinizer-ci.com/g/mambax7/content/?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/95b12220e0ac4056b9af52af708379c9)](https://www.codacy.com/app/mambax7/content)
-[![Code Climate](https://img.shields.io/codeclimate/github/XoopsModules25x/content.svg?style=flat)](https://codeclimate.com/github/XoopsModules25x/content)
+[![Code Climate](https://img.shields.io/codeclimate/github/mambax7/content.svg?style=flat)](https://codeclimate.com/github/mambax7/content)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/f48090dc-a770-49b6-b895-6db50b08e3c4/mini.png)](https://insight.sensiolabs.com/projects/f48090dc-a770-49b6-b895-6db50b08e3c4)
-[![Latest Pre-Release](https://img.shields.io/github/tag/XoopsModules25x/content.svg?style=flat)](https://github.com/XoopsModules25x/content/tags/)
-[![Latest Version](https://img.shields.io/github/release/XoopsModules25x/content.svg?style=flat)](https://github.com/XoopsModules25x/content/releases/)
+[![Latest Pre-Release](https://img.shields.io/github/tag/aerograf/content.svg?style=flat)](https://github.com/aerograf/content/tags/)
+[![Latest Version](https://img.shields.io/github/release/aerograf/content.svg?style=flat)](https://github.com/aerograf/content/releases/)
 
-**Content** module for [XOOPS CMS](https://xoops.org) to .
+**Content** module for [XOOPS CMS](https://xoops.org) to show simple content
 
 [![Tutorial Available](https://xoops.org/images/tutorial-available-blue.svg)](https://www.gitbook.com/book/xoops/content-tutorial/) Tutorial: see [GitBook](https://www.gitbook.com/book/xoops/content-tutorial/).
 To contribute to the Tutorial, [fork it on GitHub](https://github.com/XoopsDocs/content-tutorial)
