@@ -1,0 +1,1 @@
+<{$block.ct_menu}>

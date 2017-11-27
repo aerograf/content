@@ -1,0 +1,58 @@
+#tabmenu {
+color: #000000;
+border-bottom: 2px solid #cccccc;
+margin: 12px 0px 0px 0px;
+padding: 0px;
+z-index: 1;
+padding-left: 10px
+}
+#tabmenu li {
+display: inline;
+overflow: hidden;
+list-style-type: none;
+}
+#tabmenu a, a.active {
+color: #000000;
+background: #ffffff;
+font-family: Verdana, Arial, sans-serif;
+font-size: 11px;
+font-weight: normal;
+line-height: 2.0;
+border: 2px solid #cccccc;
+margin: 0;
+text-decoration: none;
+}
+/* For IE */
+#tabmenu a, a.active { padding: 4px 5px 4px 5px;}
+/* and for other browsers */
+html>body #tabmenu a, a.active { padding: 4px 5px 5px 5px;}
+#tabmenu a.active {
+background: #ffffff;
+/* Border bottom same colour as active page */
+border-bottom: 3px solid #ffffff;
+}
+#tabmenu a:hover {
+color: #000000;
+background: #eeeeee;
+}
+#tabmenu a:visited {
+color: #000000;
+}
+#tabmenu a.active:hover {
+background: transparent;
+color: #000000;
+}
+#tabcontent {
+font: 0.9em/1.3em verdana, arial, sans-serif;
+background: #ffffff;
+padding: 20px;
+border: 2px solid #cccccc;
+border-top: none;
+z-index: 2;
+}
+#tabcontent a {
+text-decoration: none;
+}
+#tabcontent a:hover {
+background: transparent;
+}

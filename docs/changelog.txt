@@ -1,0 +1,97 @@
+This is the Release Candidate for Content 1.o  There is a huge number of changes.  
+
+Please submit bugs at http://xoops.org/modules/newbb/viewtopic.php?start=40&topic_id=70058 
+
+
+
+Version 1.4 2011/04/12:
+=================================
+- added new Admin Menu Class 
+
+
+Versions 1.32
+=================================
+- Refactoring of the code
+- Fixed bugs  - http://xoops.org/modules/repository/singlefile.php?cid=94&lid=1811
+- Fixed breadcrumbs not showing
+- There seemed to be a conflict resulting to a blank screen if you selected plain text editor (or not wysiwyg in version 1.3) which is now corrected.
+- Furthermore instead of selecting if you are gonna use wysiwyg editor or not, i replaced that option with a list of available editors of XOOPS to choose which one you prefer to use.
+- Fixed id of content body div
+
+It has been also tested with XOOPS 2.4.1 and 2.3.3 and seems to be working.
+
+Versions before 1.32
+=================================
+Permissions - You can now define what groups can access what page.  Permissions can be set on each individual page or can be set on all pages at once via the "Manage Permissions" page.
+
+Popup Editor - If you use the interstitial editor, you no longer have to go into the adminsection.  The edition tools are available in a popwindow.  Once you changes are saved, the window is closed and the original page is reloaded.
+
+Web 2.0 - The admin section has begun it change into a web 2.0 style editor.  The pages are now sorted in folder that can be expanded and collapsed.  The Add/Edit pages change based on the type of content selected.
+
+Module Highlight - When you create a link, you can also specify a module associated with that link.  this is usful for the site navigation.  If a link has a modle associated with it, and you are currently on that page, the link will be highlighted in the navigation.
+
+Error Page - If your server allows mod_rewrite, you can use the included .htaccess page to change the error habits of the web server.  If a page is not found, the server will redirect to the page defined in the admin interface.
+
+New Icons -  All of the icons for the content module have been updated to have a consistent look and feeld.
+
+Header images - You can specify a specific image to use as a header on each individual page.  This header is displayed outside of the content block and can be positioned seperatly in the template.
+
+Modified FCKeditor Link Tool - When you add a link to a content page, the fckeditor dialog now contains a pulldown list of all the available content pages.  This pulldown is show in addition to all the standard elements.
+
+Breadcrumbs - Content will generate breadcrumb navigation based on the current pages parent.
+
+Pagebreak - By placing the [pagebreak] tag in your page content, the module will automatically break your one page in to multiple virtual pages.  All the content is managed from as one page in the system, but will appear as multiple pages on the site.
+
+Page Title - You can specify a page title that is seperate from the link title.  This lets you have a longer page title while still keeping the navigation short.
+
+Upgrade - There is an upgrade script included to upgrade your current database to the latest schema.
+
+==================================================================
+History of the module
+==================================================================
+
+Version 1RC1 2007/01/10:
+=================================
+
+Posted By: davinci27
+Date: 2007-01-10 13:23
+Summary:Content 1RC1 available
+=================================
+
+I've posted the 1.0 rc1 files. Please feel free to download and test the module. Please report any bugs you find. Here's a list of some of the new features. Permissions - You can now define what groups can access what page. Permissions can be set on each individual page or can be set on all pages at once via the "Manage Permissions" page. Popup Editor - If you use the interstitial editor, you no longer have to go into the adminsection. The edition tools are available in a popwindow. Once you changes are saved, the window is closed and the original page is reloaded. Web 2.0 - The admin section has begun it change into a web 2.0 style editor. The pages are now sorted in folder that can be expanded and collapsed. The Add/Edit pages change based on the type of content selected. Module Highlight - When you create a link, you can also specify a module associated with that link. this is usful for the site navigation. If a link has a modle associated with it, and you are currently on that page, the link will be highlighted in the navigation. Error Page - If your server allows mod_rewrite, you can use the included .htaccess page to change the error habits of the web server. If a page is not found, the server will redirect to the page defined in the admin interface. New Icons - All of the icons for the content module have been updated to have a consistent look and feeld. Header images - You can specify a specific image to use as a header on each individual page. This header is displayed outside of the content block and can be positioned seperatly in the template. Modified FCKeditor Link Tool - When you add a link to a content page, the fckeditor dialog now contains a pulldown list of all the available content pages. This pulldown is show in addition to all the standard elements. Breadcrumbs - Content will generate breadcrumb navigation based on the current pages parent. Pagebreak - By placing the [pagebreak] tag in your page content, the module will automatically break your one page in to multiple virtual pages. All the content is managed from as one page in the system, but will appear as multiple pages on the site. Page Title - You can specify a page title that is seperate from the link title. This lets you have a longer page title while still keeping the navigation short. Upgrade - There is an upgrade script included to upgrade your current database to the latest schema.
+
+=================================
+Posted By: davinci27
+Date: 2005-06-24 05:43
+Summary:Unlimited Submenus in Content
+=================================
+I know I just release an update yesterday, but I've made a major addition to dhtml menu and need some folks to test it. I've reworked the css for the DHTML menu as well as all the block functions to build the menu. Now the submenu depth is unlimited. That's right, add as many levels of menus as you'd like. The admin interface is a little patchy, but works. Please try this file and give me any feedback you can. Thanks.
+
+=================================
+Posted By: davinci27
+Date: 2005-06-23 03:44
+Summary:Content 0.45 Bug Updates and Features
+=================================
+This is primarily a bug fix release, but there is one new feature. New Features Admin While Browsing - Create and edit pages while browsing the site. When you are logged in as an administrator, you now have 2 icons. One edits the current page and the other creates a new page at the same level. The menu also includes a link to create a new Main Menu level page. Bug Fixes - Both external links and HTML page wraps work in all menu levels - Turned off HTML and Smilies options if using the wyswyg editor - Fixed image paths in templates - any other bug that has been reported
+
+=================================
+Posted By: davinci27
+Date: 2005-06-08 05:39
+Summary:New DHTML Menu in Content
+=================================
+The Content Module has been update with a new DHTML menu block. This block generates a complete site menu including modules. The menu is CSS based and can be dedited directly in the template. I've also added the strings to the language files. I'll need some help translating, so if you speak on of the many language included, please take a minute and submit a translation. Otherwise any other bug reports and feature resquests are welcome.
+
+
+=================================
+Posted By: davinci27
+Date: 2005-06-03 04:12
+Summary:Update to Content Module
+=================================
+All the currently planned features have been implemented. The current release has a new block the intermingles the Content pages and the Modules in one menu. The admin section contains a pages to update the order of all menu items. I'm sure there are some bugs and maybe some new features you'd like to see implemented. please feel free to submit bugs and feature requests.
+
+=================================
+Posted By: davinci27
+Date: 2005-05-31 06:16
+Summary:New Content Module
+=================================
+I tried for days to track down the author of XT Conteudo but had no luck. So unfortunately I've had to release this as a new module. It is heavily base on XT Conteudo which is based on Tiny Content. I've made several additions, and I'll try to keep them listed here. New Features FCKEditor - I replaced SPAW with the cross browser FCKEditor. If you have ASPELL installed on the server, FCKeditor will allow you to spell check your content areas. You'll need to edit \content\admin\fckeditor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.php and change $aspell_prog to point to your aspell executable. Priority - I've changed the way the priority works so that you can put submenu items into a specific order under the main level items. External Links - I added the ability to set an external link instead of HTML content Content Menu Block - I've edited the menu block so it would display submenu items based on where you are in the module. This gives you the appearance of sections and navigation that adapts based on your current position. Spring Cleaning - I've pulled out the extra menu blocks and have only the one described above. I've also tried to remove any unnecessary files. Future Enhancements New Site Menu Block - This will be a menu block that will incorporate both the module, main menu, and the Content Menu into one site level Menu. It will allow you to order the placement of both the Content and the modules and will not require segregation of the individual items. There will also be an admin page that allows you to set the order of the pages. 
