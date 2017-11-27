@@ -1,6 +1,6 @@
 <?php
 
-include_once "admin_header.php";
+include_once 'admin_header.php';
 
 $xoopsDB = XoopsDatabaseFactory::getDatabaseConnection();
 global $op;
@@ -8,34 +8,34 @@ global $op;
 // ------------------------------------------------------------------------- //
 // Update Content -> Show Content Page                                       //
 // ------------------------------------------------------------------------- //
-if ($op == "update") {
+if ($op == 'update') {
     foreach ($id as $storyid) {
         ($storyid == intval($homepage[0])) ? $hp = 1 : $hp = 0;
         ($storyid == intval($epage[0])) ? $ep = 1 : $ep = 0;
-        $sqlinsert = "UPDATE "
-                  . $xoopsDB->prefix('content')
-                  . " SET parent_id='"
-                  . intval($parent_id[$storyid])
-                  . "', blockid='"
-                  . intval($blockid[$storyid])
-                  . "', visible='"
-                  . intval($visible[$storyid])
-                  . "', homepage='"
-                  . $hp
-                  . "', epage='"
-                  . $ep
-                  . "', nocomments='"
-                  . (($nocomments[$storyid]) ? 0 : 1)
-                  . "', submenu='"
-                  . intval($submenu[$storyid])
-                  . "', date=NOW() WHERE storyid='"
-                  . intval($storyid)
-                  . "'";
+        $sqlinsert = 'UPDATE '
+                     . $xoopsDB->prefix('content')
+                     . " SET parent_id='"
+                     . intval($parent_id[$storyid])
+                     . "', blockid='"
+                     . intval($blockid[$storyid])
+                     . "', visible='"
+                     . intval($visible[$storyid])
+                     . "', homepage='"
+                     . $hp
+                     . "', epage='"
+                     . $ep
+                     . "', nocomments='"
+                     . (($nocomments[$storyid]) ? 0 : 1)
+                     . "', submenu='"
+                     . intval($submenu[$storyid])
+                     . "', date=NOW() WHERE storyid='"
+                     . intval($storyid)
+                     . "'";
         if (!$result = $xoopsDB->query($sqlinsert)) {
             echo _AM_CONTENT_ERRORINSERT;
         }
     }
-    redirect_header("manage_content.php" . ((isset($showshort)) ? "?showshort=" . $showshort : ""), 2, _AM_CONTENT_DBUPDATED);
+    redirect_header('manage_content.php' . ((isset($showshort)) ? '?showshort=' . $showshort : ''), 2, _AM_CONTENT_DBUPDATED);
 } else {
     // ------------------------------------------------------------------------- //
     // Show Manage Content Form                                                  //
@@ -139,13 +139,13 @@ if ($op == "update") {
     $myts = MyTextSanitizer::getInstance();
     
     echo '';
-    echo "" . showMenu() . "
+    echo '' . showMenu() . "
 			<table class='outer' id='displaytable' style='width:100%;border:0;padding:0;border-spacing:1;'>
 				<tr class='even'>
-					<td colspan='7'>" . displayFilterForm() . "</td>
-				</tr>";
+					<td colspan='7'>" . displayFilterForm() . '</td>
+				</tr>';
     if (isset($filterSQL)) {
-        $filterSQL = " WHERE " . $filterSQL;
+        $filterSQL = ' WHERE ' . $filterSQL;
     }
     echo "
 				<form method='post'>
@@ -156,19 +156,19 @@ if ($op == "update") {
 					<td style='width:40px'><b>" . _AM_CONTENT_HOMEPAGE . "</b></td>
 					<td style='width:40px'><b>" . _AM_CONTENT_ERROR . "</b></td>
 					<td style='width:50px'><b>" . _AM_CONTENT_VISIBLE . "</b></td>
-					<td style='width:100px'><b>" . _AM_CONTENT_ACTION . "</b></td>
-				</tr>";
+					<td style='width:100px'><b>" . _AM_CONTENT_ACTION . '</b></td>
+				</tr>';
     $contentItems = [];
     $result = $xoopsDB->query("SELECT *, blockid AS priority, 'content' AS type FROM "
                             . $xoopsDB->prefix('content')
-                            . " "
+                              . ' '
                             . $filterSQL
-                            . " ORDER BY blockid");
+                              . ' ORDER BY blockid');
     while ($tcontent = $xoopsDB->fetchArray($result)) {
         $contentItems[] = $tcontent;
     }
     
-    if ($filterSQL == "") {
+    if ($filterSQL == '') {
         $sortedContent = return_children($contentItems, 0);
     } else {
         $sortedContent = $contentItems;
@@ -178,15 +178,15 @@ if ($op == "update") {
     $contentItems = [];
     $result = $xoopsDB->query("SELECT *, blockid AS priority, 'content' AS type FROM "
                             . $xoopsDB->prefix('content')
-                            . " ORDER BY visible DESC, blockid");
+                              . ' ORDER BY visible DESC, blockid');
     while ($tcontent = $xoopsDB->fetchArray($result)) {
         $contentItems[] = $tcontent;
     }
     $allItems = return_children($contentItems, 0);
     foreach ($sortedContent as $tcontent) {
-        if ((isset($tcontent["depth"]) && $tcontent["depth"] == 0) || $filterSQL != "") {
+        if ((isset($tcontent['depth']) && $tcontent['depth'] == 0) || $filterSQL != '') {
             print_item($tcontent, $xoopsModule->dirname(), $allItems, $myts);
-            foreach (return_children($contentItems, $tcontent["storyid"], 1) as $child) {
+            foreach (return_children($contentItems, $tcontent['storyid'], 1) as $child) {
                 print_item($child, $xoopsModule->dirname(), $allItems, $myts);
             }
         }
@@ -199,8 +199,8 @@ if ($op == "update") {
         echo "<input type='hidden' name='showshort' value='" . $showshort . "' />";
     }
             
-    echo"<input type='submit' name='submit' value=" . _SUBMIT . " /></div>";
-    echo "</form><br>";
+    echo"<input type='submit' name='submit' value=" . _SUBMIT . ' /></div>';
+    echo '</form><br>';
 
     require_once __DIR__ . '/footer.php';
 }
@@ -208,33 +208,33 @@ if ($op == "update") {
 function print_item($tcontent, $dirname, $allMenuItems, $txtSant)
 {
     global $xoopsModuleConfig, $showshort;
-    $menu = "<select name=\"parent_id[" . $tcontent['storyid'] . "]\">";
-    $menu .= "<option>" . _AM_CONTENT_MAINMENU . "</option>";
+    $menu = '<select name="parent_id[' . $tcontent['storyid'] . ']">';
+    $menu .= '<option>' . _AM_CONTENT_MAINMENU . '</option>';
     foreach ($allMenuItems as $ct_item) {
         $menu .= '<option ';
-        if ($tcontent['parent_id'] == $ct_item["storyid"]) {
+        if ($tcontent['parent_id'] == $ct_item['storyid']) {
             $menu .= 'selected="selected" ';
         }
-        $menu .= 'value="' . $ct_item["storyid"] . '">' . str_repeat("&nbsp;&nbsp;", ($ct_item['depth'] + 1)) . str_repeat("-", ($ct_item['depth'])) . $ct_item["title"] . '</option>';
+        $menu .= 'value="' . $ct_item['storyid'] . '">' . str_repeat('&nbsp;&nbsp;', ($ct_item['depth'] + 1)) . str_repeat('-', ($ct_item['depth'])) . $ct_item['title'] . '</option>';
     }
     $menu .= '</select>';
-    echo "
-			<tr ";
-    if (isparent($allMenuItems, $tcontent["storyid"])) {
-        echo 'id="' . $tcontent["storyid"] . '" ';
+    echo '
+			<tr ';
+    if (isparent($allMenuItems, $tcontent['storyid'])) {
+        echo 'id="' . $tcontent['storyid'] . '" ';
     }
         
-    echo " class='" . ((!isset($tcontent['depth']) || $tcontent['depth'] == 0) ? "even" : "odd parent-" . $tcontent["parent_id"] . (($xoopsModuleConfig['cont_collapse'] == '1') ? " hideme " : "")) . "'>";
+    echo " class='" . ((!isset($tcontent['depth']) || $tcontent['depth'] == 0) ? 'even' : 'odd parent-' . $tcontent['parent_id'] . (($xoopsModuleConfig['cont_collapse'] == '1') ? ' hideme ' : '')) . "'>";
     if (!isset($tcontent['depth'])) {
         $tcontent['depth'] = 0;
     }
-    echo "  <td>";
-    if (isset($tcontent['depth']) && isparent($allMenuItems, $tcontent["storyid"])) {
+    echo '  <td>';
+    if (isset($tcontent['depth']) && isparent($allMenuItems, $tcontent['storyid'])) {
         if (isset($tcontent['depth']) && $tcontent['depth'] != 0) {
             echo '<img src="../assets/images/spacer.gif" alt="" width="' . ($tcontent['depth'] * 8) . '" height="10" border="0" align="absmiddle">';
             echo '<img src="../assets/images/child_mark.png" alt="" width="6" height="17" border="0" align="absmiddle">';
         }
-        echo '<a href="#" onclick="showitems('. $tcontent["storyid"] . ');return false;"><img onload="createRollOver(this)" name="control-'. $tcontent["storyid"] . '" id="control-'. $tcontent["storyid"] . '" src="../assets/images/folder.png" alt="" border="0" align="absmiddle" height="16" width="16" class="folder"></a>';
+        echo '<a href="#" onclick="showitems('. $tcontent['storyid'] . ');return false;"><img onload="createRollOver(this)" name="control-' . $tcontent['storyid'] . '" id="control-' . $tcontent['storyid'] . '" src="../assets/images/folder.png" alt="" border="0" align="absmiddle" height="16" width="16" class="folder"></a>';
     } else {
         if (isset($tcontent['depth']) && $tcontent['depth'] != 0) {
             echo '<img src="../assets/images/spacer.gif" alt="" width="' . ($tcontent['depth'] * 8) . '" height="10" border="0" align="absmiddle">';
@@ -243,19 +243,19 @@ function print_item($tcontent, $dirname, $allMenuItems, $txtSant)
         echo '<img src="../assets/images/page.png" alt="" border="0" align="absmiddle">';
     }
     echo "
-				<a href='edit_content.php?id=".$tcontent['storyid'] . ((isset($showshort)) ? "&showshort=" . $showshort : "") . "'>" . $txtSant->htmlSpecialChars($tcontent['title'], 0, 0, 0) . "</a></td>
+				<a href='edit_content.php?id=".$tcontent['storyid'] . ((isset($showshort)) ? '&showshort=' . $showshort : '') . "'>" . $txtSant->htmlSpecialChars($tcontent['title'], 0, 0, 0) . "</a></td>
 				<td>$menu</td>
-				<td><nobr>" . str_repeat("--->", $tcontent['depth']) . "<input type='hidden' name='id[]' value='".$tcontent['storyid']."' /><input type='text' name='blockid["
+				<td><nobr>" . str_repeat('--->', $tcontent['depth']) . "<input type='hidden' name='id[]' value='" . $tcontent['storyid'] . "' /><input type='text' name='blockid["
                     .    $tcontent['storyid'] . "]' size='2' maxlength='2' value='"
                     . $tcontent['blockid'] . "'/></nobr></td>
-				<td align='center'><input type='radio' name='homepage[]' value='" . $tcontent['storyid'] . "' " . (($tcontent['homepage'] == '1') ? "checked" : "") . "></td>
-				<td align='center'><input type='radio' name='epage[]' value='" . $tcontent['storyid'] . "' " . (($tcontent['epage'] == '1') ? "checked" : "") . "></td>
+				<td align='center'><input type='radio' name='homepage[]' value='" . $tcontent['storyid'] . "' " . (($tcontent['homepage'] == '1') ? 'checked' : '') . "></td>
+				<td align='center'><input type='radio' name='epage[]' value='" . $tcontent['storyid'] . "' " . (($tcontent['epage'] == '1') ? 'checked' : '') . "></td>
 				<td align='center'>
-					<input type='checkbox'  name='visible[".$tcontent['storyid']."]' value='1' " . (($tcontent['visible'] == '1') ? "CHECKED" : "") . "></td>
-				<td><nobr><a href='" . XOOPS_URL . "/modules/"  .$dirname . "/index.php?id=" . $tcontent['storyid'] . "'><img src='../assets/images/go.png' alt=" . _AM_CONTENT_GO . " title=" . _AM_CONTENT_GO . "></a>
-					<a href='edit_content.php?id=".$tcontent['storyid'] . ((isset($showshort)) ? "&showshort=" . $showshort : "") . "'><img src='../assets/images/edit.png' alt=" . _AM_CONTENT_EDIT . " title=" . _AM_CONTENT_EDIT . "></a>
-					<a href='copy_content.php?id=".$tcontent['storyid'] . ((isset($showshort)) ? "&showshort=" . $showshort : "") . "'><img src='../assets/images/copy.png' alt=" . _AM_CONTENT_COPY . " title=" . _AM_CONTENT_COPY . "></a>
-					<a href='add_content.php?id=".$tcontent['storyid'] . ((isset($showshort)) ? "&showshort=" . $showshort : "") . "'><img src='../assets/images/add.png' alt=" . _AM_CONTENT_ADD . " title=" . _AM_CONTENT_ADD . "></a>
-					<a href='delete_content.php?id=".$tcontent['storyid'] . ((isset($showshort)) ? "&showshort=" . $showshort : "") . "'><img src='../assets/images/delete.png' alt=" . _AM_CONTENT_DELETE . " title=" . _AM_CONTENT_DELETE . "></a></nobr></td>
-		</tr>";
+					<input type='checkbox'  name='visible[".$tcontent['storyid']."]' value='1' " . (($tcontent['visible'] == '1') ? 'CHECKED' : '') . "></td>
+				<td><nobr><a href='" . XOOPS_URL . '/modules/' . $dirname . '/index.php?id=' . $tcontent['storyid'] . "'><img src='../assets/images/go.png' alt=" . _AM_CONTENT_GO . ' title=' . _AM_CONTENT_GO . "></a>
+					<a href='edit_content.php?id=".$tcontent['storyid'] . ((isset($showshort)) ? '&showshort=' . $showshort : '') . "'><img src='../assets/images/edit.png' alt=" . _AM_CONTENT_EDIT . ' title=' . _AM_CONTENT_EDIT . "></a>
+					<a href='copy_content.php?id=".$tcontent['storyid'] . ((isset($showshort)) ? '&showshort=' . $showshort : '') . "'><img src='../assets/images/copy.png' alt=" . _AM_CONTENT_COPY . ' title=' . _AM_CONTENT_COPY . "></a>
+					<a href='add_content.php?id=".$tcontent['storyid'] . ((isset($showshort)) ? '&showshort=' . $showshort : '') . "'><img src='../assets/images/add.png' alt=" . _AM_CONTENT_ADD . ' title=' . _AM_CONTENT_ADD . "></a>
+					<a href='delete_content.php?id=".$tcontent['storyid'] . ((isset($showshort)) ? '&showshort=' . $showshort : '') . "'><img src='../assets/images/delete.png' alt=" . _AM_CONTENT_DELETE . ' title=' . _AM_CONTENT_DELETE . '></a></nobr></td>
+		</tr>';
 }

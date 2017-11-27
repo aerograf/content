@@ -52,11 +52,11 @@ $modversion    = [
 
     // ------------------- Submenu Items ---------------------------
 global $xoopsDB, $xoopsUser, $xoopsConfig, $xoopsModule, $xoopsModuleConfig;
-$result = $xoopsDB->query("SELECT storyid, title, homepage, submenu FROM " . $xoopsDB->prefix("content") . " WHERE homepage='0' AND submenu='1' ORDER BY title");
+$result = $xoopsDB->query('SELECT storyid, title, homepage, submenu FROM ' . $xoopsDB->prefix('content') . " WHERE homepage='0' AND submenu='1' ORDER BY title");
 $i = 1;
 while (list($storyid, $title) = $xoopsDB->fetchRow($result)) {
     $modversion['sub'][$i]['name'] = $title;
-    $modversion['sub'][$i]['url']  = "index.php?id=".$storyid."";
+    $modversion['sub'][$i]['url']  = 'index.php?id=' . $storyid . '';
     $i++;
 }
 

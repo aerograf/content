@@ -1,6 +1,6 @@
 <?php
 
-$current_page_id = "";
+$current_page_id = '';
 function site_block_section_nav($options)
 {
     global $xoopsDB, $xoopsModule, $xoopsTpl, $_GET, $xoopsUser, $xoopsConfig, $block, $current_page_id, $padding;
@@ -8,23 +8,23 @@ function site_block_section_nav($options)
     $module_handler        = xoops_getHandler('module');
     $result = $xoopsDB->query("SELECT *, blockid AS priority, 'content' AS type FROM "
                       . $xoopsDB->prefix('content')
-                      . " WHERE visible = 1 ORDER BY blockid");
+                              . ' WHERE visible = 1 ORDER BY blockid');
     $contentItems          = [];
     $groupPermHandler      = xoops_getHandler('groupperm');
     $module                = $module_handler->getByDirname('content');
     ($xoopsUser) ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
-    $allowedItems          = $groupPermHandler->getItemIds("content_page_view", $groups, $module->getVar("mid"));
+    $allowedItems          = $groupPermHandler->getItemIds('content_page_view', $groups, $module->getVar('mid'));
     while ($tcontent        = $xoopsDB->fetchArray($result)) {
-        if (in_array($tcontent["storyid"], $allowedItems)) {
+        if (in_array($tcontent['storyid'], $allowedItems)) {
             $contentItems[] = $tcontent;
         }
     }
 
     if ($xoopsModule) {
-        $result = $xoopsDB->query("SELECT storyid FROM "
-                        . $xoopsDB->prefix('content')
-                        . " WHERE visible=1 AND assoc_module = "
-                        . $xoopsModule->getVar("mid"));
+        $result = $xoopsDB->query('SELECT storyid FROM '
+                                  . $xoopsDB->prefix('content')
+                                  . ' WHERE visible=1 AND assoc_module = '
+                                  . $xoopsModule->getVar('mid'));
         if ($xoopsDB->getRowsNum($result) > 0) {
             list($current_page_id) = $xoopsDB->fetchRow($result);
         }
@@ -80,7 +80,7 @@ function return_children_sec($items, $parent_id)
 
 function find_top_parent_sec($items, $item_id)
 {
-    $top_parent = "";
+    $top_parent = '';
     for ($parent = $item_id; $parent <> 0; $parent = find_parent_sec($items, $parent)) {
         $top_parent = $parent;
     }
@@ -115,7 +115,7 @@ function find_url_sec($items, $item_id)
             if ($item['address'] && $item['link'] != 1) {
                 $itemURL = $item['address'];
             } else {
-                $itemURL = XOOPS_URL . "/modules/content/index.php?id=" . $item['storyid'];
+                $itemURL = XOOPS_URL . '/modules/content/index.php?id=' . $item['storyid'];
             }
             break;
         }
@@ -126,35 +126,35 @@ function find_url_sec($items, $item_id)
 function print_sec_menu($menuItems, $fullList, $level, $depth)
 {
     global $_GET, $current_page_id, $allParents, $padding;
-    $MyList = "";
+    $MyList = '';
     if ($level + 1 > $depth) {
         $depth = $level + 1;
     }
 
     if ($level == 0) {
-        $my_style = "menuMain";
+        $my_style = 'menuMain';
     } else {
-        $my_style = "menuSub";
+        $my_style = 'menuSub';
     }
 
     foreach ($menuItems as $menuItem) {
         if ($menuItem['address'] && $menuItem['link'] != 1) {
             $contentURL = $menuItem['address'];
         } else {
-            $contentURL = XOOPS_URL . "/modules/content/index.php?id=" . $menuItem['storyid'];
+            $contentURL = XOOPS_URL . '/modules/content/index.php?id=' . $menuItem['storyid'];
         }
-        $MyList .= "<a class=\"" . $my_style . "\"  style=\"padding-left : " . ($depth * $padding) . "px;\"";
+        $MyList .= '<a class="' . $my_style . '"  style="padding-left : ' . ($depth * $padding) . 'px;"';
         if ($menuItem['newwindow'] == 1) {
-            $MyList .= " target=\"_blank\"";
+            $MyList .= ' target="_blank"';
         }
-        $MyList .=" href=\"" . $contentURL . "\"";
+        $MyList .= ' href="' . $contentURL . '"';
         if ($menuItem['storyid'] == $current_page_id) {
-            $MyList .= " id=\"current-nav-item\"";
+            $MyList .= ' id="current-nav-item"';
         }
-        $MyList .= ">" . $menuItem['title'] . "</a>\n";
+        $MyList .= '>' . $menuItem['title'] . "</a>\n";
         $children = return_children_sec($fullList, $menuItem['storyid']);
         if ($children) {
-            if (in_array($menuItem["storyid"], $allParents)) {
+            if (in_array($menuItem['storyid'], $allParents)) {
                 $MyList .= print_sec_menu($children, $fullList, $level + 1, $depth);
             }
         }
@@ -164,7 +164,7 @@ function print_sec_menu($menuItems, $fullList, $level, $depth)
 
 function edit_block_sec_nav($options)
 {
-    $form  = "&nbsp;" . _MB_CONTENT_PADDING . "&nbsp;<input type=\"text\" name=\"options[]\" value=\"" . $options[0] . "\" size=\"5\" />&nbsp;pixels";
+    $form  = '&nbsp;' . _MB_CONTENT_PADDING . '&nbsp;<input type="text" name="options[]" value="' . $options[0] . '" size="5" />&nbsp;pixels';
 
     return $form;
 }

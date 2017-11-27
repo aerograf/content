@@ -7,7 +7,7 @@ function content_block_top_nav()
     $block = [];
     $_GET['id'] = '';
     $myts  = MyTextSanitizer::getInstance();
-    if ($xoopsModule && ($xoopsModule->name() == "Content" || $xoopsModule->dirname() == "content")) {
+    if ($xoopsModule && ($xoopsModule->name() == 'Content' || $xoopsModule->dirname() == 'content')) {
         $result = $xoopsDB->query("SELECT CASE parent_id WHEN 0 THEN storyid ELSE parent_id END 'sortorder' FROM "
                             . $xoopsDB->prefix('content')
                             . " WHERE visible='1' AND storyid="
@@ -17,21 +17,21 @@ function content_block_top_nav()
         $currentParent = '';
     }
 
-    $result = $xoopsDB->query("SELECT link, storyid, blockid, title, visible, parent_id, address, newwindow FROM "
-                      . $xoopsDB->prefix('content')
-                      . " WHERE visible='1' and parent_id = 0 ORDER BY blockid");
+    $result = $xoopsDB->query('SELECT link, storyid, blockid, title, visible, parent_id, address, newwindow FROM '
+                              . $xoopsDB->prefix('content')
+                              . " WHERE visible='1' and parent_id = 0 ORDER BY blockid");
     $groupPermHandler      = xoops_getHandler('groupperm');
     $module                = $module_handler->getByDirname('content');
     ($xoopsUser) ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
-    $allowedItems          = $groupPermHandler->getItemIds("content_page_view", $groups, $module->getVar("mid"));
+    $allowedItems          = $groupPermHandler->getItemIds('content_page_view', $groups, $module->getVar('mid'));
 
     while ($tcontent = $xoopsDB->fetchArray($result)) {
-        if (in_array($tcontent["storyid"], $allowedItems)) {
+        if (in_array($tcontent['storyid'], $allowedItems)) {
             $link = [];
             if ($tcontent['address'] && $tcontent['link'] != 1) {
                 $contentURL = $tcontent['address'];
             } else {
-                $contentURL = XOOPS_URL . "/modules/content/index.php?id=" . $tcontent['storyid'];
+                $contentURL = XOOPS_URL . '/modules/content/index.php?id=' . $tcontent['storyid'];
             }
             $link['id']            = $tcontent['storyid'];
             $link['title']         = $myts->makeTboxData4Show($tcontent['title']);

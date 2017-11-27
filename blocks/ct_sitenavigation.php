@@ -17,10 +17,10 @@ function site_block_nav($options)
     foreach (array_keys($modules) as $i) {
         if (in_array($i, $read_allowed)) {
             $menuModule[$i]['title']    = $modules[$i]->getVar('name');
-            $menuModule[$i]['url']      = XOOPS_URL . "/modules/".$modules[$i]->getVar('dirname') . "/";
+            $menuModule[$i]['url']      = XOOPS_URL . '/modules/' . $modules[$i]->getVar('dirname') . '/';
             $menuModule[$i]['priority'] = $modules[$i]->getVar('weight');
             $menuModule[$i]['id']       = $modules[$i]->getVar('id');
-            $menuModule[$i]['type']     = "module";
+            $menuModule[$i]['type']     = 'module';
 
             $sublinks = $modules[$i]->subLink();
             if ((count($sublinks) > 0) && (!empty($xoopsModule)) && ($i == $xoopsModule->getVar('mid'))) {
@@ -40,7 +40,7 @@ function site_block_nav($options)
     //bpo - added visible else not shown items appear in menu
     $result = $xoopsDB->query("SELECT title, storyid, parent_id, homepage, nohtml, nosmiley, nobreaks, nocomments, link, address, submenu, visible, blockid AS priority, 'content' AS type FROM "
                       . $xoopsDB->prefix('content')
-                      . " where visible = 1 ORDER BY blockid");
+                              . ' where visible = 1 ORDER BY blockid');
 
     $contentItems = [];
 
@@ -48,20 +48,20 @@ function site_block_nav($options)
     $groupPermHandler      = xoops_getHandler('groupperm');
     $module                = $module_handler->getByDirname('content');
     ($xoopsUser) ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
-    $allowedItems          = $groupPermHandler->getItemIds("content_page_view", $groups, $module->getVar("mid"));
+    $allowedItems          = $groupPermHandler->getItemIds('content_page_view', $groups, $module->getVar('mid'));
     while ($tcontent = $xoopsDB->fetchArray($result)) {
-        if (in_array($tcontent["storyid"], $allowedItems)) {
+        if (in_array($tcontent['storyid'], $allowedItems)) {
             $contentItems[] = $tcontent;
         }
     }
     global $allParents, $currentpage;
-    if ($xoopsModule && ($xoopsModule->name() == "Content" || $xoopsModule->dirname() == "content")) {
-        $currentpage = $_GET["id"];
+    if ($xoopsModule && ($xoopsModule->name() == 'Content' || $xoopsModule->dirname() == 'content')) {
+        $currentpage = $_GET['id'];
     } elseif ($xoopsModule) {
-        $result = $xoopsDB->query("SELECT storyid FROM "
-                        . $xoopsDB->prefix('content')
-                        . " WHERE visible=1 AND assoc_module = "
-                        . $xoopsModule->getVar("mid"));
+        $result = $xoopsDB->query('SELECT storyid FROM '
+                                  . $xoopsDB->prefix('content')
+                                  . ' WHERE visible=1 AND assoc_module = '
+                                  . $xoopsModule->getVar('mid'));
         if ($xoopsDB->getRowsNum($result) > 0) {
             list($currentpage) = $xoopsDB->fetchRow($result);
         }
@@ -98,7 +98,7 @@ function return_children($items, $parent_id)
 
 function find_top_parent_sec($items, $item_id)
 {
-    $top_parent = "";
+    $top_parent = '';
     for ($parent = $item_id; $parent <> 0; $parent = find_parent_sec($items, $parent)) {
         $top_parent = $parent;
     }
@@ -130,40 +130,40 @@ function print_menu($menuItems, $fullList, $level, $depth)
 {
     global $xoopsModule, $xoopsRequestUri, $xoopsDB, $xoopsUser, $allParents, $padding;
 
-    $TempMyList = "";
-    $MyList     = "";
+    $TempMyList = '';
+    $MyList     = '';
     foreach ($menuItems as $menuItem) {
         $temp = ($level * 9) + 3;
         if ($menuItem['type'] == 'content') {
             if ($menuItem['link'] == 0 && $menuItem['address']) {
                 $contentURL = $menuItem['address'];
             } else {
-                $contentURL = XOOPS_URL . "/modules/content/index.php?id=" . $menuItem['storyid'];
+                $contentURL = XOOPS_URL . '/modules/content/index.php?id=' . $menuItem['storyid'];
             }
             if ($level == 0) {
-                $MyList .= "\n\t<a class=\"menuMain\" href=\"" . $contentURL . "\">" . $menuItem['title'] . "</a>";
+                $MyList .= "\n\t<a class=\"menuMain\" href=\"" . $contentURL . '">' . $menuItem['title'] . '</a>';
             } else {
-                $MyList .= "\n\t<a class=\"menuSub\" style=\"padding-left : " . ($level * $padding) . "px;\" href=\"" . $contentURL . "\">" . $menuItem['title'] . "</a>";
+                $MyList .= "\n\t<a class=\"menuSub\" style=\"padding-left : " . ($level * $padding) . 'px;" href="' . $contentURL . '">' . $menuItem['title'] . '</a>';
             }
             $children = return_children($fullList, $menuItem['storyid']);
             if ($children) {
-                if (in_array($menuItem["storyid"], $allParents)) {
-                    $MyList .= "" . print_menu($children, $fullList, $level + 1, $depth) . "";
+                if (in_array($menuItem['storyid'], $allParents)) {
+                    $MyList .= '' . print_menu($children, $fullList, $level + 1, $depth) . '';
                 }
             }
         } else { // Its a Module
             $contentURL = $menuItem['url'];
-            $MyList .= "\n\t<a class=\"menuMain\" href=\"" . $contentURL . "\">" . $menuItem['title'] . "</a>";
+            $MyList .= "\n\t<a class=\"menuMain\" href=\"" . $contentURL . '">' . $menuItem['title'] . '</a>';
             if ($menuItem['sublinks']) {
                 foreach ($menuItem['sublinks'] as $sublink) {
-                    $MyList .= "<a class=\"menuSub\" href=\"" . $sublink['url'] . "\">" . $sublink['title'] . "</a>\n";
+                    $MyList .= '<a class="menuSub" href="' . $sublink['url'] . '">' . $sublink['title'] . "</a>\n";
                 }
             }
         }
     }
     if ($level == 0) {
-        if (is_object($GLOBALS["xoopsUser"]) && $GLOBALS["xoopsUser"]->isAdmin()) {
-            $MyList .= "\n\t<a class=\"menuMain\" href=\"" . XOOPS_URL . "/modules/content/admin/index.php?op=submit&id=0&return=1"."\">" . _MB_CONTENT_MENUADDITEM . "</a>";
+        if (is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin()) {
+            $MyList .= "\n\t<a class=\"menuMain\" href=\"" . XOOPS_URL . '/modules/content/admin/index.php?op=submit&id=0&return=1' . '">' . _MB_CONTENT_MENUADDITEM . '</a>';
         }
     }
     return $MyList;
@@ -171,7 +171,7 @@ function print_menu($menuItems, $fullList, $level, $depth)
 
 function edit_block_nav($options)
 {
-    $form  = "&nbsp;" . _MB_CONTENT_PADDING . "&nbsp;<input type=\"text\" name=\"options[]\" value=\"" . $options[0] . "\" size=\"5\" />&nbsp;pixels";
+    $form  = '&nbsp;' . _MB_CONTENT_PADDING . '&nbsp;<input type="text" name="options[]" value="' . $options[0] . '" size="5" />&nbsp;pixels';
 
     return $form;
 }

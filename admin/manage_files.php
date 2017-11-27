@@ -1,6 +1,6 @@
 <?php
 
-include_once "admin_header.php";
+include_once 'admin_header.php';
 xoops_cp_header();
 // ------------------------------------------------------------------------- //
 // Switch Statement for the different operations                             //
@@ -11,7 +11,7 @@ switch ($op) {
     // ------------------------------------------------------------------------- //
     // Delete File - Confirmation Question                                    //
     // ------------------------------------------------------------------------- //
-    case "delfile":
+    case 'delfile':
     $action  = 'history.go(-1)';
     $hiddens = [
                 'address'   => $address,
@@ -25,16 +25,16 @@ switch ($op) {
     // ------------------------------------------------------------------------- //
     // Delete it definitely                                                      //
     // ------------------------------------------------------------------------- //
-    case "delfileok":
+    case 'delfileok':
         if ($loc == 1) {
-            $dir = XOOPS_ROOT_PATH . "/modules/content/headers/";
+            $dir = XOOPS_ROOT_PATH . '/modules/content/headers/';
         } else {
-            $dir = XOOPS_ROOT_PATH . "/modules/content/content/";
+            $dir = XOOPS_ROOT_PATH . '/modules/content/content/';
         }
-        @unlink($dir."/".$address);
+        @unlink($dir . '/' . $address);
         xoops_result('<h4>' . _AM_CONTENT_FDELETED . '</h4>');
         echo '<script>
-						opts = window.opener.document.ctform["' . (($loc == 1) ? "header_img" : "address") . '"].options;
+						opts = window.opener.document.ctform["' . (($loc == 1) ? 'header_img' : 'address') . '"].options;
 						for (i = 0; opt = opts[i]; i++){
 							if ("' . $address . '" == opt.value){
 								opts[i] = null;
@@ -57,27 +57,27 @@ switch ($op) {
 function show_form()
 {
     global $loc, $showshort;
-    $form = new XoopsThemeForm(_AM_CONTENT_DELFILE, "form_name", "manage_files.php");
+    $form = new XoopsThemeForm(_AM_CONTENT_DELFILE, 'form_name', 'manage_files.php');
     
-    $address_select = new XoopsFormSelect(_AM_CONTENT_URL, "address");
+    $address_select = new XoopsFormSelect(_AM_CONTENT_URL, 'address');
     if ($loc == 1) {
-        $folder = dir("../headers/");
+        $folder = dir('../headers/');
     } else {
-        $folder = dir("../content/");
+        $folder = dir('../content/');
     }
     while ($file = $folder->read()) {
-        if ($file != "." && $file != "..") {
+        if ($file != '.' && $file != '..') {
             $address_select->addOption($file, $file);
         }
     }
     $folder->close();
     $form->addElement($address_select);
     
-    $delfile = "delfile";
+    $delfile = 'delfile';
     $form->addElement(new XoopsFormHidden('op', $delfile));
     $form->addElement(new XoopsFormHidden('loc', $loc));
     $form->addElement(new XoopsFormHidden('showshort', $showshort));
-    $submit = new XoopsFormButton("", "submit", _AM_CONTENT_DELETE, "submit");
+    $submit = new XoopsFormButton('', 'submit', _AM_CONTENT_DELETE, 'submit');
     $form->addElement($submit);
     $form->display();
 }

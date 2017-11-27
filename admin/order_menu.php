@@ -1,31 +1,31 @@
 <?php
 
-    include_once "admin_header.php";
-    if (isset($_GET['op']) && $_GET['op'] == "order") {
+    include_once 'admin_header.php';
+    if (isset($_GET['op']) && $_GET['op'] == 'order') {
         for ($j = 1; $j <= $_POST['total']; $j++) {
-            if ($_POST['type'.$j] == "module") {
-                if (!$result = $xoopsDB->query("UPDATE "
-                                  . $xoopsDB->prefix('modules')
-                                  . " SET weight = '"
-                                  . $_POST['priority'.$j]
-                                  . "' WHERE mid = '"
-                                  . $_POST['id'.$j]
-                                  . "'")) {
+            if ($_POST['type'.$j] == 'module') {
+                if (!$result = $xoopsDB->query('UPDATE '
+                                               . $xoopsDB->prefix('modules')
+                                               . " SET weight = '"
+                                               . $_POST['priority'.$j]
+                                               . "' WHERE mid = '"
+                                               . $_POST['id'.$j]
+                                               . "'")) {
                     echo _AM_CONTENT_ERRORINSERT;
                 }
-            } elseif ($_POST['type'.$j] == "content") {
-                if (!$result = $xoopsDB->query("UPDATE "
-                                  . $xoopsDB->prefix('content')
-                                  . " SET blockid = '"
-                                  . $_POST['priority'.$j]
-                                  . "' WHERE storyid = '"
-                                  . $_POST['id'.$j]
-                                  . "'")) {
+            } elseif ($_POST['type'.$j] == 'content') {
+                if (!$result = $xoopsDB->query('UPDATE '
+                                               . $xoopsDB->prefix('content')
+                                               . " SET blockid = '"
+                                               . $_POST['priority'.$j]
+                                               . "' WHERE storyid = '"
+                                               . $_POST['id'.$j]
+                                               . "'")) {
                     echo _AM_CONTENT_ERRORINSERT;
                 }
             }
         }
-        redirect_header("order_menu.php", 2, _AM_CONTENT_DBUPDATED);
+        redirect_header('order_menu.php', 2, _AM_CONTENT_DBUPDATED);
     } else {
         xoops_cp_header();
         $adminObject = \Xmf\Module\Admin::getInstance();
@@ -43,12 +43,12 @@
         foreach (array_keys($modules) as $i) {
             if (in_array($i, $read_allowed)) {
                 $menuModule[$i]['text']     = $modules[$i]->getVar('name');
-                $menuModule[$i]['url']      = XOOPS_URL."/modules/".$modules[$i]->getVar('dirname');
+                $menuModule[$i]['url']      = XOOPS_URL . '/modules/' . $modules[$i]->getVar('dirname');
                 $menuModule[$i]['priority'] = $modules[$i]->getVar('weight');
                 
                 echo $modules[$i]->getVar('id');
                 $menuModule[$i]['id']   = $modules[$i]->getVar('mid');
-                $menuModule[$i]['type'] = "module";
+                $menuModule[$i]['type'] = 'module';
                 $sublinks               = $modules[$i]->subLink();
                 if ((count($sublinks) > 0) && (!empty($xoopsModule)) && ($i == $xoopsModule->getVar('mid'))) {
                     foreach ($sublinks as $sublink) {
@@ -66,7 +66,7 @@
         $block = [];
         $myts  = MyTextSanitizer::getInstance();
         
-        if ($xoopsModule && ($xoopsModule->name() == "Content" || $xoopsModule->dirname() == "content") && isset($_GET['id'])) {
+        if ($xoopsModule && ($xoopsModule->name() == 'Content' || $xoopsModule->dirname() == 'content') && isset($_GET['id'])) {
             $result = $xoopsDB->query("SELECT CASE parent_id WHEN 0 THEN storyid ELSE parent_id END 'sortorder' FROM "
                             . $xoopsDB->prefix('content')
                             . " WHERE visible='1' AND storyid="
@@ -76,24 +76,24 @@
         
         $result = $xoopsDB->query("SELECT storyid, blockid, title, visible, parent_id, address, blockid AS 'menu_block', parent_id AS 'menu_id' FROM "
                         . $xoopsDB->prefix('content')
-                        . " WHERE visible=1 AND parent_id = 0 ORDER BY menu_block, menu_id, parent_id, blockid");
+                                  . ' WHERE visible=1 AND parent_id = 0 ORDER BY menu_block, menu_id, parent_id, blockid');
     
         global $j;
         $menu = [];
         while ($tcontent = $xoopsDB->fetchArray($result)) {
             if ($tcontent['parent_id'] == 0) {
                 $menu[] = [
-                'text' => $myts->makeTboxData4Show($tcontent['title']),
-                'url' => XOOPS_URL . "/modules/content/index.php?id=" . $tcontent['storyid'],
-                'priority' => $tcontent['menu_block'],
-                'id' => $tcontent['storyid'],
-                'type' => "content"
+                    'text' => $myts->makeTboxData4Show($tcontent['title']),
+                    'url' => XOOPS_URL . '/modules/content/index.php?id=' . $tcontent['storyid'],
+                    'priority' => $tcontent['menu_block'],
+                    'id' => $tcontent['storyid'],
+                    'type' => 'content'
                 ];
                 $j = count($menu);
             } else {
                 $menu[$j-1]['sublinks'][] = [
                                   'text' => $myts->makeTboxData4Show($tcontent['title']),
-                                  'url' => XOOPS_URL . "/modules/content/index.php?id=" . $tcontent['storyid']
+                                  'url' => XOOPS_URL . '/modules/content/index.php?id=' . $tcontent['storyid']
                                   ];
             }
         }
@@ -105,7 +105,7 @@
         }
 
         array_multisort($priority, SORT_ASC, $allmenus);
-        echo "" . showMenu() . "
+        echo '' . showMenu() . "
 			 <table width='100%' border='0' cellpadding='0' cellspacing='1' class='outer'>
 			 	<tr class='even'>
 					<td><strong>" . _AM_CONTENT_LINKNAME . "</strong></td>

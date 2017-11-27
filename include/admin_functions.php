@@ -1,6 +1,6 @@
 <?php
 if (!defined('XOOPS_URL')) {
-    include_once "../../../mainfile.php";
+    include_once '../../../mainfile.php';
 }
 
 function displayFilterForm()
@@ -11,10 +11,10 @@ function displayFilterForm()
                       '<strong>' . _AM_CONTENT_FILTER . ':&nbsp;</strong>'.
                       '<input type="hidden" name="op" value="' . $op . ' ">'.
                       '<input type="text" name="filter" value="' . $filter . '"size="20">&nbsp;'.
-                      '<input type="submit" value="Filter">&nbsp;<input type="button" value="Clear Filter" onclick="location.href=\'' . $_SERVER["PHP_SELF"] . '\'">'.
+                      '<input type="submit" value="Filter">&nbsp;<input type="button" value="Clear Filter" onclick="location.href=\'' . $_SERVER['PHP_SELF'] . '\'">' .
                       '</form>';
-        if (isset($_GET["filter"])) {
-            $filterSQL = " title LIKE '%".$_GET["filter"]."%'";
+        if (isset($_GET['filter'])) {
+            $filterSQL = " title LIKE '%". $_GET['filter'] . "%'";
         }
         return $filterForm;
     }
@@ -23,17 +23,17 @@ function displayFilterForm()
 function showMenu()
 {
     global $xoopsModule, $xoopsDB, $showshort;
-    $menu="";
+    $menu= '';
     if ($showshort != 1) {
-        if (!FieldExists("ptitle", $xoopsDB->prefix('content')) ||
-            !FieldExists("newwindow", $xoopsDB->prefix('content')) ||
-            !FieldExists("epage", $xoopsDB->prefix('content')) ||
-            !FieldExists("date", $xoopsDB->prefix('content')) ||
-            !FieldExists("assoc_module", $xoopsDB->prefix('content')) ||
-            !FieldExists("header_img", $xoopsDB->prefix('content')) ||
-            !FieldExists("ptitle", $xoopsDB->prefix('content')) ||
-            !FieldExists("keywords", $xoopsDB->prefix('content')) ||
-            !FieldExists("page_description", $xoopsDB->prefix('content'))
+        if (!FieldExists('ptitle', $xoopsDB->prefix('content')) ||
+            !FieldExists('newwindow', $xoopsDB->prefix('content')) ||
+            !FieldExists('epage', $xoopsDB->prefix('content')) ||
+            !FieldExists('date', $xoopsDB->prefix('content')) ||
+            !FieldExists('assoc_module', $xoopsDB->prefix('content')) ||
+            !FieldExists('header_img', $xoopsDB->prefix('content')) ||
+            !FieldExists('ptitle', $xoopsDB->prefix('content')) ||
+            !FieldExists('keywords', $xoopsDB->prefix('content')) ||
+            !FieldExists('page_description', $xoopsDB->prefix('content'))
             ) {
             echo '<h4 style="color:#F00">' . _C_UPGRADENOTICE . '</h4>';
         }
@@ -46,9 +46,9 @@ function return_children($items, $parent_id, $depth=0)
     $myItems = [];
     foreach ($items as $item) {
         if ($item['parent_id'] == $parent_id) {
-            $item["depth"] = $depth;
-            $myItems[] = $item;
-            $myItems = array_merge($myItems, return_children($items, $item["storyid"], $depth + 1));
+            $item['depth'] = $depth;
+            $myItems[]     = $item;
+            $myItems       = array_merge($myItems, return_children($items, $item['storyid'], $depth + 1));
         }
     }
     return $myItems;
@@ -83,7 +83,7 @@ function FieldExists($fieldname, $table)
 }
 
 if (!defined('XOOPS_URL')) {
-    include_once "../../../../mainfile.php";
+    include_once '../../../../mainfile.php';
 }
 function print_header()
 {
@@ -94,7 +94,7 @@ function print_header()
 				<html>
 				<head>
 					<title>' . $xoopsConfig['sitename'] . '</title>';
-        $admincss = file_exists(XOOPS_THEME_URL."/".getTheme()."/admin.css") ? XOOPS_THEME_URL."/".getTheme()."/admin.css" : XOOPS_URL."/admin.css";
+        $admincss = file_exists(XOOPS_THEME_URL . '/' . getTheme() . '/admin.css') ? XOOPS_THEME_URL . '/' . getTheme() . '/admin.css' : XOOPS_URL . '/admin.css';
         echo '<link rel="stylesheet" type="text/css" media="all" href="'.XOOPS_URL.'/xoops.css" />';
         echo '<link rel="stylesheet" type="text/css" media="all" href="'.XOOPS_URL.'/modules/system/style.css" />';
         echo '<link rel="stylesheet" type="text/css" media="screen" href="' . $admincss . '" />';
@@ -117,11 +117,11 @@ function print_footer()
 {
     global $showshort;
     if ($showshort == 1) {
-        echo "</td>
+        echo '</td>
 	</tr>
 </table>	
 </body>
-</html>";
+</html>';
     } else {
         xoops_cp_footer();
     }

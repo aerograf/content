@@ -12,10 +12,10 @@ function tabMaker()
 {
     global $xoopsDB;
     $thisid = ($_REQUEST['id']);
-    $query1 = $xoopsDB->query("SELECT parent_id FROM "
-                    . $xoopsDB->prefix('content')
-                    . " WHERE storyid="
-                    . $thisid);
+    $query1 = $xoopsDB->query('SELECT parent_id FROM '
+                              . $xoopsDB->prefix('content')
+                              . ' WHERE storyid='
+                              . $thisid);
     while ($myrow1 = $xoopsDB->fetchArray($query1)) {
         $thisid_parent = $myrow1['parent_id'];
     }
@@ -23,21 +23,21 @@ function tabMaker()
     $tabs = [];
     $q=1;
 
-    $query = $xoopsDB->query("SELECT storyid, parent_id, blockid, submenu, title, visible FROM "
-                    . $xoopsDB->prefix('content')
-                    . " WHERE storyid="
-                    . $thisid
-                    . " OR parent_id="
-                    . $thisid
-                    . " OR storyid="
-                    . $thisid_parent
-                    . " OR parent_id= CASE WHEN "
-                    . $thisid_parent
-                    . " >0 THEN "
-                    . $thisid_parent
-                    . " ELSE "
-                    . $thisid
-                    . " END AND visible=1");
+    $query = $xoopsDB->query('SELECT storyid, parent_id, blockid, submenu, title, visible FROM '
+                             . $xoopsDB->prefix('content')
+                             . ' WHERE storyid='
+                             . $thisid
+                             . ' OR parent_id='
+                             . $thisid
+                             . ' OR storyid='
+                             . $thisid_parent
+                             . ' OR parent_id= CASE WHEN '
+                             . $thisid_parent
+                             . ' >0 THEN '
+                             . $thisid_parent
+                             . ' ELSE '
+                             . $thisid
+                             . ' END AND visible=1');
     while ($myrow = $xoopsDB->fetchArray($query)) {
         $tabs[$q]['storyid']   = $myrow['storyid'];
         $tabs[$q]['parent_id'] = $myrow['parent_id'];
@@ -53,16 +53,16 @@ function tabMaker()
 $id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
 
 if ($id != 0) {
-    $result = $xoopsDB->queryF("SELECT storyid, title, text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address FROM "
-                      . $xoopsDB->prefix('content')
-                      . " WHERE storyid="
-                      . $id);
+    $result = $xoopsDB->queryF('SELECT storyid, title, text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address FROM '
+                               . $xoopsDB->prefix('content')
+                               . ' WHERE storyid='
+                               . $id);
 } else {
-    $result = $xoopsDB->queryF("SELECT storyid FROM "
-                      . $xoopsDB->prefix('content')
-                      . " WHERE homepage=1");
+    $result = $xoopsDB->queryF('SELECT storyid FROM '
+                               . $xoopsDB->prefix('content')
+                               . ' WHERE homepage=1');
     list($storyid) = $xoopsDB->fetchRow($result);
-    $link_restore  = "Location: index.php?id=" . $storyid;
+    $link_restore  = 'Location: index.php?id=' . $storyid;
     header($link_restore, true, 301);
     exit();
 }
@@ -79,33 +79,33 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
     $groupPermHandler      = xoops_getHandler('groupperm');
     $module                = $module_handler->getByDirname('content');
     ($xoopsUser) ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
-    $allowedItems          = $groupPermHandler->getItemIds("content_page_view", $groups, $module->getVar("mid"));
+    $allowedItems          = $groupPermHandler->getItemIds('content_page_view', $groups, $module->getVar('mid'));
 
     if (!in_array($id, $allowedItems) && $id!=0) {
         redirect_header(XOOPS_URL, 2, _NOPERM, true);
     }
 
-    $result = $xoopsDB->query("SELECT storyid, title, parent_id FROM " . $xoopsDB->prefix('content'));
+    $result = $xoopsDB->query('SELECT storyid, title, parent_id FROM ' . $xoopsDB->prefix('content'));
 
     while ($item = $xoopsDB->fetchArray($result)) {
         $allItems[] = $item;
     }
 
     if ($id != 0) {
-        $result = $xoopsDB->queryF("SELECT storyid, ptitle, title, keywords,page_description,text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address, date, header_img FROM "
-                        . $xoopsDB->prefix('content')
-                        . " WHERE storyid="
-                        . $id);
+        $result = $xoopsDB->queryF('SELECT storyid, ptitle, title, keywords,page_description,text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address, date, header_img FROM '
+                                   . $xoopsDB->prefix('content')
+                                   . ' WHERE storyid='
+                                   . $id);
     } else {
-        $result = $xoopsDB->queryF("SELECT storyid, ptitle, title, keywords,page_description, text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address, date, header_img FROM "
-                        . $xoopsDB->prefix('content')
-                        . " WHERE homepage=1");
+        $result = $xoopsDB->queryF('SELECT storyid, ptitle, title, keywords,page_description, text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address, date, header_img FROM '
+                                   . $xoopsDB->prefix('content')
+                                   . ' WHERE homepage=1');
     }
-    $showerror= isset($_GET["showerror"])?intval($_GET["showerror"]):0;
+    $showerror= isset($_GET['showerror'])?intval($_GET['showerror']):0;
     if ($xoopsDB->getRowsNum($result) == 0 || $showerror == 1) {
-        $result = $xoopsDB->queryF("SELECT storyid, ptitle, title, keywords,page_description, text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address, date, header_img FROM "
-                        . $xoopsDB->prefix('content')
-                        . " WHERE epage=1");
+        $result = $xoopsDB->queryF('SELECT storyid, ptitle, title, keywords,page_description, text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address, date, header_img FROM '
+                                   . $xoopsDB->prefix('content')
+                                   . ' WHERE epage=1');
         list($myid, $ptitle, $title, $keywords, $description, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocomments,
              $link, $address, $date, $header) = $xoopsDB->fetchRow($result);
         $id = $myid;
@@ -116,7 +116,7 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
     }
 
     if ($link == 1) {
-        $includeContent = XOOPS_ROOT_PATH . "/modules/content/content/".$address;
+        $includeContent = XOOPS_ROOT_PATH . '/modules/content/content/' . $address;
         if (file_exists($includeContent)) {
             ob_start();
             include($includeContent);
@@ -149,7 +149,7 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
             $xoopsTpl->assign('date', $date);
             $xoopsTpl->assign('pagewrap', 1);
         } else {
-            redirect_header("index.php", 1, _MD_CONTENT_FILENOTFOUND);
+            redirect_header('index.php', 1, _MD_CONTENT_FILENOTFOUND);
         }
     } else {
         //Should we show crumbs
@@ -171,13 +171,13 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
 
         $myts = MyTextSanitizer::getInstance();
 
-        $contentPages = explode("[pagebreak]", $text);
+        $contentPages = explode('[pagebreak]', $text);
         $pageCount    = count($contentPages);
 
         //split up the pages
         if ($pageCount > 1) {
-            include_once XOOPS_ROOT_PATH . "/class/pagenav.php";
-            $nav = new XoopsPageNav($pageCount, 1, $currentPage, "page", "id=$id");
+            include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
+            $nav = new XoopsPageNav($pageCount, 1, $currentPage, 'page', "id=$id");
             $xoopsTpl->assign('nav', $nav->renderNav());
             $xoopsTpl->assign('content', $contentPages[$currentPage]);
         } else {
@@ -216,10 +216,10 @@ include_once XOOPS_ROOT_PATH . '/footer.php';
 function backOneLevel($items, $ctid)
 {
     foreach ($items as $item) {
-        if ($item["storyid"] == $ctid) {
+        if ($item['storyid'] == $ctid) {
             $crumbsout[] = $item;
-            if ($item["parent_id"]!=0) {
-                $crumbsout = array_merge($crumbsout, backOneLevel($items, $item["parent_id"]));
+            if ($item['parent_id'] != 0) {
+                $crumbsout = array_merge($crumbsout, backOneLevel($items, $item['parent_id']));
             }
             return $crumbsout;
         }

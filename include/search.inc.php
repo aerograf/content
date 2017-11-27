@@ -4,15 +4,15 @@ function content_search($queryarray, $andor, $limit, $offset, $userid)
 {
     global $xoopsDB, $xoopsConfig;
 
-    if (file_exists(XOOPS_ROOT_PATH."/modules/content/language/" . $xoopsConfig['language'] . "/main.php")) {
-        include(XOOPS_ROOT_PATH."/modules/content/language/" . $xoopsConfig['language'] . "/main.php");
-    } elseif (file_exists(XOOPS_ROOT_PATH."/modules/content/language/english/main.php")) {
-        include(XOOPS_ROOT_PATH."/modules/content/language/english/main.php");
+    if (file_exists(XOOPS_ROOT_PATH . '/modules/content/language/' . $xoopsConfig['language'] . '/main.php')) {
+        include(XOOPS_ROOT_PATH . '/modules/content/language/' . $xoopsConfig['language'] . '/main.php');
+    } elseif (file_exists(XOOPS_ROOT_PATH . '/modules/content/language/english/main.php')) {
+        include(XOOPS_ROOT_PATH . '/modules/content/language/english/main.php');
     }
   
-    $sql = "SELECT storyid, title, text FROM "
-          . $xoopsDB->prefix('content')
-          . " WHERE visible='1'";
+    $sql = 'SELECT storyid, title, text FROM '
+           . $xoopsDB->prefix('content')
+           . " WHERE visible='1'";
 
     if ($userid != 0) {
         $sql .= " AND storyid='0' ";
@@ -26,20 +26,20 @@ function content_search($queryarray, $andor, $limit, $offset, $userid)
             $sql .= " $andor ";
             $sql .= "(text LIKE '%$queryarray[$i]%' OR title LIKE '%$queryarray[$i]%')";
         }
-        $sql .= ")";
+        $sql .= ')';
     }
   
-    $sql   .= " ORDER BY storyid ASC";
+    $sql   .= ' ORDER BY storyid ASC';
     $result = $xoopsDB->query($sql, $limit, $offset);
     $ret    = [];
     $i      = 0;
   
     while ($myrow = $xoopsDB->fetchArray($result)) {
-        $ret[$i]['image'] = "";
-        $ret[$i]['link']  = "index.php?id=" . $myrow['storyid'];
+        $ret[$i]['image'] = '';
+        $ret[$i]['link']  = 'index.php?id=' . $myrow['storyid'];
         $ret[$i]['title'] = $myrow['title'];
         $ret[$i]['text']    = $myrow['text'];
-        $ret[$i]['uid']     = "0";
+        $ret[$i]['uid']     = '0';
         $i++;
     }
     return $ret;

@@ -1,6 +1,6 @@
 <?php
 
-include_once "admin_header.php";
+include_once 'admin_header.php';
 
 // ------------------------------------------------------------------------- //
 // Switch Statement for the different operations                             //
@@ -11,45 +11,45 @@ switch ($op) {
     // ------------------------------------------------------------------------- //
     // Delete it definitely                                                      //
     // ------------------------------------------------------------------------- //
-    case "copy":
+    case 'copy':
         global $xoopsDB;
-        $result = $xoopsDB->query("SELECT * FROM "
-                        . $xoopsDB->prefix('content')
-                        . " WHERE storyid="
-                        . intval($id));
+        $result = $xoopsDB->query('SELECT * FROM '
+                                  . $xoopsDB->prefix('content')
+                                  . ' WHERE storyid='
+                                  . intval($id));
         $oldrecord = $xoopsDB->fetchArray($result);
         
         foreach ($oldrecord as $key => $value) {
-            if ($key != "storyid") {
+            if ($key != 'storyid') {
                 if (isset($dbFields)) {
                     $dbFields .= ', ';
                     $dbValues .= ', ';
                 }
                 $dbFields .= '`' . $key . '`';
-                $dbValues .= "'" . (($key == "title") ? "Copy of " . addslashes($value) : addslashes($value)) . "'";
+                $dbValues .= "'" . (($key == 'title') ? 'Copy of ' . addslashes($value) : addslashes($value)) . "'";
             }
         }
         
-        $result = $xoopsDB->query("INSERT INTO "
-                        . $xoopsDB->prefix('content')
-                        . " ("
-                        . $dbFields
-                        . ") VALUES ("
-                        . $dbValues
-                        . ")");
+        $result = $xoopsDB->query('INSERT INTO '
+                                  . $xoopsDB->prefix('content')
+                                  . ' ('
+                                  . $dbFields
+                                  . ') VALUES ('
+                                  . $dbValues
+                                  . ')');
         
         $newId = $xoopsDB->getInsertId();
 
         $module_handler   = xoops_getHandler('module');
         $groupPermHandler = xoops_getHandler('groupperm');
         $module           = $module_handler->getByDirname('content');
-        $allowedGroups    = $groupPermHandler->getGroupIds("content_page_view", $id, $module->getVar("mid"));
+        $allowedGroups    = $groupPermHandler->getGroupIds('content_page_view', $id, $module->getVar('mid'));
         
         foreach ($allowedGroups as $group) {
-            $groupPermHandler->addRight("content_page_view", $newId, $group, $module->getVar("mid"));
+            $groupPermHandler->addRight('content_page_view', $newId, $group, $module->getVar('mid'));
         }
 
-        redirect_header("edit_content.php?id=" . $newId . "&return=" . $return, 2, _AM_CONTENT_DBUPDATED);
+        redirect_header('edit_content.php?id=' . $newId . '&return=' . $return, 2, _AM_CONTENT_DBUPDATED);
         break;
         
     // ------------------------------------------------------------------------- //

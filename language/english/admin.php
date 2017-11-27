@@ -1,41 +1,41 @@
 <?php
-define("_AM_CONTENT_ADMINTITLE", "Content");
-define("_AM_CONTENT_MAINMENU", "Main Menu");
+define('_AM_CONTENT_ADMINTITLE', 'Content');
+define('_AM_CONTENT_MAINMENU', 'Main Menu');
 
-define("_AM_CONTENT_ADDCONTENT", "Add new Content");
-define("_AM_CONTENT_EDITCONTENT", "Edit Content");
-define("_AM_CONTENT_ADDLINK", "Add PageWrap");
-define("_AM_CONTENT_EDITLINK", "Modify PageWrap");
-define("_AM_CONTENT_ULFILE", "Upload File");
-define("_AM_CONTENT_SFILE", "Search");
-define("_AM_CONTENT_DELFILE", "Delete File");
+define('_AM_CONTENT_ADDCONTENT', 'Add new Content');
+define('_AM_CONTENT_EDITCONTENT', 'Edit Content');
+define('_AM_CONTENT_ADDLINK', 'Add PageWrap');
+define('_AM_CONTENT_EDITLINK', 'Modify PageWrap');
+define('_AM_CONTENT_ULFILE', 'Upload File');
+define('_AM_CONTENT_SFILE', 'Search');
+define('_AM_CONTENT_DELFILE', 'Delete File');
 
 define('_AM_CONTENT_FILTER', 'Filter by title');
-define("_AM_CONTENT_HOMEPAGE", "Home");
-define("_AM_CONTENT_POSITION", "Position");
-define("_AM_CONTENT_LINKNAME", "Link Title");
-define("_AM_CONTENT_PAGENAME", "Page Title");
-define("_AM_CONTENT_LINKTYPE", "Type");
-define("_AM_CONTENT_KEYWORDS", "Meta Keywords");
-define("_AM_CONTENT_PAGEDESCRIPTION", "Meta Description");
+define('_AM_CONTENT_HOMEPAGE', 'Home');
+define('_AM_CONTENT_POSITION', 'Position');
+define('_AM_CONTENT_LINKNAME', 'Link Title');
+define('_AM_CONTENT_PAGENAME', 'Page Title');
+define('_AM_CONTENT_LINKTYPE', 'Type');
+define('_AM_CONTENT_KEYWORDS', 'Meta Keywords');
+define('_AM_CONTENT_PAGEDESCRIPTION', 'Meta Description');
 
-define("_AM_CONTENT_EXTURL", "External URL");
-define("_AM_CONTENT_STORYID", "ID");
-define("_AM_CONTENT_VISIBLE", "Visible");
-define("_AM_CONTENT_CONTENT", "Content");
-define("_AM_CONTENT_YES", "Yes");
-define("_AM_CONTENT_NO", "No");
-define("_AM_CONTENT_URL", "Select File");
-define("_AM_CONTENT_UPLOAD", "Upload");
-define("_AM_CONTENT_PERMS", "Group Permissions");
+define('_AM_CONTENT_EXTURL', 'External URL');
+define('_AM_CONTENT_STORYID', 'ID');
+define('_AM_CONTENT_VISIBLE', 'Visible');
+define('_AM_CONTENT_CONTENT', 'Content');
+define('_AM_CONTENT_YES', 'Yes');
+define('_AM_CONTENT_NO', 'No');
+define('_AM_CONTENT_URL', 'Select File');
+define('_AM_CONTENT_UPLOAD', 'Upload');
+define('_AM_CONTENT_PERMS', 'Group Permissions');
 
-define("_AM_CONTENT_LINKID", "Priority");
-define("_AM_CONTENT_SUBLINKID", "Sub Priority");
-define("_AM_CONTENT_ACTION", "Action");
-define("_AM_CONTENT_EDIT", "Edit");
-define("_AM_CONTENT_DELETE", "Delete");
-define("_AM_CONTENT_ADD", "Add Subpage");
-define("_AM_CONTENT_MODULENAME", "Module");
+define('_AM_CONTENT_LINKID', 'Priority');
+define('_AM_CONTENT_SUBLINKID', 'Sub Priority');
+define('_AM_CONTENT_ACTION', 'Action');
+define('_AM_CONTENT_EDIT', 'Edit');
+define('_AM_CONTENT_DELETE', 'Delete');
+define('_AM_CONTENT_ADD', 'Add Subpage');
+define('_AM_CONTENT_MODULENAME', 'Module');
 
 define('_AM_CONTENT_DISABLECOM', 'Disable comments');
 define('_AM_CONTENT_DBUPDATED', 'Database Updated Successfully!');
@@ -73,20 +73,20 @@ define('_AM_CONTENT_PERMITWRITE', 'Write Permissions');
 define('_AM_CONTENT_DELETEFILES', 'Delete Files');
 
 // About.php
-define("_AM_CONTENT_ABOUT_RELEASEDATE", "Released: ");
-define("_AM_CONTENT_ABOUT_UPDATEDATE", "Updated: ");
-define("_AM_CONTENT_ABOUT_AUTHOR", "Author: ");
-define("_AM_CONTENT_ABOUT_CREDITS", "Credits: ");
-define("_AM_CONTENT_ABOUT_LICENSE", "License: ");
-define("_AM_CONTENT_ABOUT_MODULE_STATUS", "Status: ");
-define("_AM_CONTENT_ABOUT_WEBSITE", "Website: ");
-define("_AM_CONTENT_ABOUT_AUTHOR_NAME", "Author name: ");
-define("_AM_CONTENT_ABOUT_CHANGELOG", "Change Log");
-define("_AM_CONTENT_ABOUT_MODULE_INFO", "Module Info");
-define("_AM_CONTENT_ABOUT_AUTHOR_INFO", "Author Info");
-define("_AM_CONTENT_ABOUT_DESCRIPTION", "Description: ");
+define('_AM_CONTENT_ABOUT_RELEASEDATE', 'Released: ');
+define('_AM_CONTENT_ABOUT_UPDATEDATE', 'Updated: ');
+define('_AM_CONTENT_ABOUT_AUTHOR', 'Author: ');
+define('_AM_CONTENT_ABOUT_CREDITS', 'Credits: ');
+define('_AM_CONTENT_ABOUT_LICENSE', 'License: ');
+define('_AM_CONTENT_ABOUT_MODULE_STATUS', 'Status: ');
+define('_AM_CONTENT_ABOUT_WEBSITE', 'Website: ');
+define('_AM_CONTENT_ABOUT_AUTHOR_NAME', 'Author name: ');
+define('_AM_CONTENT_ABOUT_CHANGELOG', 'Change Log');
+define('_AM_CONTENT_ABOUT_MODULE_INFO', 'Module Info');
+define('_AM_CONTENT_ABOUT_AUTHOR_INFO', 'Author Info');
+define('_AM_CONTENT_ABOUT_DESCRIPTION', 'Description: ');
 
 // Configuration
-define("_AM_CONTENT_CONFIG_CHECK", "Configuration Check");
-define("_AM_CONTENT_CONFIG_PHP", "Minimum PHP required: %s (your version is %s)");
-define("_AM_CONTENT_CONFIG_XOOPS", "Minimum XOOPS required:  %s (your version is %s)");
+define('_AM_CONTENT_CONFIG_CHECK', 'Configuration Check');
+define('_AM_CONTENT_CONFIG_PHP', 'Minimum PHP required: %s (your version is %s)');
+define('_AM_CONTENT_CONFIG_XOOPS', 'Minimum XOOPS required:  %s (your version is %s)');

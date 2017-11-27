@@ -16,10 +16,10 @@ function site_block_dhtml_nav()
     foreach (array_keys($modules) as $i) {
         if (in_array($i, $read_allowed)) {
             $menuModule[$i]['title']    = $modules[$i]->getVar('name');
-            $menuModule[$i]['url']      = XOOPS_URL . "/modules/" . $modules[$i]->getVar('dirname') . "/";
+            $menuModule[$i]['url']      = XOOPS_URL . '/modules/' . $modules[$i]->getVar('dirname') . '/';
             $menuModule[$i]['priority'] = $modules[$i]->getVar('weight');
             $menuModule[$i]['id']       = $modules[$i]->getVar('id');
-            $menuModule[$i]['type']     = "module";
+            $menuModule[$i]['type']     = 'module';
             $sublinks                   = $modules[$i]->subLink();
             if (count($sublinks) > 0) {
                 foreach ($sublinks as $sublink) {
@@ -37,14 +37,14 @@ function site_block_dhtml_nav()
     //-------------- Content --------------
     $result = $xoopsDB->query("SELECT *, blockid AS priority, 'content' AS type FROM "
                       . $xoopsDB->prefix('content')
-                      . " WHERE visible = 1 ORDER BY blockid");
+                              . ' WHERE visible = 1 ORDER BY blockid');
     $contentItems          = [];
     $groupPermHandler      = xoops_getHandler('groupperm');
     $module                = $module_handler->getByDirname('content');
     ($xoopsUser) ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
-    $allowedItems          = $groupPermHandler->getItemIds("content_page_view", $groups, $module->getVar("mid"));
+    $allowedItems          = $groupPermHandler->getItemIds('content_page_view', $groups, $module->getVar('mid'));
     while ($tcontent        = $xoopsDB->fetchArray($result)) {
-        if (in_array($tcontent["storyid"], $allowedItems)) {
+        if (in_array($tcontent['storyid'], $allowedItems)) {
             $contentItems[] = $tcontent;
         }
     }
@@ -59,15 +59,15 @@ function site_block_dhtml_nav()
     $block             = [];
     $block['ct_depth'] = 0;
     $block['ct_menu']  = print_menu($menu, $contentItems, 0, $block['ct_depth']);
-    $block['cssul1']   = "div#menu ul ul";
+    $block['cssul1']   = 'div#menu ul ul';
     
     for ($depth = 1; $depth < $block['ct_depth'] - 1; $depth++) {
-        $block['cssul1'] .=", div#menu ul li:hover" . str_repeat(" ul", $depth + 1);
+        $block['cssul1'] .= ', div#menu ul li:hover' . str_repeat(' ul', $depth + 1);
     }
     
-    $block['cssul2'] = "div#menu ul li:hover ul";
+    $block['cssul2'] = 'div#menu ul li:hover ul';
     for ($depth = 1; $depth < $block['ct_depth'] - 1; $depth++) {
-        $block['cssul2'] .=", div#menu " . str_repeat(" ul", $depth + 1) . " li:hover ul";
+        $block['cssul2'] .= ', div#menu ' . str_repeat(' ul', $depth + 1) . ' li:hover ul';
     }
     return $block;
 }
@@ -85,35 +85,35 @@ function return_children($items, $parent_id)
 
 function print_menu($menuItems, $fullList, $level, $depth)
 {
-    $MyList = "";
+    $MyList = '';
     if ($level + 1 > $depth) {
         $depth = $level + 1;
     }
     if ($level == 0) {
-        $MyList .= "<ul>";
+        $MyList .= '<ul>';
     }
     foreach ($menuItems as $menuItem) {
         if ($menuItem['type'] == 'content') {
             if ($menuItem['address'] && $menuItem['link'] != 1) {
                 $contentURL = $menuItem['address'];
             } else {
-                $contentURL = XOOPS_URL . "/modules/content/index.php?id=" . $menuItem['storyid'];
+                $contentURL = XOOPS_URL . '/modules/content/index.php?id=' . $menuItem['storyid'];
             }
         } else {
             $contentURL = $menuItem['url'];
         }
 
-        $MyList .= "\n\t<li><a href=\"" . $contentURL . "\">" . $menuItem['title'] . "</a>";
+        $MyList .= "\n\t<li><a href=\"" . $contentURL . '">' . $menuItem['title'] . '</a>';
 
         if ($menuItem['type'] == 'content') {
             if (return_children($fullList, $menuItem['storyid'])) {
-                $MyList .= "<ul>" . print_menu(return_children($fullList, $menuItem['storyid']), $fullList, $level + 1, $depth) . "</ul>";
+                $MyList .= '<ul>' . print_menu(return_children($fullList, $menuItem['storyid']), $fullList, $level + 1, $depth) . '</ul>';
             }
         } else {
             if ($menuItem['sublinks']) {
                 $MyList .= "<ul>\n";
                 foreach ($menuItem['sublinks'] as $sublink) {
-                    $MyList .= "<li><a href=\"" . $sublink['url'] . "\">" . $sublink['title'] . "</a></li>\n";
+                    $MyList .= '<li><a href="' . $sublink['url'] . '">' . $sublink['title'] . "</a></li>\n";
                 }
                 $MyList .= "</ul>\n";
             }
@@ -122,7 +122,7 @@ function print_menu($menuItems, $fullList, $level, $depth)
         $MyList .= "</li>\n";
     }
     if ($level == 0) {
-        $MyList .= "</ul>";
+        $MyList .= '</ul>';
     }
     return $MyList;
 }

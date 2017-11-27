@@ -2,7 +2,7 @@
 
 function site_block_horz_dhtml_nav()
 {
-    $MyList = "";
+    $MyList = '';
     global $xoopsDB, $xoopsModule, $xoopsTpl, $_GET, $xoopsUser, $xoopsConfig;
     //-------------- Modules --------------
     $menuModule         = [];
@@ -17,10 +17,10 @@ function site_block_horz_dhtml_nav()
     foreach (array_keys($modules) as $i) {
         if (in_array($i, $read_allowed)) {
             $menuModule[$i]['title']    = $modules[$i]->getVar('name');
-            $menuModule[$i]['url']      = XOOPS_URL . "/modules/" . $modules[$i]->getVar('dirname') . "/";
+            $menuModule[$i]['url']      = XOOPS_URL . '/modules/' . $modules[$i]->getVar('dirname') . '/';
             $menuModule[$i]['priority'] = $modules[$i]->getVar('weight');
             $menuModule[$i]['id']       = $modules[$i]->getVar('id');
-            $menuModule[$i]['type']     = "module";
+            $menuModule[$i]['type']     = 'module';
             $sublinks                   = $modules[$i]->subLink();
             if (count($sublinks) > 0) {
                 foreach ($sublinks as $sublink) {
@@ -38,14 +38,14 @@ function site_block_horz_dhtml_nav()
     //-------------- Content --------------
     $result = $xoopsDB->query("SELECT *, blockid AS priority, 'content' AS type FROM "
                       . $xoopsDB->prefix('content')
-                      . " WHERE visible = 1 ORDER BY blockid");
+                              . ' WHERE visible = 1 ORDER BY blockid');
     $contentItems          = [];
     $groupPermHandler      = xoops_getHandler('groupperm');
     $module                = $module_handler->getByDirname('content');
     ($xoopsUser) ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
-    $allowedItems          = $groupPermHandler->getItemIds("content_page_view", $groups, $module->getVar("mid"));
+    $allowedItems          = $groupPermHandler->getItemIds('content_page_view', $groups, $module->getVar('mid'));
     while ($tcontent        = $xoopsDB->fetchArray($result)) {
-        if (in_array($tcontent["storyid"], $allowedItems)) {
+        if (in_array($tcontent['storyid'], $allowedItems)) {
             $contentItems[] = $tcontent;
         }
     }
@@ -76,21 +76,21 @@ function return_children($items, $parent_id)
 
 function print_menu($menuItems, $fullList, $level, $depth)
 {
-    $MyList = "";
+    $MyList = '';
     if ($level + 1 > $depth) {
         $depth = $level + 1;
     }
     if ($level == 0) {
-        $MyList .= "<ul id=\"menu-h\" class=\"horizontal\">";
+        $MyList .= '<ul id="menu-h" class="horizontal">';
     }
     foreach ($menuItems as $menuItem) {
-        $currentPosition = "";
+        $currentPosition = '';
         $currentPosition++;
         if ($menuItem['type'] == 'content') {
             if ($menuItem['address'] && $menuItem['link'] != 1) {
                 $contentURL = $menuItem['address'];
             } else {
-                $contentURL = XOOPS_URL . "/modules/content/index.php?id=" . $menuItem['storyid'];
+                $contentURL = XOOPS_URL . '/modules/content/index.php?id=' . $menuItem['storyid'];
             }
         } else {
             $contentURL = $menuItem['url'];
@@ -98,18 +98,18 @@ function print_menu($menuItems, $fullList, $level, $depth)
         
         $MyList .= "\n\t<li";
         if ($level == 0) {
-            $MyList .= " class=\"nav-item-" . $currentPosition . "\"";
+            $MyList .= ' class="nav-item-' . $currentPosition . '"';
         }
-        $MyList .= "><a href=\"" . $contentURL . "\">" . $menuItem['title'] . "</a>";
+        $MyList .= '><a href="' . $contentURL . '">' . $menuItem['title'] . '</a>';
         if ($menuItem['type'] == 'content') {
             if (return_children($fullList, $menuItem['storyid'])) {
-                $MyList .= "<ul>" . print_menu(return_children($fullList, $menuItem['storyid']), $fullList, $level + 1, $depth) . "</ul>";
+                $MyList .= '<ul>' . print_menu(return_children($fullList, $menuItem['storyid']), $fullList, $level + 1, $depth) . '</ul>';
             }
         } else {
             if ($menuItem['sublinks']) {
                 $MyList .= "<ul>\n";
                 foreach ($menuItem['sublinks'] as $sublink) {
-                    $MyList .= "<li><a href=\"" . $sublink['url'] . "\">" . $sublink['title'] . "</a></li>\n";
+                    $MyList .= '<li><a href="' . $sublink['url'] . '">' . $sublink['title'] . "</a></li>\n";
                 }
                 $MyList .= "</ul>\n";
             }
@@ -117,7 +117,7 @@ function print_menu($menuItems, $fullList, $level, $depth)
         $MyList .= "</li>\n";
     }
     if ($level == 0) {
-        $MyList .= "</ul>";
+        $MyList .= '</ul>';
     }
     return $MyList;
 }

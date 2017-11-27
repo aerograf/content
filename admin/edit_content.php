@@ -1,6 +1,6 @@
 <?php
 
-include_once "admin_header.php";
+include_once 'admin_header.php';
 
 // ------------------------------------------------------------------------- //
 // Switch Statement for the different operations                             //
@@ -19,15 +19,15 @@ $groupPermHandler      = xoops_getHandler('groupperm');
 $module                = $module_handler->getByDirname('content');
 ($xoopsUser) ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
 
-$allowedItems = $groupPermHandler->getItemIds("content_page_write", $groups, $module->getVar("mid"));
+$allowedItems = $groupPermHandler->getItemIds('content_page_write', $groups, $module->getVar('mid'));
 
-if (!$groupPermHandler->checkRight("content_page_write", $id, $groups, $module->getVar("mid"))) {
+if (!$groupPermHandler->checkRight('content_page_write', $id, $groups, $module->getVar('mid'))) {
     redirect_header(XOOPS_URL, 2, _NOPERM, false);
 }
 // ------------------------------------------------------------------------- //
 // Do the edit of the Content                                                //
 // ------------------------------------------------------------------------- //
-if ($op == "add" || $op == "link") {
+if ($op == 'add' || $op == 'link') {
     $myts = MyTextSanitizer::getInstance();
 
     $title       = $myts->htmlSpecialChars($title);
@@ -41,73 +41,73 @@ if ($op == "add" || $op == "link") {
     $submenu     = isset($submenu)? intval($submenu):0;
     
     if ($_FILES['imageupload']) {
-        $uploadpath      = XOOPS_ROOT_PATH."/modules/content/headers/";
+        $uploadpath      = XOOPS_ROOT_PATH . '/modules/content/headers/';
         $source          = $_FILES['imageupload']['tmp_name'];
         $fileupload_name = $_FILES['imageupload']['name'];
         if (($source != 'none') && ($source != '')) {
             $dest=$uploadpath.$fileupload_name;
             if (file_exists($uploadpath.$fileupload_name)) {
-                redirect_header("add_content.php", 2, _AM_CONTENT_ERRORUPL);
+                redirect_header('add_content.php', 2, _AM_CONTENT_ERRORUPL);
             } else {
                 if (copy($source, $dest)) {
                     $header_img = $fileupload_name;
                 } else {
-                    redirect_header("add_content.php", 2, _AM_CONTENT_ERRORUPL);
+                    redirect_header('add_content.php', 2, _AM_CONTENT_ERRORUPL);
                 }
                 unlink($source);
             }
         }
     }
     
-    if ($op == "add") {
-        $externalURL = "";
+    if ($op == 'add') {
+        $externalURL = '';
     }
     
-    $sqlinsert="UPDATE "
-              . $xoopsDB->prefix('content')
-              . " SET page_description='"
-              . addslashes($description)
-              . "', keywords='"
-              . $keywords
-              . "', parent_id='"
-              . intval($parent_id)
-              . "', title='"
-              . $title
-              . "', ptitle='"
-              .    $ptitle
-              . "', text='"
-              . addslashes($message)
-              . "', visible='"
-              . intval($visible)
-              . "', nohtml='"
-              . intval($nohtml)
-              . "', nosmiley='"
-              . intval($nosmiley)
-              . "', nobreaks='"
-              . intval($nobreaks)
-              . "', nocomments='"
-              . intval($nocomments)
-              . "', address='"
-              . $externalURL
-              . "', submenu='"
-              . intval($submenu)
-              . "', newwindow='"
-              . intval($newwindow)
-              . "', date=NOW(), link=0, header_img='"
-              . $header_img
-              . "' WHERE storyid='"
-              . intval($id)
-              . "'";
+    $sqlinsert= 'UPDATE '
+                . $xoopsDB->prefix('content')
+                . " SET page_description='"
+                . addslashes($description)
+                . "', keywords='"
+                . $keywords
+                . "', parent_id='"
+                . intval($parent_id)
+                . "', title='"
+                . $title
+                . "', ptitle='"
+                . $ptitle
+                . "', text='"
+                . addslashes($message)
+                . "', visible='"
+                . intval($visible)
+                . "', nohtml='"
+                . intval($nohtml)
+                . "', nosmiley='"
+                . intval($nosmiley)
+                . "', nobreaks='"
+                . intval($nobreaks)
+                . "', nocomments='"
+                . intval($nocomments)
+                . "', address='"
+                . $externalURL
+                . "', submenu='"
+                . intval($submenu)
+                . "', newwindow='"
+                . intval($newwindow)
+                . "', date=NOW(), link=0, header_img='"
+                . $header_img
+                . "' WHERE storyid='"
+                . intval($id)
+                . "'";
     
     if (!$result = $xoopsDB->query($sqlinsert)) {
         echo _AM_CONTENT_ERRORINSERT;
     }
     if (isset($return) && $return == 1) {
-        echo "<script>window.opener.location.reload(true);window.close();</script>";
+        echo '<script>window.opener.location.reload(true);window.close();</script>';
     } else {
-        redirect_header("manage_content.php" . ((isset($showshort)) ? "?showshort=" . $showshort : ""), 2, _AM_CONTENT_DBUPDATED);
+        redirect_header('manage_content.php' . ((isset($showshort)) ? '?showshort=' . $showshort : ''), 2, _AM_CONTENT_DBUPDATED);
     }
-} elseif ($op == "pagewrap") {
+} elseif ($op == 'pagewrap') {
     $myts = MyTextSanitizer::getInstance();
     
     $title       = $myts->htmlSpecialChars($title);
@@ -117,49 +117,49 @@ if ($op == "add" || $op == "link") {
     
     
     if ($_FILES[fileupload]) {
-        $uploadpath      = XOOPS_ROOT_PATH . "/modules/content/content/";
+        $uploadpath      = XOOPS_ROOT_PATH . '/modules/content/content/';
         $source          = $_FILES[fileupload][tmp_name];
         $fileupload_name = $_FILES[fileupload][name];
         if (($source != 'none') && ($source != '')) {
             $dest=$uploadpath.$fileupload_name;
             if (file_exists($uploadpath.$fileupload_name)) {
-                redirect_header("add_content.php", 2, _AM_CONTENT_ERRORUPL);
+                redirect_header('add_content.php', 2, _AM_CONTENT_ERRORUPL);
             } else {
                 if (copy($source, $dest)) {
                     $address = $fileupload_name;
                 } else {
-                    redirect_header("add_content.php", 2, _AM_CONTENT_ERRORUPL);
+                    redirect_header('add_content.php', 2, _AM_CONTENT_ERRORUPL);
                 }
                 unlink($source);
             }
         }
     }
     
-    $sqlinsert = "UPDATE "
-                . $xoopsDB->prefix('content')
-                . " SET page_description='"
-                . $description
-                . "', keywords='"
-                . $keywords
-                . "',parent_id='"
-                . intval($parent_id)
-                . "', title='"
-                . $title
-                . "', visible='"
-                . intval($visible)
-                . "', nocomments='"
-                . intval($nocomments)
-                . "', address='"
-                . $address
-                . "', submenu='"
-                . $submenu
-                . "', date=NOW(), link=1 WHERE storyid='"
-                . intval($id)
-                . "'";
+    $sqlinsert = 'UPDATE '
+                 . $xoopsDB->prefix('content')
+                 . " SET page_description='"
+                 . $description
+                 . "', keywords='"
+                 . $keywords
+                 . "',parent_id='"
+                 . intval($parent_id)
+                 . "', title='"
+                 . $title
+                 . "', visible='"
+                 . intval($visible)
+                 . "', nocomments='"
+                 . intval($nocomments)
+                 . "', address='"
+                 . $address
+                 . "', submenu='"
+                 . $submenu
+                 . "', date=NOW(), link=1 WHERE storyid='"
+                 . intval($id)
+                 . "'";
     if (!$result = $xoopsDB->query($sqlinsert)) {
         echo _AM_CONTENT_ERRORINSERT;
     }
-    redirect_header("manage_content.php" . ((isset($showshort)) ? "?showshort=" . $showshort : ""), 2, _AM_CONTENT_DBUPDATED);
+    redirect_header('manage_content.php' . ((isset($showshort)) ? '?showshort=' . $showshort : ''), 2, _AM_CONTENT_DBUPDATED);
 } else {
     // ------------------------------------------------------------------------- //
     // Show Edit Content Page                                                    //
@@ -170,17 +170,17 @@ if ($op == "add" || $op == "link") {
 
     $myts = MyTextSanitizer::getInstance();
 
-    $result = $xoopsDB->query("SELECT storyid, parent_id, ptitle, title, keywords, page_description, text, visible, nohtml, nosmiley, nobreaks, nocomments, address, submenu, newwindow, assoc_module, link, header_img FROM "
-                        . $xoopsDB->prefix('content')
-                        . " WHERE storyid="
-                        . intval($id));
+    $result = $xoopsDB->query('SELECT storyid, parent_id, ptitle, title, keywords, page_description, text, visible, nohtml, nosmiley, nobreaks, nocomments, address, submenu, newwindow, assoc_module, link, header_img FROM '
+                              . $xoopsDB->prefix('content')
+                              . ' WHERE storyid='
+                              . intval($id));
 
     list($storyid, $parent_id, $ptitle, $title, $keywords, $description, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocomments, $externalURL, $submenu, $newwindow, $assoc_module, $link, $header_img) = $xoopsDB->fetchRow($result);
 
     $contentItems = [];
     $result       = $xoopsDB->query("SELECT *, blockid AS priority, 'content' AS type FROM "
                             . $xoopsDB->prefix('content')
-                            . " ORDER BY visible DESC, blockid");
+                                    . ' ORDER BY visible DESC, blockid');
     while ($tcontent   = $xoopsDB->fetchArray($result)) {
         $contentItems[] = $tcontent;
     }
@@ -191,21 +191,21 @@ if ($op == "add" || $op == "link") {
     $keywords    = $myts->htmlSpecialChars($keywords);
     $description = $myts->htmlSpecialChars(stripslashes($description));
     
-    $form             = new XoopsThemeForm(_AM_CONTENT_EDITCONTENT, "form_name", "edit_content.php");
-    $categoria_select = new XoopsFormSelect(_AM_CONTENT_POSITION, "parent_id", $parent_id);
-    $categoria_select->addOption("", _AM_CONTENT_MAINMENU);
+    $form             = new XoopsThemeForm(_AM_CONTENT_EDITCONTENT, 'form_name', 'edit_content.php');
+    $categoria_select = new XoopsFormSelect(_AM_CONTENT_POSITION, 'parent_id', $parent_id);
+    $categoria_select->addOption('', _AM_CONTENT_MAINMENU);
     foreach ($allMenuItems as $ct_item) {
-        $categoria_select->addOption($ct_item["storyid"], str_repeat("&nbsp;&nbsp;", ($ct_item['depth'] + 1)) . str_repeat("-", ($ct_item['depth'])) . $ct_item["title"]);
+        $categoria_select->addOption($ct_item['storyid'], str_repeat('&nbsp;&nbsp;', ($ct_item['depth'] + 1)) . str_repeat('-', ($ct_item['depth'])) . $ct_item['title']);
     }
     $form->addElement($categoria_select);
-    $text_box  = new XoopsFormText(_AM_CONTENT_LINKNAME, "title", 50, 255, $title);
-    $ptext_box = new XoopsFormText(_AM_CONTENT_PAGENAME, "ptitle", 50, 255, $ptitle);
+    $text_box  = new XoopsFormText(_AM_CONTENT_LINKNAME, 'title', 50, 255, $title);
+    $ptext_box = new XoopsFormText(_AM_CONTENT_PAGENAME, 'ptitle', 50, 255, $ptitle);
     
-    $keywords_box    = new XoopsFormText(_AM_CONTENT_KEYWORDS, "keywords", 50, 255, $keywords);
+    $keywords_box    = new XoopsFormText(_AM_CONTENT_KEYWORDS, 'keywords', 50, 255, $keywords);
     $description_box = new XoopsFormTextArea(_AM_CONTENT_PAGEDESCRIPTION, 'description', $description, 5, 80);
     
     $form->addElement($text_box);
-    $url_box = new XoopsFormText(_AM_CONTENT_EXTURL, "externalURL", 50, 255, $externalURL);
+    $url_box = new XoopsFormText(_AM_CONTENT_EXTURL, 'externalURL', 50, 255, $externalURL);
     $form->addElement($url_box);
     
     $newwindow_checkbox = new XoopsFormCheckBox('', 'newwindow', $newwindow);
@@ -220,8 +220,8 @@ if ($op == "add" || $op == "link") {
     $editor_configs['value']  = stripslashes($message);
     $editor_configs['rows']   = isset($rows) ? $rows : 35;
     $editor_configs['cols']   = isset($cols) ? $cols : 60;
-    $editor_configs['width']  = "100%";
-    $editor_configs['height'] = "400px";
+    $editor_configs['width']  = '100%';
+    $editor_configs['height'] = '400px';
         
     $editor    = new XoopsFormEditor(_AM_CONTENT_CONTENT, $xoopsModuleConfig['cont_form_options'], $editor_configs);
         
@@ -255,10 +255,10 @@ if ($op == "add" || $op == "link") {
     
     $editid = new XoopsFormHidden('id', $storyid);
     
-    $submit = new XoopsFormButton("", "submit", _SUBMIT, "submit");
+    $submit = new XoopsFormButton('', 'submit', _SUBMIT, 'submit');
     
-    $modules_select = new XoopsFormSelect(_AM_CONTENT_MODULENAME, "assoc_module", $assoc_module);
-    $modules_select->addOption("", _AM_CONTENT_NONE);
+    $modules_select = new XoopsFormSelect(_AM_CONTENT_MODULENAME, 'assoc_module', $assoc_module);
+    $modules_select->addOption('', _AM_CONTENT_NONE);
     
     foreach ($modules as $key => $value) {
         $modules_select->addOption($key, $value);
@@ -266,28 +266,28 @@ if ($op == "add" || $op == "link") {
     
     $form->addElement($submit);
     
-    $address_select = new XoopsFormSelect(_AM_CONTENT_SELECTFILE, "address", $externalURL);
-    $address_select->addOption("", _AM_CONTENT_NONE);
-    $folder       = dir("../content/");
+    $address_select = new XoopsFormSelect(_AM_CONTENT_SELECTFILE, 'address', $externalURL);
+    $address_select->addOption('', _AM_CONTENT_NONE);
+    $folder       = dir('../content/');
     while ($file     = $folder->read()) {
-        if ($file != "." && $file != "..") {
-            $address_select->addOption($file, "".$file."");
+        if ($file != '.' && $file != '..') {
+            $address_select->addOption($file, '' . $file . '');
         }
     }
     $folder->close();
     
-    $uplfile = new XoopsFormFile(_AM_CONTENT_UPLOADFILE, "fileupload", 500000);
+    $uplfile = new XoopsFormFile(_AM_CONTENT_UPLOADFILE, 'fileupload', 500000);
     
-    $header_img = new XoopsFormSelect(_AM_CONTENT_SELECTIMG, "header_img", $header_img);
-    $folder   = dir(XOOPS_ROOT_PATH . "/modules/content/headers/");
-    $header_img->addOption("", _AM_CONTENT_NONE);
+    $header_img = new XoopsFormSelect(_AM_CONTENT_SELECTIMG, 'header_img', $header_img);
+    $folder   = dir(XOOPS_ROOT_PATH . '/modules/content/headers/');
+    $header_img->addOption('', _AM_CONTENT_NONE);
     while ($file = $folder->read()) {
-        if ($file != "." && $file != "..") {
-            $header_img->addOption($file, "" . $file . "");
+        if ($file != '.' && $file != '..') {
+            $header_img->addOption($file, '' . $file . '');
         }
     }
     $folder->close();
-    $uplimage = new XoopsFormFile(_AM_CONTENT_UPLOADIMG, "imageupload", 500000);
+    $uplimage = new XoopsFormFile(_AM_CONTENT_UPLOADIMG, 'imageupload', 500000);
   
     xoops_cp_header();
     $adminObject = \Xmf\Module\Admin::getInstance();
@@ -297,7 +297,7 @@ if ($op == "add" || $op == "link") {
     $Link_Page   = 'manage_files.php?showshort=1';
     $Link_Del    = '<img src="../assets/images/delete.png" alt=' . _AM_CONTENT_DELETEFILES . ' title=' . _AM_CONTENT_DELETEFILES . '>';
   
-    echo "<h4><img src='../assets/images/add.png' alt=" . _AM_CONTENT_ADD . "> " . _AM_CONTENT_EDIT . " - " . _AM_CONTENT_ADMINTITLE . "</h4>" . showMenu();
+    echo "<h4><img src='../assets/images/add.png' alt=" . _AM_CONTENT_ADD . '> ' . _AM_CONTENT_EDIT . ' - ' . _AM_CONTENT_ADMINTITLE . '</h4>' . showMenu();
     echo "<table class='outer' style='width:100%;border:0;padding:0;border-spacing:1;'>";
     echo '<form action="edit_content.php" method="post" name="ctform" id="ctform" enctype="multipart/form-data">';
     show_form_line($categoria_select);
@@ -306,17 +306,17 @@ if ($op == "add" || $op == "link") {
 				<td class="even" style="vertical-align:top;width:170;"><strong>' . _AM_CONTENT_CNTTYP . '</strong></td>
 				<td class="even">
 					<select id="op" name="op" onchange="showform(this.options[this.selectedIndex].value)">
-						<option value="add"' . (($link != 1 && (!isset($externalURL) || strlen(trim($externalURL)) == 0)) ? " selected" : "") . '>Content</option>
-						<option value="link"' . (($link != 1 && isset($externalURL) && strlen(trim($externalURL)) > 0) ? " selected" : "") . '>Link</option>
-						<option value="pagewrap"' . (($link == 1) ? " selected" : "") . '>Pagewrap</option>
+						<option value="add"' . (($link != 1 && (!isset($externalURL) || strlen(trim($externalURL)) == 0)) ? ' selected' : '') . '>Content</option>
+						<option value="link"' . (($link != 1 && isset($externalURL) && strlen(trim($externalURL)) > 0) ? ' selected' : '') . '>Link</option>
+						<option value="pagewrap"' . (($link == 1) ? ' selected' : '') . '>Pagewrap</option>
 					</select></td>
 		  	</tr>';
-    echo '<tbody id="link" ' . (($link != 1 && isset($externalURL) && strlen(trim($externalURL)) > 0) ? "" : ' style="display:none;"') . '>';
+    echo '<tbody id="link" ' . (($link != 1 && isset($externalURL) && strlen(trim($externalURL)) > 0) ? '' : ' style="display:none;"') . '>';
     show_form_line($url_box);
     show_form_line($modules_select);
     echo '</tbody>';
 
-    echo '<tbody id="contentt"' . (($link != 1 && (!isset($externalURL) || strlen(trim($externalURL)) == 0)) ? "" : ' style="display:none;"') . '>';
+    echo '<tbody id="contentt"' . (($link != 1 && (!isset($externalURL) || strlen(trim($externalURL)) == 0)) ? '' : ' style="display:none;"') . '>';
     show_form_line($ptext_box);
     show_form_line($keywords_box);
     show_form_line($description_box);
@@ -328,7 +328,7 @@ if ($op == "add" || $op == "link") {
     show_form_line($editor);
     echo '</tbody>';
 
-    echo '<tbody id="pagewrap" ' . (($link == 1) ? "" : ' style="display:none;"') . '>';
+    echo '<tbody id="pagewrap" ' . (($link == 1) ? '' : ' style="display:none;"') . '>';
     echo '<tr>
 				<td class="even"><strong>' . $address_select->getCaption() . '</strong></td>
 				<td class="even">' . $address_select->render() . '&nbsp;&nbsp;&nbsp;<a href=' . $Link_Page . '>' . $Link_Del . '</a></td>
@@ -344,7 +344,7 @@ if ($op == "add" || $op == "link") {
         echo $return_field->render();
     }
     show_form_line($submit);
-    echo "</tbody>";
+    echo '</tbody>';
 
     echo "</table>
 		  <script language='JavaScript'>
@@ -380,7 +380,7 @@ if ($op == "add" || $op == "link") {
     if (isset($showshort)) {
         echo "<input type='hidden' name='showshort' value='" . $showshort . "' />";
     }
-    echo "</form>";
+    echo '</form>';
     echo "  
 	<script src='../assets/js/prototype.js' type='text/javascript'/>
 	<script>

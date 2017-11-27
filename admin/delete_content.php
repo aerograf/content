@@ -1,6 +1,6 @@
 <?php
 
-include_once "admin_header.php";
+include_once 'admin_header.php';
 
 // ------------------------------------------------------------------------- //
 // Switch Statement for the different operations                             //
@@ -11,29 +11,29 @@ switch ($op) {
     // ------------------------------------------------------------------------- //
     // Delete it definitely                                                      //
     // ------------------------------------------------------------------------- //
-    case "deleteit":
+    case 'deleteit':
         global $xoopsDB;
         //move any orphaned content items to the same level as the deleted item
-        $result       = $xoopsDB->query("SELECT parent_id FROM "
-                              . $xoopsDB->prefix('content')
-                              . " WHERE storyid="
-                              . intval($id));
+        $result       = $xoopsDB->query('SELECT parent_id FROM '
+                                        . $xoopsDB->prefix('content')
+                                        . ' WHERE storyid='
+                                        . intval($id));
         list($parent) = $xoopsDB->fetchRow($result);
-        $result       = $xoopsDB->query("UPDATE "
-                              . $xoopsDB->prefix('content')
-                              . " SET parent_id = "
-                              . intval($parent)
-                              . " WHERE parent_id="
-                              . intval($id));
-      $result       = $xoopsDB->query("DELETE FROM "
-                              . $xoopsDB->prefix('content')
-                              . " WHERE storyid="
-                              . intval($id));
+        $result       = $xoopsDB->query('UPDATE '
+                                        . $xoopsDB->prefix('content')
+                                        . ' SET parent_id = '
+                                        . intval($parent)
+                                        . ' WHERE parent_id='
+                                        . intval($id));
+      $result       = $xoopsDB->query('DELETE FROM '
+                                      . $xoopsDB->prefix('content')
+                                      . ' WHERE storyid='
+                                      . intval($id));
         xoops_comment_delete($xoopsModule->getVar('mid'), $id);
         if (isset($return) && $return == 1) {
             echo "<script>window.opener.location.href='/';window.close();</script>";
         } else {
-            redirect_header("manage_content.php", 1, _AM_CONTENT_DBUPDATED);
+            redirect_header('manage_content.php', 1, _AM_CONTENT_DBUPDATED);
         }
         
         break;
