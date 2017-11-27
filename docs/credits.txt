@@ -1,0 +1,6 @@
+CREDITS
+=============
+
+Originally developed by Ben Brown, Refactored by: Kostas Ksilas
+
+Updates for XOOPS 2.5.9 and PHP 7: aerograf, mamba
