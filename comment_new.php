@@ -1,7 +1,7 @@
 <?php
 
 include '../../mainfile.php';
-$com_itemid = isset($_GET['com_itemid']) ? intval($_GET['com_itemid']) : 0;
+$com_itemid = isset($_GET['com_itemid']) ? (int)$_GET['com_itemid'] : 0;
 if ($com_itemid > 0) {
     // Get link title
     $sql    = 'SELECT title FROM ' . $xoopsDB->prefix('content') . ' WHERE storyid=' . $com_itemid . '';

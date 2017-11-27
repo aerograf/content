@@ -10,27 +10,22 @@ global $op;
 // ------------------------------------------------------------------------- //
 if ('update' == $op) {
     foreach ($id as $storyid) {
-        ($storyid == intval($homepage[0])) ? $hp = 1 : $hp = 0;
-        ($storyid == intval($epage[0])) ? $ep = 1 : $ep = 0;
+        ($storyid == (int)$homepage[0]) ? $hp = 1 : $hp = 0;
+        ($storyid == (int)$epage[0]) ? $ep = 1 : $ep = 0;
         $sqlinsert = 'UPDATE '
                      . $xoopsDB->prefix('content')
                      . " SET parent_id='"
-                     . intval($parent_id[$storyid])
-                     . "', blockid='"
-                     . intval($blockid[$storyid])
-                     . "', visible='"
-                     . intval($visible[$storyid])
-                     . "', homepage='"
+                     . (int)$parent_id[$storyid] . "', blockid='"
+                     . (int)$blockid[$storyid] . "', visible='"
+                     . (int)$visible[$storyid] . "', homepage='"
                      . $hp
                      . "', epage='"
                      . $ep
                      . "', nocomments='"
                      . ($nocomments[$storyid] ? 0 : 1)
                      . "', submenu='"
-                     . intval($submenu[$storyid])
-                     . "', date=NOW() WHERE storyid='"
-                     . intval($storyid)
-                     . "'";
+                     . (int)$submenu[$storyid] . "', date=NOW() WHERE storyid='"
+                     . (int)$storyid . "'";
         if (!$result = $xoopsDB->query($sqlinsert)) {
             echo _AM_CONTENT_ERRORINSERT;
         }

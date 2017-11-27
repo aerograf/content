@@ -34,11 +34,11 @@ if ('add' == $op || 'link' == $op) {
     $ptitle      = $myts->htmlSpecialChars($ptitle);
     $keywords    = $myts->htmlSpecialChars($keywords);
     $description = $myts->htmlSpecialChars($description);
-    $nohtml      = isset($nohtml)? intval($nohtml):0;
-    $newwindow   = isset($newwindow)? intval($newwindow):0;
-    $nosmiley    = isset($nosmiley)? intval($nosmiley):0;
-    $nobreaks    = isset($nobreaks)? intval($nobreaks):0;
-    $submenu     = isset($submenu)? intval($submenu):0;
+    $nohtml      = isset($nohtml)? (int)$nohtml :0;
+    $newwindow   = isset($newwindow)? (int)$newwindow :0;
+    $nosmiley    = isset($nosmiley)? (int)$nosmiley :0;
+    $nobreaks    = isset($nobreaks)? (int)$nobreaks :0;
+    $submenu     = isset($submenu)? (int)$submenu :0;
     
     if ($_FILES['imageupload']) {
         $uploadpath      = XOOPS_ROOT_PATH . '/modules/content/headers/';
@@ -70,34 +70,25 @@ if ('add' == $op || 'link' == $op) {
                 . "', keywords='"
                 . $keywords
                 . "', parent_id='"
-                . intval($parent_id)
-                . "', title='"
+                . (int)$parent_id . "', title='"
                 . $title
                 . "', ptitle='"
                 . $ptitle
                 . "', text='"
                 . addslashes($message)
                 . "', visible='"
-                . intval($visible)
-                . "', nohtml='"
-                . intval($nohtml)
-                . "', nosmiley='"
-                . intval($nosmiley)
-                . "', nobreaks='"
-                . intval($nobreaks)
-                . "', nocomments='"
-                . intval($nocomments)
-                . "', address='"
+                . (int)$visible . "', nohtml='"
+                . (int)$nohtml . "', nosmiley='"
+                . (int)$nosmiley . "', nobreaks='"
+                . (int)$nobreaks . "', nocomments='"
+                . (int)$nocomments . "', address='"
                 . $externalURL
                 . "', submenu='"
-                . intval($submenu)
-                . "', newwindow='"
-                . intval($newwindow)
-                . "', date=NOW(), link=0, header_img='"
+                . (int)$submenu . "', newwindow='"
+                . (int)$newwindow . "', date=NOW(), link=0, header_img='"
                 . $header_img
                 . "' WHERE storyid='"
-                . intval($id)
-                . "'";
+                . (int)$id . "'";
     
     if (!$result = $xoopsDB->query($sqlinsert)) {
         echo _AM_CONTENT_ERRORINSERT;
@@ -142,20 +133,16 @@ if ('add' == $op || 'link' == $op) {
                  . "', keywords='"
                  . $keywords
                  . "',parent_id='"
-                 . intval($parent_id)
-                 . "', title='"
+                 . (int)$parent_id . "', title='"
                  . $title
                  . "', visible='"
-                 . intval($visible)
-                 . "', nocomments='"
-                 . intval($nocomments)
-                 . "', address='"
+                 . (int)$visible . "', nocomments='"
+                 . (int)$nocomments . "', address='"
                  . $address
                  . "', submenu='"
                  . $submenu
                  . "', date=NOW(), link=1 WHERE storyid='"
-                 . intval($id)
-                 . "'";
+                 . (int)$id . "'";
     if (!$result = $xoopsDB->query($sqlinsert)) {
         echo _AM_CONTENT_ERRORINSERT;
     }
@@ -173,7 +160,7 @@ if ('add' == $op || 'link' == $op) {
     $result = $xoopsDB->query('SELECT storyid, parent_id, ptitle, title, keywords, page_description, text, visible, nohtml, nosmiley, nobreaks, nocomments, address, submenu, newwindow, assoc_module, link, header_img FROM '
                               . $xoopsDB->prefix('content')
                               . ' WHERE storyid='
-                              . intval($id));
+                              . (int)$id);
 
     list($storyid, $parent_id, $ptitle, $title, $keywords, $description, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocomments, $externalURL, $submenu, $newwindow, $assoc_module, $link, $header_img) = $xoopsDB->fetchRow($result);
 

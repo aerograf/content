@@ -16,7 +16,7 @@ switch ($op) {
         $result = $xoopsDB->query('SELECT * FROM '
                                   . $xoopsDB->prefix('content')
                                   . ' WHERE storyid='
-                                  . intval($id));
+                                  . (int)$id);
         $oldrecord = $xoopsDB->fetchArray($result);
         
         foreach ($oldrecord as $key => $value) {
@@ -61,8 +61,8 @@ switch ($op) {
     $adminObject->displayNavigation(basename(__FILE__));
         $action      = 'history.go(-1)';
     $hiddens     = [
-                    'id' => intval($id),
-                    'op' => 'copy'
+        'id' => (int)$id,
+        'op' => 'copy'
                     ];
         xoops_confirm($hiddens, 'copy_content.php', _AM_CONTENT_COPYCONTENT, _YES, true, $action);
     require_once __DIR__ . '/footer.php';

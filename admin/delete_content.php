@@ -17,18 +17,17 @@ switch ($op) {
         $result       = $xoopsDB->query('SELECT parent_id FROM '
                                         . $xoopsDB->prefix('content')
                                         . ' WHERE storyid='
-                                        . intval($id));
+                                        . (int)$id);
         list($parent) = $xoopsDB->fetchRow($result);
         $result       = $xoopsDB->query('UPDATE '
                                         . $xoopsDB->prefix('content')
                                         . ' SET parent_id = '
-                                        . intval($parent)
-                                        . ' WHERE parent_id='
-                                        . intval($id));
+                                        . (int)$parent . ' WHERE parent_id='
+                                        . (int)$id);
       $result       = $xoopsDB->query('DELETE FROM '
                                       . $xoopsDB->prefix('content')
                                       . ' WHERE storyid='
-                                      . intval($id));
+                                      . (int)$id);
         xoops_comment_delete($xoopsModule->getVar('mid'), $id);
         if (isset($return) && 1 == $return) {
             echo "<script>window.opener.location.href='/';window.close();</script>";
@@ -46,7 +45,7 @@ switch ($op) {
     $adminObject = \Xmf\Module\Admin::getInstance();
     $adminObject->displayNavigation(basename(__FILE__));
         $confirm_params       = [];
-        $confirm_params['id'] = intval($id);
+        $confirm_params['id'] = (int)$id;
         $confirm_params['op'] = 'deleteit';
         if (isset($return) && 1 == $return) {
             $confirm_params['return'] = $return;

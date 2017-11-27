@@ -50,7 +50,7 @@ function tabMaker()
     return $tabs;
 }
 
-$id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
+$id = isset($_REQUEST['id']) ? (int)$_REQUEST['id'] : 0;
 
 if (0 != $id) {
     $result = $xoopsDB->queryF('SELECT storyid, title, text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address FROM '
@@ -72,8 +72,8 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
     global $xoopsModuleConfig, $xoopsModule, $xoopsUser, $xoopsConfig;
     $moduleHandler = xoops_getHandler('module');
 
-    $id          = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
-    $currentPage = isset($_GET['page']) ? intval($_GET['page']) : 0;
+    $id          = isset($_REQUEST['id']) ? (int)$_REQUEST['id'] : 0;
+    $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 0;
 
     $contentItems          = [];
     $groupPermHandler      = xoops_getHandler('groupperm');
@@ -101,7 +101,7 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
                                    . $xoopsDB->prefix('content')
                                    . ' WHERE homepage=1');
     }
-    $showerror= isset($_GET['showerror'])?intval($_GET['showerror']):0;
+    $showerror= isset($_GET['showerror'])? (int)$_GET['showerror'] :0;
     if (0 == $xoopsDB->getRowsNum($result) || 1 == $showerror) {
         $result = $xoopsDB->queryF('SELECT storyid, ptitle, title, keywords,page_description, text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address, date, header_img FROM '
                                    . $xoopsDB->prefix('content')

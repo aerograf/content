@@ -50,8 +50,7 @@ if ('add' == $op || 'link' == $op) {
     $sqlinsert= 'INSERT INTO '
                 . $xoopsDB->prefix('content')
                 . " (parent_id, ptitle, title, keywords, page_description, text, visible, homepage, nohtml, nosmiley, nobreaks, nocomments, link, address, submenu, newwindow, date, assoc_module, header_img) VALUES ('"
-                . intval($parent_id)
-                . "','"
+                . (int)$parent_id . "','"
                 . $ptitle
                 . "','"
                 . $title
@@ -62,26 +61,18 @@ if ('add' == $op || 'link' == $op) {
                 . "','"
                 . $message
                 . "','"
-                . intval($visible)
-                . "','"
+                . (int)$visible . "','"
                 . $hp
                 . "','"
-                . intval($nohtml)
-                . "','"
-                . intval($nosmiley)
-                . "','"
-                . intval($nobreaks)
-                . "', '"
-                . intval($nocomments)
-                . "','0','"
+                . (int)$nohtml . "','"
+                . (int)$nosmiley . "','"
+                . (int)$nobreaks . "', '"
+                . (int)$nocomments . "','0','"
                 . $externalURL
                 . "','"
-                . intval($submenu)
-                . "','"
-                . intval($newwindow)
-                . "',NOW(),'"
-                . intval($assoc_module)
-                . "', '"
+                . (int)$submenu . "','"
+                . (int)$newwindow . "',NOW(),'"
+                . (int)$assoc_module . "', '"
                 . $header_img
                 . "')";
     
@@ -146,24 +137,20 @@ if ('add' == $op || 'link' == $op) {
     $sqlinsert= 'INSERT INTO '
                 . $xoopsDB->prefix('content')
                 . " (parent_id,title,keywords, page_description ,text,visible,homepage,nohtml,nosmiley,nocomments,link,address,submenu,date) VALUES ('"
-                . intval($parent_id)
-                . "','"
+                . (int)$parent_id . "','"
                 . $title
                 . "','"
                 . $keywords
                 . "','"
                 . $description
                 . "','0','"
-                . intval($visible)
-                . "','"
+                . (int)$visible . "','"
                 . $hp
                 . "','0','0','"
-                . intval($nocomments)
-                . "','1','"
+                . (int)$nocomments . "','1','"
                 . $address
                 . "','"
-                . intval($submenu)
-                . "', NOW())";
+                . (int)$submenu . "', NOW())";
     if (!$result = $xoopsDB->query($sqlinsert)) {
         echo _AM_CONTENT_ERRORINSERT;
     }
