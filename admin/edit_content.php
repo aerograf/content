@@ -293,7 +293,7 @@ if ('add' == $op || 'link' == $op) {
 				<td class="even" style="vertical-align:top;width:170;"><strong>' . _AM_CONTENT_CNTTYP . '</strong></td>
 				<td class="even">
 					<select id="op" name="op" onchange="showform(this.options[this.selectedIndex].value)">
-						<option value="add"' . ((1 != $link && (!isset($externalURL) || 0 == strlen(trim($externalURL)))) ? ' selected' : '') . '>Content</option>
+						<option value="add"' . ((1 != $link && (!isset($externalURL) || '' === trim($externalURL))) ? ' selected' : '') . '>Content</option>
 						<option value="link"' . ((1 != $link && isset($externalURL) && strlen(trim($externalURL)) > 0) ? ' selected' : '') . '>Link</option>
 						<option value="pagewrap"' . ((1 == $link) ? ' selected' : '') . '>Pagewrap</option>
 					</select></td>
@@ -303,7 +303,7 @@ if ('add' == $op || 'link' == $op) {
     show_form_line($modules_select);
     echo '</tbody>';
 
-    echo '<tbody id="contentt"' . ((1 != $link && (!isset($externalURL) || 0 == strlen(trim($externalURL)))) ? '' : ' style="display:none;"') . '>';
+    echo '<tbody id="contentt"' . ((1 != $link && (!isset($externalURL) || '' === trim($externalURL))) ? '' : ' style="display:none;"') . '>';
     show_form_line($ptext_box);
     show_form_line($keywords_box);
     show_form_line($description_box);
