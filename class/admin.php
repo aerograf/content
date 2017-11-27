@@ -162,10 +162,10 @@ class ContentModuleAdmin
             break;
 
             case 'php':
-                if (phpversion() < $value) {
-                    $line .= "<span style='color:red;font-weight:bold;'><img src='" . $path . "off.png' >" . sprintf($text, $value, phpversion()) . "</span>\n";
+                if (PHP_VERSION < $value) {
+                    $line .= "<span style='color:red;font-weight:bold;'><img src='" . $path . "off.png' >" . sprintf($text, $value, PHP_VERSION) . "</span>\n";
                 } else {
-                    $line .= "<span style='color:green;'><img src='" . $path . "on.png' >" . sprintf($text, $value, phpversion()) . "</span>\n";
+                    $line .= "<span style='color:green;'><img src='" . $path . "on.png' >" . sprintf($text, $value, PHP_VERSION) . "</span>\n";
                 }
                 break;
 
