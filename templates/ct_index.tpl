@@ -5,10 +5,10 @@
 <{foreach item=tab from=$tabs}>
 <li>
 <{if $tab.storyid == $id}>
-<a class="active" href="index.php?id=<{$tab.storyid}>"><{$tab.title}></a>
+  <a class="active" href="index.php?id=<{$tab.storyid}>"><{$tab.title}></a>
 <{else}>
 <{if $tab.storyid != $id}>
-<a href="index.php?id=<{$tab.storyid}>"><{$tab.title}></a>
+  <a href="index.php?id=<{$tab.storyid}>"><{$tab.title}></a>
 <{/if}><{/if}>
 </li>
 <{/foreach}>
@@ -18,7 +18,7 @@
 <div id="tabcontent">
 <div style="padding:10px;">
 		<{if $header_image neq ''}>
-			<img src="<{$xoops_url}>/modules/content/headers/<{$header_image}>">
+			<img src="<{$link_header}><{$header_image}>">
 		<{else}>
 			<h2><{$title}></h2>
 		<{/if}>
@@ -26,23 +26,15 @@
      <{$content}>
 
 </div>
-
+<br>
 <div class="printandemail"style="text-align:left;display:inline-block;vertical-align:middle;padding-left:10px;width:49%;">
-<a href="print.php?id=<{$id}>" target="_new">
-<img src="<{$xoops_url}>/modules/content/assets/images/print.png" alt="print" style="border:0;padding-right:5px;" />
-</a>
-<a href="<{$mail_link}>">
-<img src="<{$xoops_url}>/modules/content/assets/images/email.png" alt="email" style="border:0;" />
-</a>
+  <a href="<{$link_print}>" target="_new"><img src="<{$link_image}>print.png" alt="print" style="border:0;padding-right:5px;" /></a>
+  <a href="<{$mail_link}>"><img src="<{$link_image}>email.png" alt="email" style="border:0;" /></a>
 </div>
 <{if $xoops_isadmin == 1}>
 <div style="text-align:right;display:inline-block;vertical-align:middle;width:49%;">
-<a href="<{$xoops_url}>/modules/content/admin/add_content.php?id=<{$id}>&return=1&showshort=1">
-<img src="<{$xoops_url}>/modules/content/assets/images/add.png" alt="add" style="border:0;padding-right:5px;" />
-</a>
-<a href="<{$xoops_url}>/modules/content/edit_content.php?id=<{$id}>&return=1&showshort=1">
-<img src="<{$xoops_url}>/modules/content/assets/images/edit.png" alt="edit" style="border:0;" />
-</a>
+  <a href="<{$link_addpage}>"><img src="<{$link_image}>add.png" alt="add" style="border:0;padding-right:5px;" /></a>
+  <a href="<{$link_editpage}>"><img src="<{$link_image}>edit.png" alt="edit" style="border:0;" /></a>
 </div>
 <{/if}>
  
