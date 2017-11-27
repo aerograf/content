@@ -41,7 +41,7 @@ function site_block_dhtml_nav()
     $contentItems          = [];
     $groupPermHandler      = xoops_getHandler('groupperm');
     $module                = $module_handler->getByDirname('content');
-    ($xoopsUser) ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
+    $xoopsUser ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
     $allowedItems          = $groupPermHandler->getItemIds('content_page_view', $groups, $module->getVar('mid'));
     while ($tcontent        = $xoopsDB->fetchArray($result)) {
         if (in_array($tcontent['storyid'], $allowedItems)) {

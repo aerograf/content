@@ -25,7 +25,7 @@ if ($op == 'update') {
                      . "', epage='"
                      . $ep
                      . "', nocomments='"
-                     . (($nocomments[$storyid]) ? 0 : 1)
+                     . ($nocomments[$storyid] ? 0 : 1)
                      . "', submenu='"
                      . intval($submenu[$storyid])
                      . "', date=NOW() WHERE storyid='"
@@ -35,7 +35,7 @@ if ($op == 'update') {
             echo _AM_CONTENT_ERRORINSERT;
         }
     }
-    redirect_header('manage_content.php' . ((isset($showshort)) ? '?showshort=' . $showshort : ''), 2, _AM_CONTENT_DBUPDATED);
+    redirect_header('manage_content.php' . (isset($showshort) ? '?showshort=' . $showshort : ''), 2, _AM_CONTENT_DBUPDATED);
 } else {
     // ------------------------------------------------------------------------- //
     // Show Manage Content Form                                                  //
@@ -215,7 +215,7 @@ function print_item($tcontent, $dirname, $allMenuItems, $txtSant)
         if ($tcontent['parent_id'] == $ct_item['storyid']) {
             $menu .= 'selected="selected" ';
         }
-        $menu .= 'value="' . $ct_item['storyid'] . '">' . str_repeat('&nbsp;&nbsp;', ($ct_item['depth'] + 1)) . str_repeat('-', ($ct_item['depth'])) . $ct_item['title'] . '</option>';
+        $menu .= 'value="' . $ct_item['storyid'] . '">' . str_repeat('&nbsp;&nbsp;', $ct_item['depth'] + 1) . str_repeat('-', $ct_item['depth']) . $ct_item['title'] . '</option>';
     }
     $menu .= '</select>';
     echo '
@@ -243,7 +243,7 @@ function print_item($tcontent, $dirname, $allMenuItems, $txtSant)
         echo '<img src="../assets/images/page.png" alt="" border="0" align="absmiddle">';
     }
     echo "
-				<a href='edit_content.php?id=".$tcontent['storyid'] . ((isset($showshort)) ? '&showshort=' . $showshort : '') . "'>" . $txtSant->htmlSpecialChars($tcontent['title'], 0, 0, 0) . "</a></td>
+				<a href='edit_content.php?id=".$tcontent['storyid'] . (isset($showshort) ? '&showshort=' . $showshort : '') . "'>" . $txtSant->htmlSpecialChars($tcontent['title'], 0, 0, 0) . "</a></td>
 				<td>$menu</td>
 				<td><nobr>" . str_repeat('--->', $tcontent['depth']) . "<input type='hidden' name='id[]' value='" . $tcontent['storyid'] . "' /><input type='text' name='blockid["
                     .    $tcontent['storyid'] . "]' size='2' maxlength='2' value='"
@@ -253,9 +253,9 @@ function print_item($tcontent, $dirname, $allMenuItems, $txtSant)
 				<td align='center'>
 					<input type='checkbox'  name='visible[".$tcontent['storyid']."]' value='1' " . (($tcontent['visible'] == '1') ? 'CHECKED' : '') . "></td>
 				<td><nobr><a href='" . XOOPS_URL . '/modules/' . $dirname . '/index.php?id=' . $tcontent['storyid'] . "'><img src='../assets/images/go.png' alt=" . _AM_CONTENT_GO . ' title=' . _AM_CONTENT_GO . "></a>
-					<a href='edit_content.php?id=".$tcontent['storyid'] . ((isset($showshort)) ? '&showshort=' . $showshort : '') . "'><img src='../assets/images/edit.png' alt=" . _AM_CONTENT_EDIT . ' title=' . _AM_CONTENT_EDIT . "></a>
-					<a href='copy_content.php?id=".$tcontent['storyid'] . ((isset($showshort)) ? '&showshort=' . $showshort : '') . "'><img src='../assets/images/copy.png' alt=" . _AM_CONTENT_COPY . ' title=' . _AM_CONTENT_COPY . "></a>
-					<a href='add_content.php?id=".$tcontent['storyid'] . ((isset($showshort)) ? '&showshort=' . $showshort : '') . "'><img src='../assets/images/add.png' alt=" . _AM_CONTENT_ADD . ' title=' . _AM_CONTENT_ADD . "></a>
-					<a href='delete_content.php?id=".$tcontent['storyid'] . ((isset($showshort)) ? '&showshort=' . $showshort : '') . "'><img src='../assets/images/delete.png' alt=" . _AM_CONTENT_DELETE . ' title=' . _AM_CONTENT_DELETE . '></a></nobr></td>
+					<a href='edit_content.php?id=".$tcontent['storyid'] . (isset($showshort) ? '&showshort=' . $showshort : '') . "'><img src='../assets/images/edit.png' alt=" . _AM_CONTENT_EDIT . ' title=' . _AM_CONTENT_EDIT . "></a>
+					<a href='copy_content.php?id=".$tcontent['storyid'] . (isset($showshort) ? '&showshort=' . $showshort : '') . "'><img src='../assets/images/copy.png' alt=" . _AM_CONTENT_COPY . ' title=' . _AM_CONTENT_COPY . "></a>
+					<a href='add_content.php?id=".$tcontent['storyid'] . (isset($showshort) ? '&showshort=' . $showshort : '') . "'><img src='../assets/images/add.png' alt=" . _AM_CONTENT_ADD . ' title=' . _AM_CONTENT_ADD . "></a>
+					<a href='delete_content.php?id=".$tcontent['storyid'] . (isset($showshort) ? '&showshort=' . $showshort : '') . "'><img src='../assets/images/delete.png' alt=" . _AM_CONTENT_DELETE . ' title=' . _AM_CONTENT_DELETE . '></a></nobr></td>
 		</tr>';
 }

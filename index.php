@@ -11,7 +11,7 @@ $xoopsTpl->assign('tabs', $tabdata);
 function tabMaker()
 {
     global $xoopsDB;
-    $thisid = ($_REQUEST['id']);
+    $thisid = $_REQUEST['id'];
     $query1 = $xoopsDB->query('SELECT parent_id FROM '
                               . $xoopsDB->prefix('content')
                               . ' WHERE storyid='
@@ -78,7 +78,7 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
     $contentItems          = [];
     $groupPermHandler      = xoops_getHandler('groupperm');
     $module                = $module_handler->getByDirname('content');
-    ($xoopsUser) ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
+    $xoopsUser ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
     $allowedItems          = $groupPermHandler->getItemIds('content_page_view', $groups, $module->getVar('mid'));
 
     if (!in_array($id, $allowedItems) && $id!=0) {
@@ -119,7 +119,7 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
         $includeContent = XOOPS_ROOT_PATH . '/modules/content/content/' . $address;
         if (file_exists($includeContent)) {
             ob_start();
-            include($includeContent);
+            include $includeContent;
             $content = ob_get_contents();
             ob_end_clean();
 

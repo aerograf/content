@@ -40,7 +40,7 @@ if (empty($id)) {
        $includeContent = XOOPS_ROOT_PATH . '/modules/content/content/' . $address;
        if (file_exists($includeContent)) {
            ob_start();
-           include($includeContent);
+           include $includeContent;
            $content = ob_get_contents();
            ob_end_clean();
        }

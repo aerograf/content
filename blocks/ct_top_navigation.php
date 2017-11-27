@@ -22,7 +22,7 @@ function content_block_top_nav()
                               . " WHERE visible='1' and parent_id = 0 ORDER BY blockid");
     $groupPermHandler      = xoops_getHandler('groupperm');
     $module                = $module_handler->getByDirname('content');
-    ($xoopsUser) ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
+    $xoopsUser ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
     $allowedItems          = $groupPermHandler->getItemIds('content_page_view', $groups, $module->getVar('mid'));
 
     while ($tcontent = $xoopsDB->fetchArray($result)) {

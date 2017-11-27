@@ -12,7 +12,7 @@ function site_block_nav($options)
     $criteria->add(new Criteria('isactive', 1));
     $modules            = $module_handler->getObjects($criteria, true);
     $moduleperm_handler = xoops_getHandler('groupperm');
-    $groups             = ($xoopsUser) ? $xoopsUser -> getGroups() : [XOOPS_GROUP_ANONYMOUS];
+    $groups             = $xoopsUser ? $xoopsUser-> getGroups() : [XOOPS_GROUP_ANONYMOUS];
     $read_allowed       = $moduleperm_handler->getItemIds('module_read', $groups);
     foreach (array_keys($modules) as $i) {
         if (in_array($i, $read_allowed)) {
@@ -47,7 +47,7 @@ function site_block_nav($options)
     //davinci27 - Add new permission handlers
     $groupPermHandler      = xoops_getHandler('groupperm');
     $module                = $module_handler->getByDirname('content');
-    ($xoopsUser) ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
+    $xoopsUser ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
     $allowedItems          = $groupPermHandler->getItemIds('content_page_view', $groups, $module->getVar('mid'));
     while ($tcontent = $xoopsDB->fetchArray($result)) {
         if (in_array($tcontent['storyid'], $allowedItems)) {

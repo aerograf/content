@@ -3,9 +3,9 @@
 include '../../mainfile.php';
 
 if (file_exists('language/' . $xoopsConfig['language'] . '/modinfo.php')) {
-    include('language/' . $xoopsConfig['language'] . '/modinfo.php');
+    include 'language/' . $xoopsConfig['language'] . '/modinfo.php';
 } else {
-    include('language/english/modinfo.php');
+    include 'language/english/modinfo.php';
 }
 
 tmpsite_block_dhtml_nav();

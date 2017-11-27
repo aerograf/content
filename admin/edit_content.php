@@ -17,7 +17,7 @@ asort($modules);
 
 $groupPermHandler      = xoops_getHandler('groupperm');
 $module                = $module_handler->getByDirname('content');
-($xoopsUser) ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
+$xoopsUser ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
 
 $allowedItems = $groupPermHandler->getItemIds('content_page_write', $groups, $module->getVar('mid'));
 
@@ -105,7 +105,7 @@ if ($op == 'add' || $op == 'link') {
     if (isset($return) && $return == 1) {
         echo '<script>window.opener.location.reload(true);window.close();</script>';
     } else {
-        redirect_header('manage_content.php' . ((isset($showshort)) ? '?showshort=' . $showshort : ''), 2, _AM_CONTENT_DBUPDATED);
+        redirect_header('manage_content.php' . (isset($showshort) ? '?showshort=' . $showshort : ''), 2, _AM_CONTENT_DBUPDATED);
     }
 } elseif ($op == 'pagewrap') {
     $myts = MyTextSanitizer::getInstance();
@@ -159,7 +159,7 @@ if ($op == 'add' || $op == 'link') {
     if (!$result = $xoopsDB->query($sqlinsert)) {
         echo _AM_CONTENT_ERRORINSERT;
     }
-    redirect_header('manage_content.php' . ((isset($showshort)) ? '?showshort=' . $showshort : ''), 2, _AM_CONTENT_DBUPDATED);
+    redirect_header('manage_content.php' . (isset($showshort) ? '?showshort=' . $showshort : ''), 2, _AM_CONTENT_DBUPDATED);
 } else {
     // ------------------------------------------------------------------------- //
     // Show Edit Content Page                                                    //
@@ -195,7 +195,7 @@ if ($op == 'add' || $op == 'link') {
     $categoria_select = new XoopsFormSelect(_AM_CONTENT_POSITION, 'parent_id', $parent_id);
     $categoria_select->addOption('', _AM_CONTENT_MAINMENU);
     foreach ($allMenuItems as $ct_item) {
-        $categoria_select->addOption($ct_item['storyid'], str_repeat('&nbsp;&nbsp;', ($ct_item['depth'] + 1)) . str_repeat('-', ($ct_item['depth'])) . $ct_item['title']);
+        $categoria_select->addOption($ct_item['storyid'], str_repeat('&nbsp;&nbsp;', $ct_item['depth'] + 1) . str_repeat('-', $ct_item['depth']) . $ct_item['title']);
     }
     $form->addElement($categoria_select);
     $text_box  = new XoopsFormText(_AM_CONTENT_LINKNAME, 'title', 50, 255, $title);
@@ -250,7 +250,7 @@ if ($op == 'add' || $op == 'link') {
     $option_tray->addElement($comments_checkbox);
     
     if (isset($return) && $return == 1) {
-        $return_field = (new XoopsFormHidden('return', 1));
+        $return_field = new XoopsFormHidden('return', 1);
     }
     
     $editid = new XoopsFormHidden('id', $storyid);

@@ -5,9 +5,9 @@ function content_search($queryarray, $andor, $limit, $offset, $userid)
     global $xoopsDB, $xoopsConfig;
 
     if (file_exists(XOOPS_ROOT_PATH . '/modules/content/language/' . $xoopsConfig['language'] . '/main.php')) {
-        include(XOOPS_ROOT_PATH . '/modules/content/language/' . $xoopsConfig['language'] . '/main.php');
+        include XOOPS_ROOT_PATH . '/modules/content/language/' . $xoopsConfig['language'] . '/main.php';
     } elseif (file_exists(XOOPS_ROOT_PATH . '/modules/content/language/english/main.php')) {
-        include(XOOPS_ROOT_PATH . '/modules/content/language/english/main.php');
+        include XOOPS_ROOT_PATH . '/modules/content/language/english/main.php';
     }
   
     $sql = 'SELECT storyid, title, text FROM '

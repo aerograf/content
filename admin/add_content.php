@@ -109,7 +109,7 @@ if ($op == 'add' || $op == 'link') {
     if (isset($return) && $return == 1) {
         echo "<script>window.opener.location.href='/modules/content/index.php?id=" . $newId . "';window.close();</script>";
     } else {
-        redirect_header('manage_content.php' . ((isset($showshort)) ? '?showshort=' . $showshort : ''), 2, _AM_CONTENT_DBUPDATED);
+        redirect_header('manage_content.php' . (isset($showshort) ? '?showshort=' . $showshort : ''), 2, _AM_CONTENT_DBUPDATED);
     }
 } elseif ($op == 'pagewrap') {
     $myts = MyTextSanitizer::getInstance();
@@ -187,7 +187,7 @@ if ($op == 'add' || $op == 'link') {
     if (isset($return) && $return == 1) {
         echo "<script>window.opener.location.href='/modules/content/index.php?id=" . $newId . "';window.close();</script>";
     } else {
-        redirect_header('manage_content.php' . ((isset($showshort)) ? '?showshort=' . $showshort : ''), 2, _AM_CONTENT_DBUPDATED);
+        redirect_header('manage_content.php' . (isset($showshort) ? '?showshort=' . $showshort : ''), 2, _AM_CONTENT_DBUPDATED);
     }
 } else {
     // ------------------------------------------------------------------------- //
@@ -228,7 +228,7 @@ if ($op == 'add' || $op == 'link') {
     $categoria_select = new XoopsFormSelect(_AM_CONTENT_POSITION, 'parent_id', $currentParent);
     $categoria_select->addOption('', _AM_CONTENT_MAINMENU);
     foreach ($allMenuItems as $ct_item) {
-        $categoria_select->addOption($ct_item['storyid'], str_repeat('&nbsp;&nbsp;', ($ct_item['depth'] + 1)) . str_repeat('-', ($ct_item['depth'])) . $ct_item['title']);
+        $categoria_select->addOption($ct_item['storyid'], str_repeat('&nbsp;&nbsp;', $ct_item['depth'] + 1) . str_repeat('-', $ct_item['depth']) . $ct_item['title']);
     }
 
     $text_box    = new XoopsFormText(_AM_CONTENT_LINKNAME, 'title', 50, 255);
@@ -300,7 +300,7 @@ if ($op == 'add' || $op == 'link') {
     $option_tray->addElement($comments_checkbox);
 
     if (isset($return) && $return == 1) {
-        $return_field = (new XoopsFormHidden('return', 1));
+        $return_field = new XoopsFormHidden('return', 1);
     }
 
     $submit = new XoopsFormButton(_SUBMIT, 'submit', _SUBMIT, 'submit');

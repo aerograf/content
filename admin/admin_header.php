@@ -12,17 +12,17 @@ include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
 include XOOPS_ROOT_PATH . '/modules/content/include/admin_functions.php';
 
 if (file_exists(XOOPS_ROOT_PATH . '/modules/content/language/' . $xoopsConfig['language'] . '/admin.php')) {
-    include_once(XOOPS_ROOT_PATH . '/modules/content/language/' . $xoopsConfig['language'] . '/admin.php');
-    include_once(XOOPS_ROOT_PATH . '/modules/content/language/' . $xoopsConfig['language'] . '/modinfo.php');
+    include_once XOOPS_ROOT_PATH . '/modules/content/language/' . $xoopsConfig['language'] . '/admin.php';
+    include_once XOOPS_ROOT_PATH . '/modules/content/language/' . $xoopsConfig['language'] . '/modinfo.php';
 } else {
-    include_once(XOOPS_ROOT_PATH . '/modules/content/language/english/admin.php');
-    include_once(XOOPS_ROOT_PATH . '/modules/content/language/english/modinfo.php');
+    include_once XOOPS_ROOT_PATH . '/modules/content/language/english/admin.php';
+    include_once XOOPS_ROOT_PATH . '/modules/content/language/english/modinfo.php';
 }
 
 $groupPermHandler      = xoops_getHandler('groupperm');
 $moduleHandler         = xoops_getHandler('module');
 $module                = $moduleHandler->getByDirname('content');
-($xoopsUser) ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
+$xoopsUser ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
 
 if (isset($_GET)) {
     foreach ($_GET as $k => $v) {
