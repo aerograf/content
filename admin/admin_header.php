@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('XOOPS_URL')) {
-    include_once '../../../mainfile.php';
+    include_once __DIR__ . '/../../../mainfile.php';
     include XOOPS_ROOT_PATH . '/include/cp_header.php';
 }
 include_once XOOPS_ROOT_PATH . '/class/xoopsmodule.php';

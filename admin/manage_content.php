@@ -1,6 +1,6 @@
 <?php
 
-include_once 'admin_header.php';
+include_once __DIR__ . '/admin_header.php';
 
 $xoopsDB = XoopsDatabaseFactory::getDatabaseConnection();
 global $op;

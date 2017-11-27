@@ -1,6 +1,6 @@
 <?php
 
-include '../../mainfile.php';
+include __DIR__ . '/../../mainfile.php';
 $com_itemid = isset($_GET['com_itemid']) ? (int)$_GET['com_itemid'] : 0;
 if ($com_itemid > 0) {
     // Get link title

@@ -45,7 +45,7 @@ class ContentModuleAdmin
      * @param string $delimeter
      * @return string
      */
-    public function renderButton($position = 'right', $delimeter = '&nbsp;')
+    public function displayButton($position = 'right', $delimeter = '&nbsp;')
     {
         $path = XOOPS_URL . '/modules/' . $this->_obj->getVar('dirname') . '/assets/images/admin/';
         switch ($position) {
@@ -268,7 +268,7 @@ class ContentModuleAdmin
      * @param string $menu
      * @return string
      */
-    public function addNavigation($menu = '')
+    public function displayNavigation($menu = '')
     {
         $ret = '';
         $path = XOOPS_URL . '/modules/' . $this->_obj->getVar('dirname') . '/';
@@ -315,7 +315,7 @@ class ContentModuleAdmin
     /**
      * @return string
      */
-    public function renderIndex()
+    public function displayIndex()
     {
         $path = XOOPS_URL . '/modules/' . $this->_obj->getVar('dirname') . '/assets/images/admin/';
         $ret = "<table>\n<tr>\n";

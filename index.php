@@ -2,7 +2,7 @@
 
 include_once dirname(dirname(__DIR__)) . '/mainfile.php';
 
-$xoopsOption['template_main'] = 'ct_index.tpl';
+$GLOBALS['xoopsOption']['template_main'] = 'ct_index.tpl';
 
 include_once XOOPS_ROOT_PATH . '/header.php';
 $tabdata = tabMaker();
@@ -80,7 +80,7 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
 
     $contentItems          = [];
     $groupPermHandler      = xoops_getHandler('groupperm');
-    $module                = $module_handler->getByDirname('content');
+    $module                = $moduleHandler->getByDirname('content');
     $xoopsUser ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
     $allowedItems          = $groupPermHandler->getItemIds('content_page_view', $groups, $module->getVar('mid'));
 
@@ -166,7 +166,7 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
             exit;
         }
 
-        //$xoopsOption['template_main'] = 'ct_index.tpl';
+        //$GLOBALS['xoopsOption']['template_main'] = 'ct_index.tpl';
 
         (isset($nohtml) && 1 == $nohtml) ? $html = 0 : $html = 1;
         (isset($nosmiley) && 1 == $nosmiley) ? $smiley = 0 : $smiley = 1;

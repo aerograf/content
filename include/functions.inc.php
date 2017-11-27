@@ -9,14 +9,14 @@ function getMenuAsArray()
     global $xoopsModule, $xoopsUser;
     //Modules
     $menuModule         = [];
-    $module_handler     = xoops_getHandler('module');
+    $moduleHandler     = xoops_getHandler('module');
     $criteria           = new CriteriaCompo(new Criteria('hasmain', 1));
     $criteria->add(new Criteria('weight', 0, '>'));
     $criteria->add(new Criteria('isactive', 1));
-    $modules            = $module_handler->getObjects($criteria, true);
-    $moduleperm_handler = xoops_getHandler('groupperm');
+    $modules            = $moduleHandler->getObjects($criteria, true);
+    $modulepermHandler = xoops_getHandler('groupperm');
     $groups             = is_object($xoopsUser) ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS;
-    $read_allowed       = $moduleperm_handler->getItemIds('module_read', $groups);
+    $read_allowed       = $modulepermHandler->getItemIds('module_read', $groups);
     foreach (array_keys($modules) as $i) {
         if (in_array($i, $read_allowed)) {
             $menuModule[$i]['title']    = $modules[$i]->getVar('name');
@@ -47,7 +47,7 @@ function getMenuAsArray()
 function getContentAsArray()
 {
     global $xoopsDB, $xoopsModule, $xoopsUser;
-    $module_handler = xoops_getHandler('module');
+    $moduleHandler = xoops_getHandler('module');
     
     //Content
     $result = $xoopsDB->query("SELECT *, blockid AS priority, 'content' AS type FROM "
@@ -55,7 +55,7 @@ function getContentAsArray()
                               . ' WHERE visible = 1 ORDER BY blockid');
     $contentItems          = [];
     $groupPermHandler      = xoops_getHandler('groupperm');
-    $module                = $module_handler->getByDirname('content');
+    $module                = $moduleHandler->getByDirname('content');
     $xoopsUser ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
     $allowedItems          = $groupPermHandler->getItemIds('content_page_view', $groups, $module->getVar('mid'));
     while ($tcontent        = $xoopsDB->fetchArray($result)) {

@@ -1,6 +1,6 @@
 <?php
 
-include_once 'admin_header.php';
+include_once __DIR__ . '/admin_header.php';
 include_once $GLOBALS['xoops']->path('class/xoopsformloader.php');
 if (!class_exists('XoopsGroupPermForm')) {
     include_once $GLOBALS['xoops']->path('class/xoopsform/grouppermform.php');
@@ -9,9 +9,9 @@ global $xoopsUser, $xoopsModule, $xoopsDB, $op;
 global $xoopsModuleConfig;
 
 $module_id        = $xoopsModule->getVar('mid');
-$module_handler   = xoops_getHandler('module');
+$moduleHandler   = xoops_getHandler('module');
 $groupPermHandler = xoops_getHandler('groupperm');
-$module           = $module_handler->getByDirname('content');
+$module           = $moduleHandler->getByDirname('content');
 // ------------------------------------------------------------------------- //
 // Update Content -> Show Content Page                                       //
 // ------------------------------------------------------------------------- //

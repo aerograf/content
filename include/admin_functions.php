@@ -1,6 +1,6 @@
 <?php
 if (!defined('XOOPS_URL')) {
-    include_once '../../../mainfile.php';
+    include_once __DIR__ . '/../../../mainfile.php';
 }
 
 /**
@@ -108,7 +108,7 @@ function FieldExists($fieldname, $table)
 }
 
 if (!defined('XOOPS_URL')) {
-    include_once '../../../../mainfile.php';
+    include_once __DIR__ . '/../../../../mainfile.php';
 }
 function print_header()
 {
@@ -178,7 +178,7 @@ function ct_xoops_confirm($hiddens, $action, $msg, $submit='', $addtoken = true,
             echo '<input type="hidden" name="'.$name.'" value="'.htmlspecialchars($value).'" />';
         }
     }
-    if (false != $addtoken) {
+    if (false !== $addtoken) {
         echo $GLOBALS['xoopsSecurity']->getTokenHTML();
     }
     echo '

@@ -1,6 +1,6 @@
 <?php
 
-include_once 'admin_header.php';
+include_once __DIR__ . '/admin_header.php';
 
 // ------------------------------------------------------------------------- //
 // Switch Statement for the different operations                             //
@@ -24,7 +24,7 @@ if ('add' === $op || 'link' === $op) {
     }
     
     $result = $xoopsDB->query('SELECT * FROM ' . $xoopsDB->prefix('content') . '');
-    $rows   = mysqli_num_rows($result);
+    $rows   = $GLOBALS['xoopsDB']->getRowsNum($result);
 
     $hp = (0 == $rows)? 1 : 0;
     
@@ -82,9 +82,9 @@ if ('add' === $op || 'link' === $op) {
     $newId = $xoopsDB->getInsertId();
     
     if ($xoopsModuleConfig['cont_permits_advnaced'] > 0) {
-        $module_handler   = xoops_getHandler('module');
+        $moduleHandler   = xoops_getHandler('module');
         $groupPermHandler = xoops_getHandler('groupperm');
-        $module           = $module_handler->getByDirname('content');
+        $module           = $moduleHandler->getByDirname('content');
         
         foreach ($group_read_perms as $group) {
             $groupPermHandler->addRight('content_page_view', $newId, $group, $module->getVar('mid'));
@@ -130,7 +130,7 @@ if ('add' === $op || 'link' === $op) {
     $description = $myts->makeTboxData4Save($description);
     
     $result = $xoopsDB->query('SELECT * FROM ' . $xoopsDB->prefix('content') . '');
-    $rows   = mysqli_num_rows($result);
+    $rows   = $GLOBALS['xoopsDB']->getRowsNum($result);
 
     $hp = (0 == $rows) ? 1 : 0;
 
@@ -157,9 +157,9 @@ if ('add' === $op || 'link' === $op) {
     $newId = $xoopsDB->getInsertId();
 
     if ($xoopsModuleConfig['cont_permits_advnaced'] > 0) {
-        $module_handler   = xoops_getHandler('module');
+        $moduleHandler   = xoops_getHandler('module');
         $groupPermHandler = xoops_getHandler('groupperm');
-        $module           = $module_handler->getByDirname('content');
+        $module           = $moduleHandler->getByDirname('content');
         
         foreach ($group_read_perms as $group) {
             $groupPermHandler->addRight('content_page_view', $newId, $group, $module->getVar('mid'));
@@ -182,10 +182,10 @@ if ('add' === $op || 'link' === $op) {
     // ------------------------------------------------------------------------- //
     global $xoopsDB, $xoopsModuleConfig, $xoopsUser, $xoopsModule, $_GET;
     $menuModule     = [];
-    $module_handler = xoops_getHandler('module');
+    $moduleHandler = xoops_getHandler('module');
     $criteria       = new CriteriaCompo(new Criteria('hasmain', 1));
     $criteria->add(new Criteria('isactive', 1));
-    $modules        = $module_handler->getList($criteria);
+    $modules        = $moduleHandler->getList($criteria);
     asort($modules);
   
     xoops_cp_header();
@@ -255,9 +255,9 @@ if ('add' === $op || 'link' === $op) {
 
         
     //user permissions
-    $module_handler   = xoops_getHandler('module');
+    $moduleHandler   = xoops_getHandler('module');
     $groupPermHandler = xoops_getHandler('groupperm');
-    $module           = $module_handler->getByDirname('content');
+    $module           = $moduleHandler->getByDirname('content');
     
     $readpermits  = new XoopsFormSelectGroup(_AM_CONTENT_PERMITREAD, 'group_read_perms', true, 1, 4, true);
     $writepermits = new XoopsFormSelectGroup(_AM_CONTENT_PERMITWRITE, 'group_write_perms', true, 1, 4, true);

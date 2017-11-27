@@ -6,7 +6,7 @@
 function content_block_top_nav()
 {
     global $xoopsDB, $xoopsModule, $xoopsTpl, $_GET, $xoopsUser;
-    $module_handler = xoops_getHandler('module');
+    $moduleHandler = xoops_getHandler('module');
     $block = [];
     $_GET['id'] = '';
     $myts  = MyTextSanitizer::getInstance();
@@ -24,7 +24,7 @@ function content_block_top_nav()
                               . $xoopsDB->prefix('content')
                               . " WHERE visible='1' and parent_id = 0 ORDER BY blockid");
     $groupPermHandler      = xoops_getHandler('groupperm');
-    $module                = $module_handler->getByDirname('content');
+    $module                = $moduleHandler->getByDirname('content');
     $xoopsUser ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
     $allowedItems          = $groupPermHandler->getItemIds('content_page_view', $groups, $module->getVar('mid'));
 

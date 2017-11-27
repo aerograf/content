@@ -1,5 +1,5 @@
 <?php
-include '../../../include/cp_header.php' ;
+include __DIR__ . '/../../../include/cp_header.php' ;
 
 if (!isset($moduleDirName)) {
     $moduleDirName = basename(dirname(__DIR__));

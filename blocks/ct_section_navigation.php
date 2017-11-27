@@ -9,13 +9,13 @@ function site_block_section_nav($options)
 {
     global $xoopsDB, $xoopsModule, $xoopsTpl, $_GET, $xoopsUser, $xoopsConfig, $block, $current_page_id, $padding;
     $padding               = $options[0];
-    $module_handler        = xoops_getHandler('module');
+    $moduleHandler        = xoops_getHandler('module');
     $result = $xoopsDB->query("SELECT *, blockid AS priority, 'content' AS type FROM "
                       . $xoopsDB->prefix('content')
                               . ' WHERE visible = 1 ORDER BY blockid');
     $contentItems          = [];
     $groupPermHandler      = xoops_getHandler('groupperm');
-    $module                = $module_handler->getByDirname('content');
+    $module                = $moduleHandler->getByDirname('content');
     $xoopsUser ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
     $allowedItems          = $groupPermHandler->getItemIds('content_page_view', $groups, $module->getVar('mid'));
     while ($tcontent        = $xoopsDB->fetchArray($result)) {

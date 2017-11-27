@@ -24,9 +24,9 @@ function content_block_nav()
                               . ' child LEFT JOIN '
                         . $xoopsDB->prefix('content')
                         . " parent ON child.parent_id = parent.storyid WHERE child.visible='1' ORDER BY menu_block, menu_id, parent_id, blockid");
-    $module_handler        = xoops_getHandler('module');
+    $moduleHandler        = xoops_getHandler('module');
     $groupPermHandler      = xoops_getHandler('groupperm');
-    $module                = $module_handler->getByDirname('content');
+    $module                = $moduleHandler->getByDirname('content');
     $xoopsUser ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
     $allowedItems          = $groupPermHandler->getItemIds('content_page_view', $groups, $module->getVar('mid'));
     
@@ -59,13 +59,13 @@ function content_block_nav()
         list($module_id) = $xoopsDB->fetchArray($result);
     }
 
-    $gperm_handler = xoops_getHandler('groupperm');
+    $gpermHandler = xoops_getHandler('groupperm');
     $groups = XOOPS_GROUP_ANONYMOUS;
     if ($xoopsUser) {
         $groups = $xoopsUser->getGroups();
     }
 
-    if ($gperm_handler->checkRight('module_admin', $module_id, $groups, 1)) {
+    if ($gpermHandler->checkRight('module_admin', $module_id, $groups, 1)) {
         $block['links'][] = [
             'title'         => '<font style="color:#FF9933;">Add main menu item</font>',
             'address'       => XOOPS_URL . '/modules/content/admin/index.php?op=submit&id=0&return=1',

@@ -1,6 +1,6 @@
 <?php
 
-include '../../mainfile.php';
+include __DIR__ . '/../../mainfile.php';
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if (empty($id)) {

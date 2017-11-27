@@ -1,6 +1,6 @@
 <?php
 
-include_once 'admin_header.php';
+include_once __DIR__ . '/admin_header.php';
 
 // ------------------------------------------------------------------------- //
 // Switch Statement for the different operations                             //
@@ -40,9 +40,9 @@ switch ($op) {
         
         $newId = $xoopsDB->getInsertId();
 
-        $module_handler   = xoops_getHandler('module');
+        $moduleHandler   = xoops_getHandler('module');
         $groupPermHandler = xoops_getHandler('groupperm');
-        $module           = $module_handler->getByDirname('content');
+        $module           = $moduleHandler->getByDirname('content');
         $allowedGroups    = $groupPermHandler->getGroupIds('content_page_view', $id, $module->getVar('mid'));
         
         foreach ($allowedGroups as $group) {

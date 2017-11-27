@@ -124,8 +124,8 @@ $modversion['config'][1]['description'] = '_MI_CONTENT_FORM_OPTIONS_DESC';
 $modversion['config'][1]['formtype']    = 'select';
 $modversion['config'][1]['valuetype']   = 'text';
 xoops_load('xoopseditorhandler');
-$editor_handler = XoopsEditorHandler::getInstance();
-$modversion['config'][1]['options']     = array_flip($editor_handler->getList());
+$editorHandler = XoopsEditorHandler::getInstance();
+$modversion['config'][1]['options']     = array_flip($editorHandler->getList());
 $modversion['config'][1]['default']     = 'fckeditor';
 
 $modversion['config'][2]['name']        = 'cont_crumbs';

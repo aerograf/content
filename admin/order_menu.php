@@ -1,6 +1,6 @@
 <?php
 
-    include_once 'admin_header.php';
+    include_once __DIR__ . '/admin_header.php';
     if (isset($_GET['op']) && 'order' === $_GET['op']) {
         for ($j = 1; $j <= $_POST['total']; $j++) {
             if ('module' === $_POST['type' . $j]) {
@@ -32,14 +32,14 @@
         $adminObject->displayNavigation(basename(__FILE__));
         global $xoopsUser, $xoopsModule, $xoopsDB;
         $menuModule         = [];
-        $module_handler     = xoops_getHandler('module');
+        $moduleHandler     = xoops_getHandler('module');
         $criteria           = new CriteriaCompo(new Criteria('hasmain', 1));
         $criteria->add(new Criteria('isactive', 1));
         $criteria->add(new Criteria('weight', 0, '>'));
-        $modules            = $module_handler->getObjects($criteria, true);
-        $moduleperm_handler = xoops_getHandler('groupperm');
+        $modules            = $moduleHandler->getObjects($criteria, true);
+        $modulepermHandler = xoops_getHandler('groupperm');
         $groups             = is_object($xoopsUser) ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS;
-        $read_allowed       = $moduleperm_handler->getItemIds('module_read', $groups);
+        $read_allowed       = $modulepermHandler->getItemIds('module_read', $groups);
         foreach (array_keys($modules) as $i) {
             if (in_array($i, $read_allowed)) {
                 $menuModule[$i]['text']     = $modules[$i]->getVar('name');

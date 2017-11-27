@@ -1,6 +1,6 @@
 <?php
 
-    include_once 'admin_header.php';
+    include_once __DIR__ . '/admin_header.php';
     if ('Yes' === $HTTP_POST_VARS['submit']) {
         $xoopsDB->queryF('DELETE FROM '
                          . $xoopsDB->prefix('content'));

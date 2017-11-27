@@ -1,7 +1,7 @@
 <?php
 
-include '../../../include/cp_header.php';
-include '../../../class/xoopsformloader.php';
+include __DIR__ . '/../../../include/cp_header.php';
+include __DIR__ . '/../../../class/xoopsformloader.php';
 
 $adminObject = Xmf\Module\Admin::getInstance();
 xoops_cp_header();

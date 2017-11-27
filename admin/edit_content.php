@@ -1,6 +1,6 @@
 <?php
 
-include_once 'admin_header.php';
+include_once __DIR__ . '/admin_header.php';
 
 // ------------------------------------------------------------------------- //
 // Switch Statement for the different operations                             //
@@ -8,15 +8,15 @@ include_once 'admin_header.php';
 $xoopsDB = XoopsDatabaseFactory::getDatabaseConnection();
 global $op, $showshort,$xoopsModuleConfig;
 $menuModule     = [];
-$module_handler = xoops_getHandler('module');
+$moduleHandler = xoops_getHandler('module');
 $criteria       = new CriteriaCompo(new Criteria('hasmain', 1));
 $criteria->add(new Criteria('isactive', 1));
-$modules        = $module_handler->getList($criteria);
+$modules        = $moduleHandler->getList($criteria);
 asort($modules);
 
 
 $groupPermHandler      = xoops_getHandler('groupperm');
-$module                = $module_handler->getByDirname('content');
+$module                = $moduleHandler->getByDirname('content');
 $xoopsUser ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
 
 $allowedItems = $groupPermHandler->getItemIds('content_page_write', $groups, $module->getVar('mid'));
