@@ -90,3 +90,7 @@ define('_AM_CONTENT_ABOUT_DESCRIPTION', 'Description: ');
 define('_AM_CONTENT_CONFIG_CHECK', 'Configuration Check');
 define('_AM_CONTENT_CONFIG_PHP', 'Minimum PHP required: %s (your version is %s)');
 define('_AM_CONTENT_CONFIG_XOOPS', 'Minimum XOOPS required:  %s (your version is %s)');
+
+define('_AM_CONTENT_PERMITADD', 'Add Permissions');
+define('_AM_CONTENT_PERMITGLOBAL', 'Global permissions');
+define('_AM_CONTENT_PERMITADMIN', 'Admin');

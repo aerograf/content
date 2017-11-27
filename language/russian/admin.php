@@ -68,8 +68,8 @@ define('_AM_CONTENT_GO', 'Посмотр');
 define('_AM_CONTENT_UPGRADENOTICE', 'Вам необходимо обновить свою установку Контента. Пожалуйста, используйте <a href="upgrade.php">страницу обновления</a>');
 define('_AM_CONTENT_DBUPGRADED', 'База данных обновлена ​​до');
 define('_AM_CONTENT_CREATED', 'Создан');
-define('_AM_CONTENT_PERMITREAD', 'Просмотр прав доступа');
-define('_AM_CONTENT_PERMITWRITE', 'Записать права доступа');
+define('_AM_CONTENT_PERMITREAD', 'Права на просмотр');
+define('_AM_CONTENT_PERMITWRITE', 'Права на запись');
 define('_AM_CONTENT_DELETEFILES', 'Удалить&nbsp;файлы');
 
 //Version:
@@ -92,3 +92,7 @@ define('_AM_CONTENT_ABOUT_DESCRIPTION', 'Описание: ');
 define('_AM_CONTENT_CONFIG_CHECK', 'Проверка конфигурации');
 define('_AM_CONTENT_CONFIG_PHP', 'Требуется минимум PHP: %s (Ваша версия %s)');
 define('_AM_CONTENT_CONFIG_XOOPS', 'Требуется минимум XOOPS: %s (Ваша версия %s)');
+
+define('_AM_CONTENT_PERMITADD', 'Права на добавление');
+define('_AM_CONTENT_PERMITGLOBAL', 'Глобальные разрешения');
+define('_AM_CONTENT_PERMITADMIN', 'Администратор');
