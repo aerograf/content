@@ -40,8 +40,8 @@ switch ($op) {
         
         $newId = $xoopsDB->getInsertId();
 
-        $module_handler   = xoops_gethandler('module');
-        $groupPermHandler = xoops_gethandler('groupperm');
+        $module_handler   = xoops_getHandler('module');
+        $groupPermHandler = xoops_getHandler('groupperm');
         $module           = $module_handler->getByDirname('content');
         $allowedGroups    = $groupPermHandler->getGroupIds("content_page_view", $id, $module->getVar("mid"));
         

@@ -19,8 +19,8 @@ if (file_exists(XOOPS_ROOT_PATH . "/modules/content/language/".$xoopsConfig['lan
     include_once(XOOPS_ROOT_PATH . "/modules/content/language/english/modinfo.php");
 }
 
-$groupPermHandler      = xoops_gethandler('groupperm');
-$moduleHandler         = xoops_gethandler('module');
+$groupPermHandler      = xoops_getHandler('groupperm');
+$moduleHandler         = xoops_getHandler('module');
 $module                = $moduleHandler->getByDirname('content');
 ($xoopsUser) ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
 

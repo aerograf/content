@@ -9,8 +9,8 @@ global $xoopsUser, $xoopsModule, $xoopsDB, $op;
 global $xoopsModuleConfig;
 
 $module_id        = $xoopsModule->getVar('mid');
-$module_handler   = xoops_gethandler('module');
-$groupPermHandler = xoops_gethandler('groupperm');
+$module_handler   = xoops_getHandler('module');
+$groupPermHandler = xoops_getHandler('groupperm');
 $module           = $module_handler->getByDirname('content');
 // ------------------------------------------------------------------------- //
 // Update Content -> Show Content Page                                       //
@@ -18,7 +18,7 @@ $module           = $module_handler->getByDirname('content');
 if ($op == "update") {
     foreach ($id as $storyid) {
         $groupPermHandler->DeleteByModule($module->getVar("mid"), "content_page_view", $storyid);
-        
+
         foreach ($group_read[$storyid] as $group) {
             $groupPermHandler->addRight("content_page_view", $storyid, $group, $module->getVar("mid"));
         }
@@ -27,19 +27,19 @@ if ($op == "update") {
             foreach ($group_write[$storyid] as $group) {
                 $groupPermHandler->addRight("content_page_write", $storyid, $group, $module->getVar("mid"));
             }
-            
+
             $groupPermHandler->DeleteByModule($module->getVar("mid"), "content_page_add", $storyid);
             foreach ($group_add[$storyid] as $group) {
                 $groupPermHandler->addRight("content_page_add", $storyid, $group, $module->getVar("mid"));
             }
-            
+
             $groupPermHandler->DeleteByModule($module->getVar("mid"), "content_admin", null);
             foreach ($group_admin as $group) {
                 $groupPermHandler->addRight("content_admin", null, $group, $module->getVar("mid"));
             }
         }
     }
-    
+
     redirect_header("manage_permissions.php", 2, _AM_CONTENT_DBUPDATED);
 } else {
     // ------------------------------------------------------------------------- //
@@ -142,22 +142,9 @@ if ($op == "update") {
 			</script>';
     global $xoopsDB;
     $myts = MyTextSanitizer::getInstance();
-    
-    $permitadmin = new XoopsFormSelectGroup(
-    
-        _AM_CONTENT_PERMS,
-    
-        'group_admin',
-    
-        true,
-    $groupPermHandler->getGroupIds("content_admin", null, $module->getVar("mid")),
-    
-        3,
-    
-        true
-    
-    );
-    
+
+    $permitadmin = new XoopsFormSelectGroup(_AM_CONTENT_PERMS, 'group_admin', true, $groupPermHandler->getGroupIds("content_admin", null, $module->getVar("mid")), 3, true);
+
     echo "" . showMenu() . "
 			<table border='0' cellpadding='0' cellspacing='1' width='100%' class='outer'>
 				<tr class='even'>
@@ -176,7 +163,7 @@ if ($op == "update") {
     }
     echo "<table border='0' cellpadding='0' cellspacing='1' width='100%' class='outer' id='displaytable'>";
     if (isset($filterSQL)) {
-        $filterSQL = " WHERE ".$filterSQL;
+        $filterSQL = " WHERE " . $filterSQL;
     }
     echo "
 				<tr class='head'>
@@ -189,55 +176,35 @@ if ($op == "update") {
     }
     echo "		</tr>";
     $contentItems = [];
-    $result = $xoopsDB->query("SELECT *, blockid AS priority, 'content' AS type FROM "
-                      . $xoopsDB->prefix('content')
-                      . " "
-                      . $filterSQL
-                      . " ORDER BY blockid");
-    while ($tcontent   = $xoopsDB->fetchArray($result)) {
+    $result       = $xoopsDB->query("SELECT *, blockid AS priority, 'content' AS type FROM " . $xoopsDB->prefix('content') . " " . $filterSQL . " ORDER BY blockid");
+    while ($tcontent = $xoopsDB->fetchArray($result)) {
         $contentItems[] = $tcontent;
     }
-    
+
     if ($filterSQL == "") {
         $sortedContent = return_children($contentItems, 0);
     } else {
         $sortedContent = $contentItems;
     }
-    
+
     unset($contentItems);
     $contentItems = [];
-    $result = $xoopsDB->query("SELECT *, blockid AS priority, 'content' AS type FROM "
-                      . $xoopsDB->prefix('content')
-                      . " ORDER BY visible DESC, blockid");
+    $result       = $xoopsDB->query("SELECT *, blockid AS priority, 'content' AS type FROM " . $xoopsDB->prefix('content') . " ORDER BY visible DESC, blockid");
     while ($tcontent = $xoopsDB->fetchArray($result)) {
         $contentItems[] = $tcontent;
     }
     $allItems = return_children($contentItems, 0);
     foreach ($sortedContent as $tcontent) {
         if ((isset($tcontent["depth"]) && $tcontent["depth"] == 0) || $filterSQL != "") {
-            print_item(
-                $tcontent,
-                $xoopsModule->dirname(),
-                $allItems,
-                $myts,
-                $groupPermHandler->getGroupIds("content_page_view", $tcontent['storyid'], $module->getVar("mid")),
-                $groupPermHandler->getGroupIds("content_page_write", $tcontent['storyid'], $module->getVar("mid")),
-                $groupPermHandler->getGroupIds("content_page_add", $tcontent['storyid'], $module->getVar("mid"))
-            );
+            print_item($tcontent, $xoopsModule->dirname(), $allItems, $myts, $groupPermHandler->getGroupIds("content_page_view", $tcontent['storyid'], $module->getVar("mid")), $groupPermHandler->getGroupIds("content_page_write", $tcontent['storyid'], $module->getVar("mid")),
+                       $groupPermHandler->getGroupIds("content_page_add", $tcontent['storyid'], $module->getVar("mid")));
             foreach (return_children($contentItems, $tcontent["storyid"], 1) as $child) {
-                print_item(
-                    $child,
-                    $xoopsModule->dirname(),
-                    $allItems,
-                    $myts,
-                $groupPermHandler->getGroupIds("content_page_view", $child['storyid'], $module->getVar("mid")),
-                $groupPermHandler->getGroupIds("content_page_write", $child['storyid'], $module->getVar("mid")),
-                $groupPermHandler->getGroupIds("content_page_add", $child['storyid'], $module->getVar("mid"))
-                );
+                print_item($child, $xoopsModule->dirname(), $allItems, $myts, $groupPermHandler->getGroupIds("content_page_view", $child['storyid'], $module->getVar("mid")), $groupPermHandler->getGroupIds("content_page_write", $child['storyid'], $module->getVar("mid")),
+                           $groupPermHandler->getGroupIds("content_page_add", $child['storyid'], $module->getVar("mid")));
             }
         }
     }
-      
+
     echo "</table><br />
 	  	<div align='center'>
 			<input type='hidden' name='op' value='update' />
@@ -259,18 +226,24 @@ function print_item($tcontent, $dirname, $allMenuItems, $txtSant, $page_groups_r
     if (isparent($allMenuItems, $tcontent["storyid"])) {
         echo 'id="' . $tcontent["storyid"] . '" ';
     }
-        
+
     echo " class='" . ((!isset($tcontent['depth']) || $tcontent['depth'] == 0) ? "even" : "odd parent-" . $tcontent["parent_id"] . (($xoopsModuleConfig['cont_collapse'] == '1') ? " hideme " : "")) . "'>";
     if (!isset($tcontent['depth'])) {
         $tcontent['depth'] = 0;
     }
-    echo "  <td><input type='hidden' name='id[]' value='".$tcontent['storyid']."' />";
+    echo "  <td><input type='hidden' name='id[]' value='" . $tcontent['storyid'] . "' />";
     if (isset($tcontent['depth']) && isparent($allMenuItems, $tcontent["storyid"])) {
         if (isset($tcontent['depth']) && $tcontent['depth'] != 0) {
             echo '<img src="../assets/images/spacer.gif" alt="" width="' . ($tcontent['depth'] * 8) . '" height="10" border="0" align="absmiddle">';
             echo '<img src="../assets/images/child_mark.png" alt="" width="6" height="17" border="0" align="absmiddle">';
         }
-        echo '<a href="#" onclick="showitems('. $tcontent["storyid"] . ');return false;"><img onload="createRollOver(this)" name="control-'. $tcontent["storyid"] . '" id="control-'. $tcontent["storyid"] . '" src="../assets/images/folder.png" alt="" border="0" align="absmiddle" class="folder"></a>';
+        echo '<a href="#" onclick="showitems('
+             . $tcontent["storyid"]
+             . ');return false;"><img onload="createRollOver(this)" name="control-'
+             . $tcontent["storyid"]
+             . '" id="control-'
+             . $tcontent["storyid"]
+             . '" src="../assets/images/folder.png" alt="" border="0" align="absmiddle" class="folder"></a>';
     } else {
         if (isset($tcontent['depth']) && $tcontent['depth'] != 0) {
             echo '<img src="../assets/images/spacer.gif" alt="" width="' . ($tcontent['depth'] * 8) . '" height="10" border="0" align="absmiddle">';
@@ -286,6 +259,6 @@ function print_item($tcontent, $dirname, $allMenuItems, $txtSant, $page_groups_r
 				<td>" . $permitWrite->render() . "</td>
 				<td>" . $permitAdd->render() . "</td>";
     }
-        
+
     echo "</tr>";
 }

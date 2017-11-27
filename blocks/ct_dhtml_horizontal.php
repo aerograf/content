@@ -6,12 +6,12 @@ function site_block_horz_dhtml_nav()
     global $xoopsDB, $xoopsModule, $xoopsTpl, $_GET, $xoopsUser, $xoopsConfig;
     //-------------- Modules --------------
     $menuModule         = [];
-    $module_handler     = xoops_gethandler('module');
+    $module_handler     = xoops_getHandler('module');
     $criteria           = new CriteriaCompo(new Criteria('hasmain', 1));
     $criteria->add(new Criteria('weight', 0, '>'));
     $criteria->add(new Criteria('isactive', 1));
     $modules            = $module_handler->getObjects($criteria, true);
-    $moduleperm_handler = xoops_gethandler('groupperm');
+    $moduleperm_handler = xoops_getHandler('groupperm');
     $groups             = is_object($xoopsUser) ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS;
     $read_allowed       = $moduleperm_handler->getItemIds('module_read', $groups);
     foreach (array_keys($modules) as $i) {
@@ -40,7 +40,7 @@ function site_block_horz_dhtml_nav()
                       . $xoopsDB->prefix('content')
                       . " WHERE visible = 1 ORDER BY blockid");
     $contentItems          = [];
-    $groupPermHandler      = xoops_gethandler('groupperm');
+    $groupPermHandler      = xoops_getHandler('groupperm');
     $module                = $module_handler->getByDirname('content');
     ($xoopsUser) ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
     $allowedItems          = $groupPermHandler->getItemIds("content_page_view", $groups, $module->getVar("mid"));

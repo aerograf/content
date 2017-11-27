@@ -70,13 +70,13 @@ if ($id != 0) {
 list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocomments, $link, $address) = $xoopsDB->fetchRow($result);
 
     global $xoopsModuleConfig, $xoopsModule, $xoopsUser, $xoopsConfig;
-    $moduleHandler = xoops_gethandler('module');
+    $moduleHandler = xoops_getHandler('module');
 
     $id          = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
     $currentPage = isset($_GET['page']) ? intval($_GET['page']) : 0;
 
     $contentItems          = [];
-    $groupPermHandler      = xoops_gethandler('groupperm');
+    $groupPermHandler      = xoops_getHandler('groupperm');
     $module                = $module_handler->getByDirname('content');
     ($xoopsUser) ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
     $allowedItems          = $groupPermHandler->getItemIds("content_page_view", $groups, $module->getVar("mid"));

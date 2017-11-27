@@ -91,8 +91,8 @@ if ($op == "add" || $op == "link") {
     $newId = $xoopsDB->getInsertId();
     
     if ($xoopsModuleConfig['cont_permits_advnaced'] > 0) {
-        $module_handler   = xoops_gethandler('module');
-        $groupPermHandler = xoops_gethandler('groupperm');
+        $module_handler   = xoops_getHandler('module');
+        $groupPermHandler = xoops_getHandler('groupperm');
         $module           = $module_handler->getByDirname('content');
         
         foreach ($group_read_perms as $group) {
@@ -170,8 +170,8 @@ if ($op == "add" || $op == "link") {
     $newId = $xoopsDB->getInsertId();
 
     if ($xoopsModuleConfig['cont_permits_advnaced'] > 0) {
-        $module_handler   = xoops_gethandler('module');
-        $groupPermHandler = xoops_gethandler('groupperm');
+        $module_handler   = xoops_getHandler('module');
+        $groupPermHandler = xoops_getHandler('groupperm');
         $module           = $module_handler->getByDirname('content');
         
         foreach ($group_read_perms as $group) {
@@ -195,7 +195,7 @@ if ($op == "add" || $op == "link") {
     // ------------------------------------------------------------------------- //
     global $xoopsDB, $xoopsModuleConfig, $xoopsUser, $xoopsModule, $_GET;
     $menuModule     = [];
-    $module_handler = xoops_gethandler('module');
+    $module_handler = xoops_getHandler('module');
     $criteria       = new CriteriaCompo(new Criteria('hasmain', 1));
     $criteria->add(new Criteria('isactive', 1));
     $modules        = $module_handler->getList($criteria);
@@ -268,8 +268,8 @@ if ($op == "add" || $op == "link") {
 
         
     //user permissions
-    $module_handler   = xoops_gethandler('module');
-    $groupPermHandler = xoops_gethandler('groupperm');
+    $module_handler   = xoops_getHandler('module');
+    $groupPermHandler = xoops_getHandler('groupperm');
     $module           = $module_handler->getByDirname('content');
     
     $readpermits  = new XoopsFormSelectGroup(_AM_CONTENT_PERMITREAD, 'group_read_perms', true, 1, 4, true);

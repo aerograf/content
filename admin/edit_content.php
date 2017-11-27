@@ -8,14 +8,14 @@ include_once "admin_header.php";
 $xoopsDB = XoopsDatabaseFactory::getDatabaseConnection();
 global $op, $showshort,$xoopsModuleConfig;
 $menuModule     = [];
-$module_handler = xoops_gethandler('module');
+$module_handler = xoops_getHandler('module');
 $criteria       = new CriteriaCompo(new Criteria('hasmain', 1));
 $criteria->add(new Criteria('isactive', 1));
 $modules        = $module_handler->getList($criteria);
 asort($modules);
 
 
-$groupPermHandler      = xoops_gethandler('groupperm');
+$groupPermHandler      = xoops_getHandler('groupperm');
 $module                = $module_handler->getByDirname('content');
 ($xoopsUser) ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
 

@@ -21,8 +21,8 @@ function content_block_nav()
                         . " child LEFT JOIN "
                         . $xoopsDB->prefix('content')
                         . " parent ON child.parent_id = parent.storyid WHERE child.visible='1' ORDER BY menu_block, menu_id, parent_id, blockid");
-    $module_handler        = xoops_gethandler('module');
-    $groupPermHandler      = xoops_gethandler('groupperm');
+    $module_handler        = xoops_getHandler('module');
+    $groupPermHandler      = xoops_getHandler('groupperm');
     $module                = $module_handler->getByDirname('content');
     ($xoopsUser) ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
     $allowedItems          = $groupPermHandler->getItemIds("content_page_view", $groups, $module->getVar("mid"));
@@ -56,7 +56,7 @@ function content_block_nav()
         list($module_id) = $xoopsDB->fetchArray($result);
     }
 
-    $gperm_handler = xoops_gethandler('groupperm');
+    $gperm_handler = xoops_getHandler('groupperm');
     if ($xoopsUser) {
         $groups = $xoopsUser->getGroups();
     } else {
