@@ -43,7 +43,7 @@ function showMenu()
 
 function return_children($items, $parent_id, $depth=0)
 {
-    $myItems = array();
+    $myItems = [];
     foreach ($items as $item) {
         if ($item['parent_id'] == $parent_id) {
             $item["depth"] = $depth;
