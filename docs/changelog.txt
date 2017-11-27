@@ -1,7 +1,8 @@
-This is the Release Candidate for Content 1.o  There is a huge number of changes.  
-
-Please submit bugs at http://xoops.org/modules/newbb/viewtopic.php?start=40&topic_id=70058 
-
+<h5>1.5 Beta 1  [NOT RELEASED]</h5>
+<hr>
+- changes (aerogpraf)
+- changes (mamba)
+WORK IN PROGRESS
 
 
 Version 1.4 2011/04/12:
