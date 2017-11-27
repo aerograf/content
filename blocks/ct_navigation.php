@@ -57,12 +57,11 @@ function content_block_nav()
     }
 
     $gperm_handler = xoops_getHandler('groupperm');
+    $groups = XOOPS_GROUP_ANONYMOUS;
     if ($xoopsUser) {
         $groups = $xoopsUser->getGroups();
-    } else {
-        $groups = XOOPS_GROUP_ANONYMOUS;
     }
-    
+
     if ($gperm_handler->checkRight('module_admin', $module_id, $groups, 1)) {
         $block['links'][] = [
             'title'         => '<font style="color:#FF9933;">Add main menu item</font>',

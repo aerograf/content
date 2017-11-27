@@ -131,10 +131,9 @@ function print_sec_menu($menuItems, $fullList, $level, $depth)
         $depth = $level + 1;
     }
 
+    $my_style = 'menuSub';
     if (0 == $level) {
         $my_style = 'menuMain';
-    } else {
-        $my_style = 'menuSub';
     }
 
     foreach ($menuItems as $menuItem) {

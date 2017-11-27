@@ -167,13 +167,12 @@ if ('update' == $op) {
     while ($tcontent = $xoopsDB->fetchArray($result)) {
         $contentItems[] = $tcontent;
     }
-    
+
+    $sortedContent = $contentItems;
     if ('' == $filterSQL) {
         $sortedContent = return_children($contentItems, 0);
-    } else {
-        $sortedContent = $contentItems;
     }
-    
+
     unset($contentItems);
     $contentItems = [];
     $result = $xoopsDB->query("SELECT *, blockid AS priority, 'content' AS type FROM "

@@ -181,10 +181,9 @@ if ('update' == $op) {
         $contentItems[] = $tcontent;
     }
 
+    $sortedContent = $contentItems;
     if ('' == $filterSQL) {
         $sortedContent = return_children($contentItems, 0);
-    } else {
-        $sortedContent = $contentItems;
     }
 
     unset($contentItems);
