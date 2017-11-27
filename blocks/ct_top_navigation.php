@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @return array
+ */
 function content_block_top_nav()
 {
     global $xoopsDB, $xoopsModule, $xoopsTpl, $_GET, $xoopsUser;

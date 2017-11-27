@@ -1,6 +1,10 @@
 <?php
 
 $current_page_id = '';
+/**
+ * @param $options
+ * @return array|\SystemBlock|\XoopsBlock|\XoopsObject
+ */
 function site_block_section_nav($options)
 {
     global $xoopsDB, $xoopsModule, $xoopsTpl, $_GET, $xoopsUser, $xoopsConfig, $block, $current_page_id, $padding;
@@ -56,6 +60,11 @@ function site_block_section_nav($options)
     return $block;
 }
 
+/**
+ * @param $items
+ * @param $item_id
+ * @return array
+ */
 function find_all_parents($items, $item_id)
 {
     $parents[] = $item_id;
@@ -67,6 +76,11 @@ function find_all_parents($items, $item_id)
     return $parents;
 }
 
+/**
+ * @param $items
+ * @param $parent_id
+ * @return array
+ */
 function return_children_sec($items, $parent_id)
 {
     $myItems = [];
@@ -78,6 +92,11 @@ function return_children_sec($items, $parent_id)
     return $myItems;
 }
 
+/**
+ * @param $items
+ * @param $item_id
+ * @return string
+ */
 function find_top_parent_sec($items, $item_id)
 {
     $top_parent = '';
@@ -87,6 +106,11 @@ function find_top_parent_sec($items, $item_id)
     return $top_parent;
 }
 
+/**
+ * @param $items
+ * @param $item_id
+ * @return mixed
+ */
 function find_parent_sec($items, $item_id)
 {
     foreach ($items as $item) {
@@ -98,6 +122,11 @@ function find_parent_sec($items, $item_id)
     return $parent;
 }
 
+/**
+ * @param $items
+ * @param $item_id
+ * @return mixed
+ */
 function find_title_sec($items, $item_id)
 {
     foreach ($items as $item) {
@@ -108,6 +137,12 @@ function find_title_sec($items, $item_id)
     }
     return $title;
 }
+
+/**
+ * @param $items
+ * @param $item_id
+ * @return string
+ */
 function find_url_sec($items, $item_id)
 {
     foreach ($items as $item) {
@@ -123,6 +158,13 @@ function find_url_sec($items, $item_id)
     return $itemURL;
 }
 
+/**
+ * @param $menuItems
+ * @param $fullList
+ * @param $level
+ * @param $depth
+ * @return string
+ */
 function print_sec_menu($menuItems, $fullList, $level, $depth)
 {
     global $_GET, $current_page_id, $allParents, $padding;
@@ -161,6 +203,10 @@ function print_sec_menu($menuItems, $fullList, $level, $depth)
     return $MyList;
 }
 
+/**
+ * @param $options
+ * @return string
+ */
 function edit_block_sec_nav($options)
 {
     $form  = '&nbsp;' . _MB_CONTENT_PADDING . '&nbsp;<input type="text" name="options[]" value="' . $options[0] . '" size="5" />&nbsp;pixels';

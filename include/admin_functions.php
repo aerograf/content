@@ -3,6 +3,9 @@ if (!defined('XOOPS_URL')) {
     include_once '../../../mainfile.php';
 }
 
+/**
+ * @return string
+ */
 function displayFilterForm()
 {
     global $filterSQL, $op, $filter, $showshort;
@@ -20,6 +23,9 @@ function displayFilterForm()
     }
 }
 
+/**
+ * @return string
+ */
 function showMenu()
 {
     global $xoopsModule, $xoopsDB, $showshort;
@@ -41,6 +47,12 @@ function showMenu()
     return $menu;
 }
 
+/**
+ * @param     $items
+ * @param     $parent_id
+ * @param int $depth
+ * @return array
+ */
 function return_children($items, $parent_id, $depth=0)
 {
     $myItems = [];
@@ -54,6 +66,11 @@ function return_children($items, $parent_id, $depth=0)
     return $myItems;
 }
 
+/**
+ * @param $items
+ * @param $parent_id
+ * @return bool
+ */
 function isparent($items, $parent_id)
 {
     $hasChild = false;
@@ -66,6 +83,9 @@ function isparent($items, $parent_id)
     return $hasChild;
 }
 
+/**
+ * @param $frmElement
+ */
 function show_form_line($frmElement)
 {
     echo '
@@ -75,6 +95,11 @@ function show_form_line($frmElement)
 		  	</tr>';
 }
 
+/**
+ * @param $fieldname
+ * @param $table
+ * @return bool
+ */
 function FieldExists($fieldname, $table)
 {
     global $xoopsDB;
@@ -127,6 +152,14 @@ function print_footer()
     }
 }
 
+/**
+ * @param        $hiddens
+ * @param        $action
+ * @param        $msg
+ * @param string $submit
+ * @param bool   $addtoken
+ * @param string $cancel
+ */
 function ct_xoops_confirm($hiddens, $action, $msg, $submit='', $addtoken = true, $cancel = 'history.go(-1)')
 {
     $submit = ('' != $submit) ? trim($submit) : _SUBMIT;

@@ -10,6 +10,9 @@ if (file_exists('language/' . $xoopsConfig['language'] . '/modinfo.php')) {
 
 tmpsite_block_dhtml_nav();
 
+/**
+ * @return array
+ */
 function tmpsite_block_dhtml_nav()
 {
     global $xoopsDB, $xoopsModule, $xoopsTpl, $HTTP_GET_VARS, $xoopsUser, $xoopsConfig;
@@ -75,6 +78,11 @@ function tmpsite_block_dhtml_nav()
     return $block;
 }
 
+/**
+ * @param $items
+ * @param $parent_id
+ * @return array
+ */
 function return_children($items, $parent_id)
 {
     $myItems = [];
@@ -86,6 +94,13 @@ function return_children($items, $parent_id)
     return $myItems;
 }
 
+/**
+ * @param $menuItems
+ * @param $fullList
+ * @param $level
+ * @param $depth
+ * @return string
+ */
 function print_menu($menuItems, $fullList, $level, $depth)
 {
     if ($level + 1 > $depth) {

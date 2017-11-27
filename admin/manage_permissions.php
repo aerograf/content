@@ -213,6 +213,15 @@ if ('update' == $op) {
     require_once __DIR__ . '/footer.php';
 }
 
+/**
+ * @param $tcontent
+ * @param $dirname
+ * @param $allMenuItems
+ * @param $txtSant
+ * @param $page_groups_read
+ * @param $page_groups_write
+ * @param $page_groups_add
+ */
 function print_item($tcontent, $dirname, $allMenuItems, $txtSant, $page_groups_read, $page_groups_write, $page_groups_add)
 {
     global $xoopsModuleConfig;

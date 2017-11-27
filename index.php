@@ -8,6 +8,9 @@ include_once XOOPS_ROOT_PATH . '/header.php';
 $tabdata = tabMaker();
 $xoopsTpl->assign('tabs', $tabdata);
 
+/**
+ * @return array
+ */
 function tabMaker()
 {
     global $xoopsDB;
@@ -213,6 +216,11 @@ $xoopsTpl->assign('id', $id);
 include XOOPS_ROOT_PATH . '/include/comment_view.php';
 include_once XOOPS_ROOT_PATH . '/footer.php';
 
+/**
+ * @param $items
+ * @param $ctid
+ * @return array
+ */
 function backOneLevel($items, $ctid)
 {
     foreach ($items as $item) {

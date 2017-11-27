@@ -1,6 +1,9 @@
 <?php
 //used by most of the blocks
 
+/**
+ * @return array
+ */
 function getMenuAsArray()
 {
     global $xoopsModule, $xoopsUser;
@@ -38,6 +41,9 @@ function getMenuAsArray()
     return $menuModule;
 }
 
+/**
+ * @return array
+ */
 function getContentAsArray()
 {
     global $xoopsDB, $xoopsModule, $xoopsUser;

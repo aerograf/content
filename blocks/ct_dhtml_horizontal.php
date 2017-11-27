@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @return array
+ */
 function site_block_horz_dhtml_nav()
 {
     $MyList = '';
@@ -63,6 +66,11 @@ function site_block_horz_dhtml_nav()
     return $block;
 }
 
+/**
+ * @param $items
+ * @param $parent_id
+ * @return array
+ */
 function return_children($items, $parent_id)
 {
     $myItems = [];
@@ -74,6 +82,13 @@ function return_children($items, $parent_id)
     return $myItems;
 }
 
+/**
+ * @param $menuItems
+ * @param $fullList
+ * @param $level
+ * @param $depth
+ * @return string
+ */
 function print_menu($menuItems, $fullList, $level, $depth)
 {
     $MyList = '';

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class ContentModuleAdmin
+ */
 class ContentModuleAdmin
 {
     public $_itemButton          = [];
@@ -20,6 +23,13 @@ class ContentModuleAdmin
         echo '<style type="text/css" media="screen">@import "' . XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname', 'e') . '/assets/css/admin.css";</style>';
     }
 
+    /**
+     * @param        $title
+     * @param        $link
+     * @param string $icon
+     * @param string $extra
+     * @return bool
+     */
     public function addItemButton($title, $link, $icon = 'add', $extra = '')
     {
         $ret['title'] = $title;
@@ -30,6 +40,11 @@ class ContentModuleAdmin
         return true;
     }
 
+    /**
+     * @param string $position
+     * @param string $delimeter
+     * @return string
+     */
     public function renderButton($position = 'right', $delimeter = '&nbsp;')
     {
         $path = XOOPS_URL . '/modules/' . $this->_obj->getVar('dirname') . '/assets/images/admin/';
@@ -58,6 +73,10 @@ class ContentModuleAdmin
         return $ret;
     }
 
+    /**
+     * @param $title
+     * @return bool
+     */
     public function addLabel($title)
     {
         $ret['title'] = $title;
@@ -65,6 +84,14 @@ class ContentModuleAdmin
         return true;
     }
 
+    /**
+     * @param        $label
+     * @param        $text
+     * @param string $value
+     * @param string $color
+     * @param string $type
+     * @return bool
+     */
     public function addLineLabel($label, $text, $value = '', $color = 'none', $type = 'default')
     {
         $ret['label'] = $label;
@@ -126,6 +153,9 @@ class ContentModuleAdmin
         return true;
     }
 
+    /**
+     * @return string
+     */
     public function renderLabel()
     {
         $ret = '';
@@ -144,13 +174,23 @@ class ContentModuleAdmin
         }
         return $ret;
     }
-    
+
+    /**
+     * @param $title
+     * @return bool
+     */
     public function addConfigLabel($title)
     {
         $this -> _itemConfigLabel = $title;
         return true;
     }
-    
+
+    /**
+     * @param        $text
+     * @param string $value
+     * @param string $type
+     * @return bool
+     */
     public function addLineConfigLabel($text, $value = '', $type = 'default')
     {
         $line = '';
@@ -198,7 +238,11 @@ class ContentModuleAdmin
         $this -> _itemLineConfigLabel[] = $line;
         return true;
     }
-    
+
+    /**
+     * @param $title
+     * @return bool
+     */
     public function addChangelogLabel($title)
     {
         $line = "<fieldset><legend class=\"label\">\n";
@@ -219,7 +263,11 @@ class ContentModuleAdmin
         $this -> _itemChangelogLabel = $line;
         return true;
     }
-    
+
+    /**
+     * @param string $menu
+     * @return string
+     */
     public function addNavigation($menu = '')
     {
         $ret = '';
@@ -233,7 +281,10 @@ class ContentModuleAdmin
         }
         return $ret;
     }
-    
+
+    /**
+     * @return string
+     */
     public function renderMenuIndex()
     {
         $path = XOOPS_URL . '/modules/' . $this->_obj->getVar('dirname') . '/';
@@ -260,7 +311,10 @@ class ContentModuleAdmin
         $ret .= "</div>\n<div style='clear:both;'></div>\n";
         return $ret;
     }
-    
+
+    /**
+     * @return string
+     */
     public function renderIndex()
     {
         $path = XOOPS_URL . '/modules/' . $this->_obj->getVar('dirname') . '/assets/images/admin/';
@@ -291,7 +345,11 @@ class ContentModuleAdmin
         
         return $ret;
     }
-    
+
+    /**
+     * @param string $type
+     * @return string
+     */
     public function renderAbout($type = 'default')
     {
         $path = XOOPS_URL . '/modules/' . $this->_obj->getVar('dirname') . '/assets/images/admin/';

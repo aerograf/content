@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @param $queryarray
+ * @param $andor
+ * @param $limit
+ * @param $offset
+ * @param $userid
+ * @return array
+ */
 function content_search($queryarray, $andor, $limit, $offset, $userid)
 {
     global $xoopsDB, $xoopsConfig;

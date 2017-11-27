@@ -199,6 +199,12 @@ if ('update' == $op) {
     require_once __DIR__ . '/footer.php';
 }
 
+/**
+ * @param $tcontent
+ * @param $dirname
+ * @param $allMenuItems
+ * @param $txtSant
+ */
 function print_item($tcontent, $dirname, $allMenuItems, $txtSant)
 {
     global $xoopsModuleConfig, $showshort;
