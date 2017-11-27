@@ -117,7 +117,20 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
              $link, $address, $date, $header) = $xoopsDB->fetchRow($result);
         $id = $storyid;
     }
-
+    //---- Link to mail & print & image ----
+    $link_mail     = 'mailto:?subject='
+                   . sprintf(_MD_CONTENT_INTARTIGO, $xoopsConfig['sitename'])
+                   . '&amp;body='
+                   . sprintf(_MD_CONTENT_INTARTFOUND, $xoopsConfig['sitename'])
+                   . ':  '
+                   . XOOPS_URL
+                   . '/modules/content/index.php?id='
+                   . $id;
+    $link_print    = 'print.php?id=' . $id;
+    $link_image    = XOOPS_URL . '/modules/content/assets/images/';
+    $link_addpage  = XOOPS_URL . '/modules/content/admin/add_content.php?id=' . $id . '&return=1&showshort=1';
+    $link_editpage = XOOPS_URL . '/modules/content/edit_content.php?id=' . $id . '&return=1&showshort=1';
+    
     if (1 == $link) {
         $includeContent = XOOPS_ROOT_PATH . '/modules/content/content/' . $address;
         if (file_exists($includeContent)) {
@@ -138,17 +151,13 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
 
             $xoopsTpl->assign('content', $content);
             $xoopsTpl->assign('nocomments', $nocomments);
-            $xoopsTpl->assign('mail_link', 'mailto:?subject='
-                                        . sprintf(_MD_CONTENT_INTARTIGO, $xoopsConfig['sitename'])
-                                        . '&amp;body='
-                                        . sprintf(_MD_CONTENT_INTARTFOUND, $xoopsConfig['sitename'])
-                                        . ':  '
-                                        . XOOPS_URL
-                                        . '/modules/content/index.php?id='
-                                        . $id);
+            $xoopsTpl->assign('mail_link', $link_mail);
+            $xoopsTpl->assign('link_print', $link_print);
             $xoopsTpl->assign('lang_printerpage', _MD_CONTENT_PRINTERFRIENDLY);
             $xoopsTpl->assign('lang_sendstory', _MD_CONTENT_SENDSTORY);
-
+            $xoopsTpl->assign('link_image', $link_image);
+            $xoopsTpl->assign('link_addpage', $link_addpage);
+            $xoopsTpl->assign('link_editpage', $link_editpage);
             $xoopsTpl->assign('date', $date);
             $xoopsTpl->assign('pagewrap', 1);
         } else {
@@ -162,7 +171,8 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
 
         //Should we redirect or continue with this page
         if (isset($address) && strlen($address) > 0) {
-            echo $address;
+            header("location: " . $address, true, 301);
+            //echo $address;
             exit;
         }
 
@@ -196,21 +206,21 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
             }
         }
         if (isset($header)) {
+            $xoopsTpl->assign('link_header', XOOPS_URL . '/modules/content/headers/');
             $xoopsTpl->assign('header_image', $header);
         }
-        $xoopsTpl->assign('mail_link', 'mailto:?subject='
-                                    . sprintf(_MD_CONTENT_INTARTIGO, $xoopsConfig['sitename'])
-                                    . '&amp;body='
-                                    . sprintf(_MD_CONTENT_INTARTFOUND, $xoopsConfig['sitename'])
-                                    . ':  '
-                                    . XOOPS_URL
-                                    . '/modules/content/index.php?id='
-                                    . $id);
+        
+        $xoopsTpl->assign('nocomments', $nocomments);
+        $xoopsTpl->assign('mail_link', $link_mail);
+        $xoopsTpl->assign('link_print', $link_print);
         $xoopsTpl->assign('lang_printerpage', _MD_CONTENT_PRINTERFRIENDLY);
         $xoopsTpl->assign('lang_sendstory', _MD_CONTENT_SENDSTORY);
+        $xoopsTpl->assign('link_image', $link_image);
+        $xoopsTpl->assign('link_addpage', $link_addpage);
+        $xoopsTpl->assign('link_editpage', $link_editpage);
         $xoopsTpl->assign('date', $date);
     }
-
+    
 $xoopsTpl->assign('id', $id);
 
 include XOOPS_ROOT_PATH . '/include/comment_view.php';
