@@ -78,14 +78,14 @@ if ('add' === $op || 'link' === $op) {
                 . addslashes($message)
                 . "', visible='"
                 . (int)$visible . "', nohtml='"
-                . (int)$nohtml . "', nosmiley='"
-                . (int)$nosmiley . "', nobreaks='"
-                . (int)$nobreaks . "', nocomments='"
+                . $nohtml . "', nosmiley='"
+                . $nosmiley . "', nobreaks='"
+                . $nobreaks . "', nocomments='"
                 . (int)$nocomments . "', address='"
                 . $externalURL
                 . "', submenu='"
-                . (int)$submenu . "', newwindow='"
-                . (int)$newwindow . "', date=NOW(), link=0, header_img='"
+                . $submenu . "', newwindow='"
+                . $newwindow . "', date=NOW(), link=0, header_img='"
                 . $header_img
                 . "' WHERE storyid='"
                 . (int)$id . "'";
