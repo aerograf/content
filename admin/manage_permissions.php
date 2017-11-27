@@ -15,14 +15,14 @@ $module           = $module_handler->getByDirname('content');
 // ------------------------------------------------------------------------- //
 // Update Content -> Show Content Page                                       //
 // ------------------------------------------------------------------------- //
-if ($op == 'update') {
+if ('update' == $op) {
     foreach ($id as $storyid) {
         $groupPermHandler->DeleteByModule($module->getVar('mid'), 'content_page_view', $storyid);
 
         foreach ($group_read[$storyid] as $group) {
             $groupPermHandler->addRight('content_page_view', $storyid, $group, $module->getVar('mid'));
         }
-        if ($xoopsModuleConfig['cont_permits_advnaced'] == '2') {
+        if ('2' == $xoopsModuleConfig['cont_permits_advnaced']) {
             $groupPermHandler->DeleteByModule($module->getVar('mid'), 'content_page_write', $storyid);
             foreach ($group_write[$storyid] as $group) {
                 $groupPermHandler->addRight('content_page_write', $storyid, $group, $module->getVar('mid'));
@@ -150,7 +150,7 @@ if ($op == 'update') {
 				<tr class='even'>
 					<td colspan='2'>" . displayFilterForm() . "</td>
 				</tr><form method='post'>";
-    if ($xoopsModuleConfig['cont_permits_advnaced'] == '2') {
+    if ('2' == $xoopsModuleConfig['cont_permits_advnaced']) {
         echo "
 				<tr class='head'>
 					<td colspan='2'><strong>Global permissions</strong></td>
@@ -169,7 +169,7 @@ if ($op == 'update') {
 				<tr class='head'>
 					<td><a href='#' onclick='showallitems();return false;'><img onload='createRollOver(this)' name='control-all' id='control-all' src='../assets/images/folder.png' alt='' border='0' align='absmiddle'></a>&nbsp;<b>" . _AM_CONTENT_LINKNAME . "</b></td>
 					<td width='60' nowrap><b><nobr>" . _AM_CONTENT_PERMITREAD . '</nobr></b></td>';
-    if ($xoopsModuleConfig['cont_permits_advnaced'] == '2') {
+    if ('2' == $xoopsModuleConfig['cont_permits_advnaced']) {
         echo "
 					<td width='60' nowrap><b><nobr>" . _AM_CONTENT_PERMITWRITE . "</nobr></b></td>
 					<td width='60' nowrap><b><nobr>Add Permissions</nobr></b></td>";
@@ -181,7 +181,7 @@ if ($op == 'update') {
         $contentItems[] = $tcontent;
     }
 
-    if ($filterSQL == '') {
+    if ('' == $filterSQL) {
         $sortedContent = return_children($contentItems, 0);
     } else {
         $sortedContent = $contentItems;
@@ -195,7 +195,7 @@ if ($op == 'update') {
     }
     $allItems = return_children($contentItems, 0);
     foreach ($sortedContent as $tcontent) {
-        if ((isset($tcontent['depth']) && $tcontent['depth'] == 0) || $filterSQL != '') {
+        if ((isset($tcontent['depth']) && 0 == $tcontent['depth']) || '' != $filterSQL) {
             print_item($tcontent, $xoopsModule->dirname(), $allItems, $myts, $groupPermHandler->getGroupIds('content_page_view', $tcontent['storyid'], $module->getVar('mid')), $groupPermHandler->getGroupIds('content_page_write', $tcontent['storyid'], $module->getVar('mid')),
                        $groupPermHandler->getGroupIds('content_page_add', $tcontent['storyid'], $module->getVar('mid')));
             foreach (return_children($contentItems, $tcontent['storyid'], 1) as $child) {
@@ -227,13 +227,13 @@ function print_item($tcontent, $dirname, $allMenuItems, $txtSant, $page_groups_r
         echo 'id="' . $tcontent['storyid'] . '" ';
     }
 
-    echo " class='" . ((!isset($tcontent['depth']) || $tcontent['depth'] == 0) ? 'even' : 'odd parent-' . $tcontent['parent_id'] . (($xoopsModuleConfig['cont_collapse'] == '1') ? ' hideme ' : '')) . "'>";
+    echo " class='" . ((!isset($tcontent['depth']) || 0 == $tcontent['depth']) ? 'even' : 'odd parent-' . $tcontent['parent_id'] . (('1' == $xoopsModuleConfig['cont_collapse']) ? ' hideme ' : '')) . "'>";
     if (!isset($tcontent['depth'])) {
         $tcontent['depth'] = 0;
     }
     echo "  <td><input type='hidden' name='id[]' value='" . $tcontent['storyid'] . "' />";
     if (isset($tcontent['depth']) && isparent($allMenuItems, $tcontent['storyid'])) {
-        if (isset($tcontent['depth']) && $tcontent['depth'] != 0) {
+        if (isset($tcontent['depth']) && 0 != $tcontent['depth']) {
             echo '<img src="../assets/images/spacer.gif" alt="" width="' . ($tcontent['depth'] * 8) . '" height="10" border="0" align="absmiddle">';
             echo '<img src="../assets/images/child_mark.png" alt="" width="6" height="17" border="0" align="absmiddle">';
         }
@@ -245,7 +245,7 @@ function print_item($tcontent, $dirname, $allMenuItems, $txtSant, $page_groups_r
              . $tcontent['storyid']
              . '" src="../assets/images/folder.png" alt="" border="0" align="absmiddle" class="folder"></a>';
     } else {
-        if (isset($tcontent['depth']) && $tcontent['depth'] != 0) {
+        if (isset($tcontent['depth']) && 0 != $tcontent['depth']) {
             echo '<img src="../assets/images/spacer.gif" alt="" width="' . ($tcontent['depth'] * 8) . '" height="10" border="0" align="absmiddle">';
             echo '<img src="../assets/mages/child_mark.png" alt="" width="6" height="17" border="0" align="absmiddle">';
         }
@@ -254,7 +254,7 @@ function print_item($tcontent, $dirname, $allMenuItems, $txtSant, $page_groups_r
     echo "
 				<a href='edit_content.php?id=" . $tcontent['storyid'] . "'>" . $txtSant->makeTboxData4Show($tcontent['title'], 0, 0, 0) . '</a></td>
 				<td>' . $permitRead->render() . '</td>';
-    if ($xoopsModuleConfig['cont_permits_advnaced'] == '2') {
+    if ('2' == $xoopsModuleConfig['cont_permits_advnaced']) {
         echo '
 				<td>' . $permitWrite->render() . '</td>
 				<td>' . $permitAdd->render() . '</td>';

@@ -8,7 +8,7 @@ global $op;
 // ------------------------------------------------------------------------- //
 // Update Content -> Show Content Page                                       //
 // ------------------------------------------------------------------------- //
-if ($op == 'update') {
+if ('update' == $op) {
     foreach ($id as $storyid) {
         ($storyid == intval($homepage[0])) ? $hp = 1 : $hp = 0;
         ($storyid == intval($epage[0])) ? $ep = 1 : $ep = 0;
@@ -168,7 +168,7 @@ if ($op == 'update') {
         $contentItems[] = $tcontent;
     }
     
-    if ($filterSQL == '') {
+    if ('' == $filterSQL) {
         $sortedContent = return_children($contentItems, 0);
     } else {
         $sortedContent = $contentItems;
@@ -184,7 +184,7 @@ if ($op == 'update') {
     }
     $allItems = return_children($contentItems, 0);
     foreach ($sortedContent as $tcontent) {
-        if ((isset($tcontent['depth']) && $tcontent['depth'] == 0) || $filterSQL != '') {
+        if ((isset($tcontent['depth']) && 0 == $tcontent['depth']) || '' != $filterSQL) {
             print_item($tcontent, $xoopsModule->dirname(), $allItems, $myts);
             foreach (return_children($contentItems, $tcontent['storyid'], 1) as $child) {
                 print_item($child, $xoopsModule->dirname(), $allItems, $myts);
@@ -224,19 +224,19 @@ function print_item($tcontent, $dirname, $allMenuItems, $txtSant)
         echo 'id="' . $tcontent['storyid'] . '" ';
     }
         
-    echo " class='" . ((!isset($tcontent['depth']) || $tcontent['depth'] == 0) ? 'even' : 'odd parent-' . $tcontent['parent_id'] . (($xoopsModuleConfig['cont_collapse'] == '1') ? ' hideme ' : '')) . "'>";
+    echo " class='" . ((!isset($tcontent['depth']) || 0 == $tcontent['depth']) ? 'even' : 'odd parent-' . $tcontent['parent_id'] . (('1' == $xoopsModuleConfig['cont_collapse']) ? ' hideme ' : '')) . "'>";
     if (!isset($tcontent['depth'])) {
         $tcontent['depth'] = 0;
     }
     echo '  <td>';
     if (isset($tcontent['depth']) && isparent($allMenuItems, $tcontent['storyid'])) {
-        if (isset($tcontent['depth']) && $tcontent['depth'] != 0) {
+        if (isset($tcontent['depth']) && 0 != $tcontent['depth']) {
             echo '<img src="../assets/images/spacer.gif" alt="" width="' . ($tcontent['depth'] * 8) . '" height="10" border="0" align="absmiddle">';
             echo '<img src="../assets/images/child_mark.png" alt="" width="6" height="17" border="0" align="absmiddle">';
         }
         echo '<a href="#" onclick="showitems('. $tcontent['storyid'] . ');return false;"><img onload="createRollOver(this)" name="control-' . $tcontent['storyid'] . '" id="control-' . $tcontent['storyid'] . '" src="../assets/images/folder.png" alt="" border="0" align="absmiddle" height="16" width="16" class="folder"></a>';
     } else {
-        if (isset($tcontent['depth']) && $tcontent['depth'] != 0) {
+        if (isset($tcontent['depth']) && 0 != $tcontent['depth']) {
             echo '<img src="../assets/images/spacer.gif" alt="" width="' . ($tcontent['depth'] * 8) . '" height="10" border="0" align="absmiddle">';
             echo '<img src="../assets/images/child_mark.png" alt="" width="6" height="17" border="0" align="absmiddle">';
         }
@@ -248,10 +248,10 @@ function print_item($tcontent, $dirname, $allMenuItems, $txtSant)
 				<td><nobr>" . str_repeat('--->', $tcontent['depth']) . "<input type='hidden' name='id[]' value='" . $tcontent['storyid'] . "' /><input type='text' name='blockid["
                     .    $tcontent['storyid'] . "]' size='2' maxlength='2' value='"
                     . $tcontent['blockid'] . "'/></nobr></td>
-				<td align='center'><input type='radio' name='homepage[]' value='" . $tcontent['storyid'] . "' " . (($tcontent['homepage'] == '1') ? 'checked' : '') . "></td>
-				<td align='center'><input type='radio' name='epage[]' value='" . $tcontent['storyid'] . "' " . (($tcontent['epage'] == '1') ? 'checked' : '') . "></td>
+				<td align='center'><input type='radio' name='homepage[]' value='" . $tcontent['storyid'] . "' " . (('1' == $tcontent['homepage']) ? 'checked' : '') . "></td>
+				<td align='center'><input type='radio' name='epage[]' value='" . $tcontent['storyid'] . "' " . (('1' == $tcontent['epage']) ? 'checked' : '') . "></td>
 				<td align='center'>
-					<input type='checkbox'  name='visible[".$tcontent['storyid']."]' value='1' " . (($tcontent['visible'] == '1') ? 'CHECKED' : '') . "></td>
+					<input type='checkbox'  name='visible[".$tcontent['storyid']."]' value='1' " . (('1' == $tcontent['visible']) ? 'CHECKED' : '') . "></td>
 				<td><nobr><a href='" . XOOPS_URL . '/modules/' . $dirname . '/index.php?id=' . $tcontent['storyid'] . "'><img src='../assets/images/go.png' alt=" . _AM_CONTENT_GO . ' title=' . _AM_CONTENT_GO . "></a>
 					<a href='edit_content.php?id=".$tcontent['storyid'] . (isset($showshort) ? '&showshort=' . $showshort : '') . "'><img src='../assets/images/edit.png' alt=" . _AM_CONTENT_EDIT . ' title=' . _AM_CONTENT_EDIT . "></a>
 					<a href='copy_content.php?id=".$tcontent['storyid'] . (isset($showshort) ? '&showshort=' . $showshort : '') . "'><img src='../assets/images/copy.png' alt=" . _AM_CONTENT_COPY . ' title=' . _AM_CONTENT_COPY . "></a>

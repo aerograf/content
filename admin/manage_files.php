@@ -26,7 +26,7 @@ switch ($op) {
     // Delete it definitely                                                      //
     // ------------------------------------------------------------------------- //
     case 'delfileok':
-        if ($loc == 1) {
+        if (1 == $loc) {
             $dir = XOOPS_ROOT_PATH . '/modules/content/headers/';
         } else {
             $dir = XOOPS_ROOT_PATH . '/modules/content/content/';
@@ -34,7 +34,7 @@ switch ($op) {
         @unlink($dir . '/' . $address);
         xoops_result('<h4>' . _AM_CONTENT_FDELETED . '</h4>');
         echo '<script>
-						opts = window.opener.document.ctform["' . (($loc == 1) ? 'header_img' : 'address') . '"].options;
+						opts = window.opener.document.ctform["' . ((1 == $loc) ? 'header_img' : 'address') . '"].options;
 						for (i = 0; opt = opts[i]; i++){
 							if ("' . $address . '" == opt.value){
 								opts[i] = null;
@@ -60,13 +60,13 @@ function show_form()
     $form = new XoopsThemeForm(_AM_CONTENT_DELFILE, 'form_name', 'manage_files.php');
     
     $address_select = new XoopsFormSelect(_AM_CONTENT_URL, 'address');
-    if ($loc == 1) {
+    if (1 == $loc) {
         $folder = dir('../headers/');
     } else {
         $folder = dir('../content/');
     }
     while ($file = $folder->read()) {
-        if ($file != '.' && $file != '..') {
+        if ('.' != $file && '..' != $file) {
             $address_select->addOption($file, $file);
         }
     }

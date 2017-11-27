@@ -6,7 +6,7 @@ function content_block_nav()
         
     $block = [];
     $myts  = MyTextSanitizer::getInstance();
-    if ($xoopsModule && ($xoopsModule->name() == 'Content' || $xoopsModule->dirname() == 'content')) {
+    if ($xoopsModule && ('Content' == $xoopsModule->name() || 'content' == $xoopsModule->dirname())) {
         $result = $xoopsDB->query("SELECT CASE parent_id WHEN 0 THEN storyid ELSE parent_id END 'sortorder' FROM "
                             . $xoopsDB->prefix('content')
                             . " WHERE visible='1' AND storyid="
@@ -30,7 +30,7 @@ function content_block_nav()
     while ($tcontent = $xoopsDB->fetchArray($result)) {
         if (in_array($tcontent['storyid'], $allowedItems)) {
             $link = [];
-            if ($tcontent['address'] && $tcontent['link'] != 1) {
+            if ($tcontent['address'] && 1 != $tcontent['link']) {
                 $contentURL = $tcontent['address'];
             } else {
                 $contentURL = XOOPS_URL . '/modules/content/index.php?id=' . $tcontent['storyid'];

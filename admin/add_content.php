@@ -9,7 +9,7 @@ $xoopsDB = XoopsDatabaseFactory::getDatabaseConnection();
 global $op, $showshort,$_POST;
 
 
-if ($op == 'add' || $op == 'link') {
+if ('add' == $op || 'link' == $op) {
     $myts        = MyTextSanitizer::getInstance();
 
     $title       = $myts->makeTboxData4Save($title);
@@ -19,20 +19,20 @@ if ($op == 'add' || $op == 'link') {
     $description = $myts->makeTboxData4Save($description);
     $externalURL = $myts->makeTboxData4Save($externalURL);
     
-    if ($externalURL=='') {
+    if ('' == $externalURL) {
         $externalURL='';
     }
     
     $result = $xoopsDB->query('SELECT * FROM ' . $xoopsDB->prefix('content') . '');
     $rows   = mysqli_num_rows($result);
 
-    $hp = ($rows == 0)? 1 : 0;
+    $hp = (0 == $rows)? 1 : 0;
     
     if ($_FILES[imageupload]) {
         $uploadpath      = XOOPS_ROOT_PATH . '/modules/content/headers/';
         $source          = $_FILES[imageupload][tmp_name];
         $fileupload_name = $_FILES[imageupload][name];
-        if (($source != 'none') && ($source != '')) {
+        if (('none' != $source) && ('' != $source)) {
             $dest=$uploadpath.$fileupload_name;
             if (file_exists($uploadpath.$fileupload_name)) {
                 redirect_header('add_content.php', 2, _AM_CONTENT_ERRORUPL);
@@ -98,7 +98,7 @@ if ($op == 'add' || $op == 'link') {
         foreach ($group_read_perms as $group) {
             $groupPermHandler->addRight('content_page_view', $newId, $group, $module->getVar('mid'));
         }
-        if ($xoopsModuleConfig['cont_permits_advnaced'] == 2) {
+        if (2 == $xoopsModuleConfig['cont_permits_advnaced']) {
             foreach ($group_write_perms as $group) {
                 $groupPermHandler->addRight('content_page_write', $newId, $group, $module->getVar('mid'));
             }
@@ -106,19 +106,19 @@ if ($op == 'add' || $op == 'link') {
     }
     
     
-    if (isset($return) && $return == 1) {
+    if (isset($return) && 1 == $return) {
         echo "<script>window.opener.location.href='/modules/content/index.php?id=" . $newId . "';window.close();</script>";
     } else {
         redirect_header('manage_content.php' . (isset($showshort) ? '?showshort=' . $showshort : ''), 2, _AM_CONTENT_DBUPDATED);
     }
-} elseif ($op == 'pagewrap') {
+} elseif ('pagewrap' == $op) {
     $myts = MyTextSanitizer::getInstance();
     
     if ($_FILES[fileupload]) {
         $uploadpath      = XOOPS_ROOT_PATH . '/modules/content/content/';
         $source          = $_FILES[fileupload][tmp_name];
         $fileupload_name = $_FILES[fileupload][name];
-        if (($source != 'none') && ($source != '')) {
+        if (('none' != $source) && ('' != $source)) {
             $dest=$uploadpath.$fileupload_name;
             if (file_exists($uploadpath.$fileupload_name)) {
                 redirect_header('add_content.php', 2, _AM_CONTENT_ERRORUPL);
@@ -141,7 +141,7 @@ if ($op == 'add' || $op == 'link') {
     $result = $xoopsDB->query('SELECT * FROM ' . $xoopsDB->prefix('content') . '');
     $rows   = mysqli_num_rows($result);
 
-    $hp = ($rows == 0) ? 1 : 0;
+    $hp = (0 == $rows) ? 1 : 0;
 
     $sqlinsert= 'INSERT INTO '
                 . $xoopsDB->prefix('content')
@@ -177,14 +177,14 @@ if ($op == 'add' || $op == 'link') {
         foreach ($group_read_perms as $group) {
             $groupPermHandler->addRight('content_page_view', $newId, $group, $module->getVar('mid'));
         }
-        if ($xoopsModuleConfig['cont_permits_advnaced'] == 2) {
+        if (2 == $xoopsModuleConfig['cont_permits_advnaced']) {
             foreach ($group_write_perms as $group) {
                 $groupPermHandler->addRight('content_page_write', $newId, $group, $module->getVar('mid'));
             }
         }
     }
 
-    if (isset($return) && $return == 1) {
+    if (isset($return) && 1 == $return) {
         echo "<script>window.opener.location.href='/modules/content/index.php?id=" . $newId . "';window.close();</script>";
     } else {
         redirect_header('manage_content.php' . (isset($showshort) ? '?showshort=' . $showshort : ''), 2, _AM_CONTENT_DBUPDATED);
@@ -279,7 +279,7 @@ if ($op == 'add' || $op == 'link') {
     $option_tray->addElement($newwindow_checkbox);
     $option_tray->addElement($visible_checkbox);
     
-    if ($xoopsModuleConfig['cont_form_options'] != 'textarea') {
+    if ('textarea' != $xoopsModuleConfig['cont_form_options']) {
         $nohtmlb = new XoopsFormHidden(_DISABLEHTML, 0);
         $nosmile = new XoopsFormHidden(_DISABLESMILEY, 0);
     } else {
@@ -287,7 +287,7 @@ if ($op == 'add' || $op == 'link') {
         $nohtml_checkbox->addOption(1, _DISABLEHTML);
         $option_tray->addElement($nohtml_checkbox);
     }
-    if ($xoopsModuleConfig['cont_form_options'] != 'textarea') {
+    if ('textarea' != $xoopsModuleConfig['cont_form_options']) {
         $form->addElement(new XoopsFormHidden('nobreaks', 1));
     } else {
         $breaks_checkbox = new XoopsFormCheckBox('', 'nobreaks', 0);
@@ -299,7 +299,7 @@ if ($op == 'add' || $op == 'link') {
     $comments_checkbox->addOption(1, _AM_CONTENT_DISABLECOM);
     $option_tray->addElement($comments_checkbox);
 
-    if (isset($return) && $return == 1) {
+    if (isset($return) && 1 == $return) {
         $return_field = new XoopsFormHidden('return', 1);
     }
 
@@ -316,7 +316,7 @@ if ($op == 'add' || $op == 'link') {
     $address_select->addOption('', _AM_CONTENT_NONE);
     $folder = dir('../content/');
     while ($file = $folder->read()) {
-        if ($file != '.' && $file != '..') {
+        if ('.' != $file && '..' != $file) {
             $address_select->addOption($file, '' . $file . '');
         }
     }
@@ -327,7 +327,7 @@ if ($op == 'add' || $op == 'link') {
     $folder = dir('../headers/');
     $header_img->addOption('', _AM_CONTENT_NONE);
     while ($file = $folder->read()) {
-        if ($file != '.' && $file != '..') {
+        if ('.' != $file && '..' != $file) {
             $header_img->addOption($file, '' . $file . '');
         }
     }
@@ -378,7 +378,7 @@ if ($op == 'add' || $op == 'link') {
         
     if ($xoopsModuleConfig['cont_permits_advnaced'] > 0) {
         show_form_line($readpermits);
-        if ($xoopsModuleConfig['cont_permits_advnaced'] == 2) {
+        if (2 == $xoopsModuleConfig['cont_permits_advnaced']) {
             show_form_line($writepermits);
         }
     }

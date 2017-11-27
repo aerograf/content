@@ -6,7 +6,7 @@ if (!defined('XOOPS_URL')) {
 function displayFilterForm()
 {
     global $filterSQL, $op, $filter, $showshort;
-    if ($showshort != 1) {
+    if (1 != $showshort) {
         $filterForm = '<form>'.
                       '<strong>' . _AM_CONTENT_FILTER . ':&nbsp;</strong>'.
                       '<input type="hidden" name="op" value="' . $op . ' ">'.
@@ -24,7 +24,7 @@ function showMenu()
 {
     global $xoopsModule, $xoopsDB, $showshort;
     $menu= '';
-    if ($showshort != 1) {
+    if (1 != $showshort) {
         if (!FieldExists('ptitle', $xoopsDB->prefix('content')) ||
             !FieldExists('newwindow', $xoopsDB->prefix('content')) ||
             !FieldExists('epage', $xoopsDB->prefix('content')) ||
@@ -89,7 +89,7 @@ function print_header()
 {
     global $showshort,$xoopsConfig;
 
-    if ($showshort == 1) {
+    if (1 == $showshort) {
         echo '	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 				<html>
 				<head>
@@ -116,7 +116,7 @@ function print_header()
 function print_footer()
 {
     global $showshort;
-    if ($showshort == 1) {
+    if (1 == $showshort) {
         echo '</td>
 	</tr>
 </table>	
@@ -129,7 +129,7 @@ function print_footer()
 
 function ct_xoops_confirm($hiddens, $action, $msg, $submit='', $addtoken = true, $cancel = 'history.go(-1)')
 {
-    $submit = ($submit != '') ? trim($submit) : _SUBMIT;
+    $submit = ('' != $submit) ? trim($submit) : _SUBMIT;
     echo '
     <div class="confirmMsg">
       <h4>'.$msg.'</h4>
@@ -145,7 +145,7 @@ function ct_xoops_confirm($hiddens, $action, $msg, $submit='', $addtoken = true,
             echo '<input type="hidden" name="'.$name.'" value="'.htmlspecialchars($value).'" />';
         }
     }
-    if ($addtoken != false) {
+    if (false != $addtoken) {
         echo $GLOBALS['xoopsSecurity']->getTokenHTML();
     }
     echo '

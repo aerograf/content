@@ -52,7 +52,7 @@ function tabMaker()
 
 $id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
 
-if ($id != 0) {
+if (0 != $id) {
     $result = $xoopsDB->queryF('SELECT storyid, title, text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address FROM '
                                . $xoopsDB->prefix('content')
                                . ' WHERE storyid='
@@ -81,7 +81,7 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
     $xoopsUser ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
     $allowedItems          = $groupPermHandler->getItemIds('content_page_view', $groups, $module->getVar('mid'));
 
-    if (!in_array($id, $allowedItems) && $id!=0) {
+    if (!in_array($id, $allowedItems) && 0 != $id) {
         redirect_header(XOOPS_URL, 2, _NOPERM, true);
     }
 
@@ -91,7 +91,7 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
         $allItems[] = $item;
     }
 
-    if ($id != 0) {
+    if (0 != $id) {
         $result = $xoopsDB->queryF('SELECT storyid, ptitle, title, keywords,page_description,text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address, date, header_img FROM '
                                    . $xoopsDB->prefix('content')
                                    . ' WHERE storyid='
@@ -102,7 +102,7 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
                                    . ' WHERE homepage=1');
     }
     $showerror= isset($_GET['showerror'])?intval($_GET['showerror']):0;
-    if ($xoopsDB->getRowsNum($result) == 0 || $showerror == 1) {
+    if (0 == $xoopsDB->getRowsNum($result) || 1 == $showerror) {
         $result = $xoopsDB->queryF('SELECT storyid, ptitle, title, keywords,page_description, text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address, date, header_img FROM '
                                    . $xoopsDB->prefix('content')
                                    . ' WHERE epage=1');
@@ -115,7 +115,7 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
         $id = $storyid;
     }
 
-    if ($link == 1) {
+    if (1 == $link) {
         $includeContent = XOOPS_ROOT_PATH . '/modules/content/content/' . $address;
         if (file_exists($includeContent)) {
             ob_start();
@@ -125,7 +125,7 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
 
             $xoopsTpl->assign('xoops_pagetitle', $title);
 
-            if ($xoopsModuleConfig['cont_title'] == 1) {
+            if (1 == $xoopsModuleConfig['cont_title']) {
                 if (isset($ptitle)) {
                     $xoopsTpl->assign('title', $ptitle);
                 } else {
@@ -153,7 +153,7 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
         }
     } else {
         //Should we show crumbs
-        if ($xoopsModuleConfig['cont_crumbs'] == 1) {
+        if (1 == $xoopsModuleConfig['cont_crumbs']) {
             $xoopsTpl->assign('breadcrumbs', array_reverse(backOneLevel($allItems, $id)));
         }
 
@@ -165,9 +165,9 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
 
         //$xoopsOption['template_main'] = 'ct_index.tpl';
 
-        (isset($nohtml) && $nohtml == 1) ? $html = 0 : $html = 1;
-        (isset($nosmiley) && $nosmiley == 1) ? $smiley = 0 : $smiley = 1;
-        (isset($nobreaks) && $nobreaks == 1) ? $breaks = 0 : $breaks = 1;
+        (isset($nohtml) && 1 == $nohtml) ? $html = 0 : $html = 1;
+        (isset($nosmiley) && 1 == $nosmiley) ? $smiley = 0 : $smiley = 1;
+        (isset($nobreaks) && 1 == $nobreaks) ? $breaks = 0 : $breaks = 1;
 
         $myts = MyTextSanitizer::getInstance();
 
@@ -185,7 +185,7 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
         }
         $xoopsTpl->assign('xoops_pagetitle', $title);
 
-        if ($xoopsModuleConfig['cont_title'] == 1) {
+        if (1 == $xoopsModuleConfig['cont_title']) {
             if (isset($ptitle)) {
                 $xoopsTpl->assign('title', $ptitle);
             } else {
@@ -218,7 +218,7 @@ function backOneLevel($items, $ctid)
     foreach ($items as $item) {
         if ($item['storyid'] == $ctid) {
             $crumbsout[] = $item;
-            if ($item['parent_id'] != 0) {
+            if (0 != $item['parent_id']) {
                 $crumbsout = array_merge($crumbsout, backOneLevel($items, $item['parent_id']));
             }
             return $crumbsout;

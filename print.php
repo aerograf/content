@@ -36,7 +36,7 @@ if (empty($id)) {
    echo '	<tr style="vertical-align:top;">';
    echo '		<td style="padding-top:0px;">';
    
-   if ($link == 1) {
+   if (1 == $link) {
        $includeContent = XOOPS_ROOT_PATH . '/modules/content/content/' . $address;
        if (file_exists($includeContent)) {
            ob_start();

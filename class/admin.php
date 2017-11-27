@@ -87,13 +87,13 @@ class ContentModuleAdmin
                 $line .= "</div>\n";
                 $line .= "<div style='line-height:16px;font-weight:bold;'>\n";
                 $line .= 'by ' . $this->_obj->getInfo('author') ;
-                if ($this->_obj->getInfo('pseudo') != '') {
+                if ('' != $this->_obj->getInfo('pseudo')) {
                     $line .= ' (' . $this->_obj->getInfo('pseudo') . ")\n";
                 }
                 $line .= "</div>\n";
                 $line .= "<div style='line-height:16px;'>\n";
 
-                if ($this->_obj->getInfo('credits') != '') {
+                if ('' != $this->_obj->getInfo('credits')) {
                     $line .= 'Credits: ' . $this->_obj->getInfo('credits') ;
                 }
                 $line .= "<br />\n";
@@ -103,7 +103,7 @@ class ContentModuleAdmin
 
                 $line .= '<a href="http://' . $this->_obj->getInfo('website') . '" target="_blank" >' . $this->_obj->getInfo('website') . "</a>\n";
                 $line .= "<br />\n";
-                if ($value != '') {
+                if ('' != $value) {
                     $line .= '<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
                               <input type="hidden" name="cmd" value="_s-xclick">
                               <input type="hidden" name="item_name" value="'.$this->_obj->getInfo('name').' Module">
@@ -241,7 +241,7 @@ class ContentModuleAdmin
         $this->_obj->loadAdminMenu();
         $ret = "<div class=\"rmmenuicon\">\n";
         foreach (array_keys($this->_obj->adminmenu) as $i) {
-            if ($this->_obj->adminmenu[$i]['link'] != 'admin/index.php') {
+            if ('admin/index.php' != $this->_obj->adminmenu[$i]['link']) {
                 if (isset($this->_obj->adminmenu[$i]['menu'])) {
                     $ret .= '<a href="../' . $this->_obj->adminmenu[$i]['link'] . '" title="' . $this->_obj->adminmenu[$i]['title'] . '">' . '<img src="' . $path . $this->_obj->adminmenu[$i]['menu'] . '" alt="' . $this->_obj->adminmenu[$i]['title'] . '" />';
                 } else {
@@ -273,7 +273,7 @@ class ContentModuleAdmin
         $ret .= "</td>\n";
         $ret .= "</tr>\n";
         // If you use a config label
-        if ($this -> _itemConfigLabel != '') {
+        if ('' != $this -> _itemConfigLabel) {
             $ret .= "<tr>\n";
             $ret .= "<td colspan=\"2\">\n";
             $ret .= '<fieldset><legend class="label">';
@@ -298,7 +298,7 @@ class ContentModuleAdmin
         $ret = "<table>\n<tr>\n";
         $ret .= "<td style='width:50%'>\n";
         $ret .= $this -> renderLabel();
-        if ($type == 'line') {
+        if ('line' == $type) {
             $ret .= $this -> _itemChangelogLabel;
         } else {
             $ret .= "</td>\n";

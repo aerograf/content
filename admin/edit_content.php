@@ -27,7 +27,7 @@ if (!$groupPermHandler->checkRight('content_page_write', $id, $groups, $module->
 // ------------------------------------------------------------------------- //
 // Do the edit of the Content                                                //
 // ------------------------------------------------------------------------- //
-if ($op == 'add' || $op == 'link') {
+if ('add' == $op || 'link' == $op) {
     $myts = MyTextSanitizer::getInstance();
 
     $title       = $myts->htmlSpecialChars($title);
@@ -44,7 +44,7 @@ if ($op == 'add' || $op == 'link') {
         $uploadpath      = XOOPS_ROOT_PATH . '/modules/content/headers/';
         $source          = $_FILES['imageupload']['tmp_name'];
         $fileupload_name = $_FILES['imageupload']['name'];
-        if (($source != 'none') && ($source != '')) {
+        if (('none' != $source) && ('' != $source)) {
             $dest=$uploadpath.$fileupload_name;
             if (file_exists($uploadpath.$fileupload_name)) {
                 redirect_header('add_content.php', 2, _AM_CONTENT_ERRORUPL);
@@ -59,7 +59,7 @@ if ($op == 'add' || $op == 'link') {
         }
     }
     
-    if ($op == 'add') {
+    if ('add' == $op) {
         $externalURL = '';
     }
     
@@ -102,12 +102,12 @@ if ($op == 'add' || $op == 'link') {
     if (!$result = $xoopsDB->query($sqlinsert)) {
         echo _AM_CONTENT_ERRORINSERT;
     }
-    if (isset($return) && $return == 1) {
+    if (isset($return) && 1 == $return) {
         echo '<script>window.opener.location.reload(true);window.close();</script>';
     } else {
         redirect_header('manage_content.php' . (isset($showshort) ? '?showshort=' . $showshort : ''), 2, _AM_CONTENT_DBUPDATED);
     }
-} elseif ($op == 'pagewrap') {
+} elseif ('pagewrap' == $op) {
     $myts = MyTextSanitizer::getInstance();
     
     $title       = $myts->htmlSpecialChars($title);
@@ -120,7 +120,7 @@ if ($op == 'add' || $op == 'link') {
         $uploadpath      = XOOPS_ROOT_PATH . '/modules/content/content/';
         $source          = $_FILES[fileupload][tmp_name];
         $fileupload_name = $_FILES[fileupload][name];
-        if (($source != 'none') && ($source != '')) {
+        if (('none' != $source) && ('' != $source)) {
             $dest=$uploadpath.$fileupload_name;
             if (file_exists($uploadpath.$fileupload_name)) {
                 redirect_header('add_content.php', 2, _AM_CONTENT_ERRORUPL);
@@ -229,7 +229,7 @@ if ($op == 'add' || $op == 'link') {
     $option_tray->addElement($newwindow_checkbox);
     $option_tray->addElement($visible_checkbox);
     
-    if ($xoopsModuleConfig['cont_form_options'] != 'textarea') {
+    if ('textarea' != $xoopsModuleConfig['cont_form_options']) {
         $nohtmlb = new XoopsFormHidden(_DISABLEHTML, 0);
         $nosmile = new XoopsFormHidden(_DISABLESMILEY, 0);
     } else {
@@ -237,7 +237,7 @@ if ($op == 'add' || $op == 'link') {
         $nohtml_checkbox->addOption(1, _DISABLEHTML);
         $option_tray->addElement($nohtml_checkbox);
     }
-    if ($xoopsModuleConfig['cont_form_options'] != 'textarea') {
+    if ('textarea' != $xoopsModuleConfig['cont_form_options']) {
         $form->addElement(new XoopsFormHidden('nobreaks', 1));
     } else {
         $breaks_checkbox = new XoopsFormCheckBox('', 'nobreaks', 0);
@@ -249,7 +249,7 @@ if ($op == 'add' || $op == 'link') {
     $comments_checkbox->addOption(1, _AM_CONTENT_DISABLECOM);
     $option_tray->addElement($comments_checkbox);
     
-    if (isset($return) && $return == 1) {
+    if (isset($return) && 1 == $return) {
         $return_field = new XoopsFormHidden('return', 1);
     }
     
@@ -270,7 +270,7 @@ if ($op == 'add' || $op == 'link') {
     $address_select->addOption('', _AM_CONTENT_NONE);
     $folder       = dir('../content/');
     while ($file     = $folder->read()) {
-        if ($file != '.' && $file != '..') {
+        if ('.' != $file && '..' != $file) {
             $address_select->addOption($file, '' . $file . '');
         }
     }
@@ -282,7 +282,7 @@ if ($op == 'add' || $op == 'link') {
     $folder   = dir(XOOPS_ROOT_PATH . '/modules/content/headers/');
     $header_img->addOption('', _AM_CONTENT_NONE);
     while ($file = $folder->read()) {
-        if ($file != '.' && $file != '..') {
+        if ('.' != $file && '..' != $file) {
             $header_img->addOption($file, '' . $file . '');
         }
     }
@@ -306,17 +306,17 @@ if ($op == 'add' || $op == 'link') {
 				<td class="even" style="vertical-align:top;width:170;"><strong>' . _AM_CONTENT_CNTTYP . '</strong></td>
 				<td class="even">
 					<select id="op" name="op" onchange="showform(this.options[this.selectedIndex].value)">
-						<option value="add"' . (($link != 1 && (!isset($externalURL) || strlen(trim($externalURL)) == 0)) ? ' selected' : '') . '>Content</option>
-						<option value="link"' . (($link != 1 && isset($externalURL) && strlen(trim($externalURL)) > 0) ? ' selected' : '') . '>Link</option>
-						<option value="pagewrap"' . (($link == 1) ? ' selected' : '') . '>Pagewrap</option>
+						<option value="add"' . ((1 != $link && (!isset($externalURL) || 0 == strlen(trim($externalURL)))) ? ' selected' : '') . '>Content</option>
+						<option value="link"' . ((1 != $link && isset($externalURL) && strlen(trim($externalURL)) > 0) ? ' selected' : '') . '>Link</option>
+						<option value="pagewrap"' . ((1 == $link) ? ' selected' : '') . '>Pagewrap</option>
 					</select></td>
 		  	</tr>';
-    echo '<tbody id="link" ' . (($link != 1 && isset($externalURL) && strlen(trim($externalURL)) > 0) ? '' : ' style="display:none;"') . '>';
+    echo '<tbody id="link" ' . ((1 != $link && isset($externalURL) && strlen(trim($externalURL)) > 0) ? '' : ' style="display:none;"') . '>';
     show_form_line($url_box);
     show_form_line($modules_select);
     echo '</tbody>';
 
-    echo '<tbody id="contentt"' . (($link != 1 && (!isset($externalURL) || strlen(trim($externalURL)) == 0)) ? '' : ' style="display:none;"') . '>';
+    echo '<tbody id="contentt"' . ((1 != $link && (!isset($externalURL) || 0 == strlen(trim($externalURL)))) ? '' : ' style="display:none;"') . '>';
     show_form_line($ptext_box);
     show_form_line($keywords_box);
     show_form_line($description_box);
@@ -328,7 +328,7 @@ if ($op == 'add' || $op == 'link') {
     show_form_line($editor);
     echo '</tbody>';
 
-    echo '<tbody id="pagewrap" ' . (($link == 1) ? '' : ' style="display:none;"') . '>';
+    echo '<tbody id="pagewrap" ' . ((1 == $link) ? '' : ' style="display:none;"') . '>';
     echo '<tr>
 				<td class="even"><strong>' . $address_select->getCaption() . '</strong></td>
 				<td class="even">' . $address_select->render() . '&nbsp;&nbsp;&nbsp;<a href=' . $Link_Page . '>' . $Link_Del . '</a></td>

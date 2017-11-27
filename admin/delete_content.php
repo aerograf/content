@@ -30,7 +30,7 @@ switch ($op) {
                                       . ' WHERE storyid='
                                       . intval($id));
         xoops_comment_delete($xoopsModule->getVar('mid'), $id);
-        if (isset($return) && $return == 1) {
+        if (isset($return) && 1 == $return) {
             echo "<script>window.opener.location.href='/';window.close();</script>";
         } else {
             redirect_header('manage_content.php', 1, _AM_CONTENT_DBUPDATED);
@@ -48,7 +48,7 @@ switch ($op) {
         $confirm_params       = [];
         $confirm_params['id'] = intval($id);
         $confirm_params['op'] = 'deleteit';
-        if (isset($return) && $return == 1) {
+        if (isset($return) && 1 == $return) {
             $confirm_params['return'] = $return;
         }
         $action = 'history.go(-1)';

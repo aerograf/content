@@ -91,12 +91,12 @@ function print_menu($menuItems, $fullList, $level, $depth)
     if ($level + 1 > $depth) {
         $depth = $level + 1;
     }
-    if ($level == 0) {
+    if (0 == $level) {
         $MyList .= '<ul>';
     }
     foreach ($menuItems as $menuItem) {
-        if ($menuItem['type'] == 'content') {
-            if ($menuItem['address'] && $menuItem['link'] != 1) {
+        if ('content' == $menuItem['type']) {
+            if ($menuItem['address'] && 1 != $menuItem['link']) {
                 $contentURL = $menuItem['address'];
             } else {
                 $contentURL = XOOPS_URL . '/modules/content/index.php?id=' . $menuItem['storyid'];
@@ -107,7 +107,7 @@ function print_menu($menuItems, $fullList, $level, $depth)
 
         $MyList .= "\n\t<li><a class=\"menuMain\" href=\"" . $contentURL . '">' . $menuItem['title'] . '</a>';
 
-        if ($menuItem['type'] == 'content') {
+        if ('content' == $menuItem['type']) {
             if (return_children($fullList, $menuItem['storyid'])) {
                 $MyList .= '<ul>' . print_menu(return_children($fullList, $menuItem['storyid']), $fullList, $level + 1, $depth) . '</ul>';
             }
@@ -123,7 +123,7 @@ function print_menu($menuItems, $fullList, $level, $depth)
 
         $MyList .= "</li>\n";
     }
-    if ($level == 0) {
+    if (0 == $level) {
         $MyList .= '</ul>';
     }
     return $MyList;

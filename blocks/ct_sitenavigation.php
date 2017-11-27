@@ -55,7 +55,7 @@ function site_block_nav($options)
         }
     }
     global $allParents, $currentpage;
-    if ($xoopsModule && ($xoopsModule->name() == 'Content' || $xoopsModule->dirname() == 'content')) {
+    if ($xoopsModule && ('Content' == $xoopsModule->name() || 'content' == $xoopsModule->dirname())) {
         $currentpage = $_GET['id'];
     } elseif ($xoopsModule) {
         $result = $xoopsDB->query('SELECT storyid FROM '
@@ -99,7 +99,7 @@ function return_children($items, $parent_id)
 function find_top_parent_sec($items, $item_id)
 {
     $top_parent = '';
-    for ($parent = $item_id; $parent <> 0; $parent = find_parent_sec($items, $parent)) {
+    for ($parent = $item_id; 0 <> $parent; $parent = find_parent_sec($items, $parent)) {
         $top_parent = $parent;
     }
     return $top_parent;
@@ -134,13 +134,13 @@ function print_menu($menuItems, $fullList, $level, $depth)
     $MyList     = '';
     foreach ($menuItems as $menuItem) {
         $temp = ($level * 9) + 3;
-        if ($menuItem['type'] == 'content') {
-            if ($menuItem['link'] == 0 && $menuItem['address']) {
+        if ('content' == $menuItem['type']) {
+            if (0 == $menuItem['link'] && $menuItem['address']) {
                 $contentURL = $menuItem['address'];
             } else {
                 $contentURL = XOOPS_URL . '/modules/content/index.php?id=' . $menuItem['storyid'];
             }
-            if ($level == 0) {
+            if (0 == $level) {
                 $MyList .= "\n\t<a class=\"menuMain\" href=\"" . $contentURL . '">' . $menuItem['title'] . '</a>';
             } else {
                 $MyList .= "\n\t<a class=\"menuSub\" style=\"padding-left : " . ($level * $padding) . 'px;" href="' . $contentURL . '">' . $menuItem['title'] . '</a>';
@@ -161,7 +161,7 @@ function print_menu($menuItems, $fullList, $level, $depth)
             }
         }
     }
-    if ($level == 0) {
+    if (0 == $level) {
         if (is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin()) {
             $MyList .= "\n\t<a class=\"menuMain\" href=\"" . XOOPS_URL . '/modules/content/admin/index.php?op=submit&id=0&return=1' . '">' . _MB_CONTENT_MENUADDITEM . '</a>';
         }

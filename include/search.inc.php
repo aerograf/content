@@ -14,7 +14,7 @@ function content_search($queryarray, $andor, $limit, $offset, $userid)
            . $xoopsDB->prefix('content')
            . " WHERE visible='1'";
 
-    if ($userid != 0) {
+    if (0 != $userid) {
         $sql .= " AND storyid='0' ";
     }
 

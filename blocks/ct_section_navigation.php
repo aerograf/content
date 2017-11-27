@@ -81,7 +81,7 @@ function return_children_sec($items, $parent_id)
 function find_top_parent_sec($items, $item_id)
 {
     $top_parent = '';
-    for ($parent = $item_id; $parent <> 0; $parent = find_parent_sec($items, $parent)) {
+    for ($parent = $item_id; 0 <> $parent; $parent = find_parent_sec($items, $parent)) {
         $top_parent = $parent;
     }
     return $top_parent;
@@ -112,7 +112,7 @@ function find_url_sec($items, $item_id)
 {
     foreach ($items as $item) {
         if ($item['storyid'] == $item_id) {
-            if ($item['address'] && $item['link'] != 1) {
+            if ($item['address'] && 1 != $item['link']) {
                 $itemURL = $item['address'];
             } else {
                 $itemURL = XOOPS_URL . '/modules/content/index.php?id=' . $item['storyid'];
@@ -131,20 +131,20 @@ function print_sec_menu($menuItems, $fullList, $level, $depth)
         $depth = $level + 1;
     }
 
-    if ($level == 0) {
+    if (0 == $level) {
         $my_style = 'menuMain';
     } else {
         $my_style = 'menuSub';
     }
 
     foreach ($menuItems as $menuItem) {
-        if ($menuItem['address'] && $menuItem['link'] != 1) {
+        if ($menuItem['address'] && 1 != $menuItem['link']) {
             $contentURL = $menuItem['address'];
         } else {
             $contentURL = XOOPS_URL . '/modules/content/index.php?id=' . $menuItem['storyid'];
         }
         $MyList .= '<a class="' . $my_style . '"  style="padding-left : ' . ($depth * $padding) . 'px;"';
-        if ($menuItem['newwindow'] == 1) {
+        if (1 == $menuItem['newwindow']) {
             $MyList .= ' target="_blank"';
         }
         $MyList .= ' href="' . $contentURL . '"';
