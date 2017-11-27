@@ -11,7 +11,7 @@ $modversion    = [
      'description'          => _MI_CONTENT_DESC,
      'help'                 => 'page=help',
      'credits'              => 'The Handcoders, Reinarz & Associates, Aerograf',
-     'author'               => 'Ben Brown - <font style="font-size:12px;">Refactored by: Kostas Ksilas</font>',
+     'author'               => 'Ben Brown - <span style="font-size:12px;">Refactored by: Kostas Ksilas</span>',
      'license'              => 'GNU GPL 2.0',
      'license_url'          => 'www.gnu.org/licenses/gpl-2.0.html/',
      'image'                => 'assets/images/logo_module.png',
