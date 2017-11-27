@@ -3,16 +3,16 @@
 include '../../mainfile.php';
 
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-if ( empty($id) ) {
-	redirect_header("index.php");
+if (empty($id)) {
+    redirect_header("index.php");
 }
 
-	global $xoopsConfig, $xoopsModule, $xoopsDB;
-	$result = $xoopsDB->queryF("SELECT storyid, title, text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address FROM "
+    global $xoopsConfig, $xoopsModule, $xoopsDB;
+    $result = $xoopsDB->queryF("SELECT storyid, title, text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address FROM "
                       . $xoopsDB->prefix('content')
                       . " WHERE storyid=$id");
-	list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocomments, $link, $address) = $xoopsDB->fetchRow($result);
-	
+    list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocomments, $link, $address) = $xoopsDB->fetchRow($result);
+    
    echo '<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">';
    echo '<html>';
    echo '<head>';
@@ -26,7 +26,7 @@ if ( empty($id) ) {
    echo '</head>';
    
 
-	
+    
    echo '<body bgcolor="#FFFFFF" text="#000000" topmargin="10" style="font:12px arial, helvetica, san serif;" onLoad="window.print()">';
    echo '<table style="border:1px solid #000000;text-align:center;width:640px;padding:10;border-spacing:1;">';
    echo '	<tr>';
@@ -37,17 +37,17 @@ if ( empty($id) ) {
    echo '		<td style="padding-top:0px;">';
    
    if ($link == 1) {
-		$includeContent = XOOPS_ROOT_PATH."/modules/content/content/" . $address;
-		if (file_exists($includeContent)){
-		  ob_start();
-	      include($includeContent);
-	      $content = ob_get_contents();
-          ob_end_clean();
-		 }
-    echo $content;
-	} else {
-		echo $text;
-	}
+       $includeContent = XOOPS_ROOT_PATH."/modules/content/content/" . $address;
+       if (file_exists($includeContent)) {
+           ob_start();
+           include($includeContent);
+           $content = ob_get_contents();
+           ob_end_clean();
+       }
+       echo $content;
+   } else {
+       echo $text;
+   }
    
    echo '</td></tr></table>';
    echo '<table style="border:0;text-align:center;width:640px;padding:10;border-spacing:1;"><tr><td>';
