@@ -3,7 +3,7 @@
 $moduleDirName = basename(__DIR__);
 
 $modversion    = [
-     'version'              => 1.4,
+     'version'              => 1.5,
      'module_status'        => 'Beta 1',
      'status_version'       => 'Intermediate version',
      'release_date'         => '2017/25/11',
