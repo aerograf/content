@@ -39,6 +39,7 @@ if ('add' === $op || 'link' === $op) {
     $nosmiley    = isset($nosmiley)? (int)$nosmiley :0;
     $nobreaks    = isset($nobreaks)? (int)$nobreaks :0;
     $submenu     = isset($submenu)? (int)$submenu :0;
+    $nocomments  = isset($nocomments)? (int)$nocomments :0;
     
     if ($_FILES['imageupload']) {
         $uploadpath      = XOOPS_ROOT_PATH . '/modules/content/headers/';

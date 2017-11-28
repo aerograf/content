@@ -149,6 +149,14 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
                 }
             }
 
+    if (is_object($xoTheme)) {
+			$xoTheme->addMeta('meta', 'keywords', $keywords);
+			$xoTheme->addMeta('meta', 'description', $description);
+		} else {
+			$xoopsTpl->assign('xoops_meta_keywords','keywords', $keywords);
+			$xoopsTpl->assign('xoops_meta_description', $description);
+		}
+
             $xoopsTpl->assign('content', $content);
             $xoopsTpl->assign('nocomments', $nocomments);
             $xoopsTpl->assign('mail_link', $link_mail);
@@ -210,6 +218,14 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
             $xoopsTpl->assign('header_image', $header);
         }
         
+    if (is_object($xoTheme)) {
+			$xoTheme->addMeta( 'meta', 'keywords', $keywords);
+			$xoTheme->addMeta( 'meta', 'description', $description);
+		} else {
+			$xoopsTpl->assign('xoops_meta_keywords','keywords', $keywords);
+			$xoopsTpl->assign('xoops_meta_description', $description);
+		}
+
         $xoopsTpl->assign('nocomments', $nocomments);
         $xoopsTpl->assign('mail_link', $link_mail);
         $xoopsTpl->assign('link_print', $link_print);
@@ -220,7 +236,7 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
         $xoopsTpl->assign('link_editpage', $link_editpage);
         $xoopsTpl->assign('date', $date);
     }
-    
+
 $xoopsTpl->assign('id', $id);
 
 include XOOPS_ROOT_PATH . '/include/comment_view.php';

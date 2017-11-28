@@ -22,7 +22,7 @@ define('_AM_CONTENT_PAGEDESCRIPTION', 'Meta Description');
 define('_AM_CONTENT_EXTURL', 'External URL');
 define('_AM_CONTENT_STORYID', 'ID');
 define('_AM_CONTENT_VISIBLE', 'Visible');
-define('_AM_CONTENT_CONTENT', 'Content');
+define('_AM_CONTENT_CONTENT', 'Content<span style=\'font-size: xx-small; font-weight: normal; display: block;\'>(You can create multi-page articles by inserting the tag [pagebreak] wherever you want to put a break.)</span>');
 define('_AM_CONTENT_YES', 'Yes');
 define('_AM_CONTENT_NO', 'No');
 define('_AM_CONTENT_URL', 'Select File');
