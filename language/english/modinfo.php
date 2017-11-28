@@ -59,3 +59,14 @@ define('_MI_CONTENT_POP_DESC', 'Enter 0 to disable popup editing');
 define('_MI_CONTENT_NONE', 'None');
 define('_MI_CONTENT_BASIC', 'Basic');
 define('_MI_CONTENT_ADVANCED', 'Advanced');
+
+//Help
+define('_MI_CONTENT_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_CONTENT_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
+define('_MI_CONTENT_BACK_2_ADMIN', 'Back to Administration of ');
+define('_MI_CONTENT_OVERVIEW', 'Overview');
+
+//help multi-page
+define('_MI_CONTENT_DISCLAIMER', 'Disclaimer');
+define('_MI_CONTENT_LICENSE', 'License');
+define('_MI_CONTENT_SUPPORT', 'Support');

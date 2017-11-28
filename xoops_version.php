@@ -45,7 +45,7 @@ $modversion    = [
      'hasSearch'            => 1,
      'search'               => [
                                 'file' => 'include/search.inc.php',
-                                'func' => 'newbb_search',
+                                'func' => 'content_search',
                                 ],
      'use_smarty'           => 1,
 ];
@@ -59,6 +59,13 @@ while (list($storyid, $title) = $xoopsDB->fetchRow($result)) {
     $modversion['sub'][$i]['url']  = 'index.php?id=' . $storyid . '';
     $i++;
 }
+    // ------------------- Help files ------------------- //
+$modversion['helpsection'] = [
+    ['name' => _MI_CONTENT_OVERVIEW, 'link' => 'page=help'],
+    ['name' => _MI_CONTENT_DISCLAIMER, 'link' => 'page=disclaimer'],
+    ['name' => _MI_CONTENT_LICENSE, 'link' => 'page=license'],
+    ['name' => _MI_CONTENT_SUPPORT, 'link' => 'page=support'],
+];
 
 $modversion['templates'][1] = [
         'file'        => 'ct_index.tpl',
