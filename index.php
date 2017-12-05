@@ -24,8 +24,6 @@ function tabMaker()
     }
 
     $tabs = [];
-    $q=1;
-
     $query = $xoopsDB->query('SELECT storyid, parent_id, blockid, submenu, title, visible FROM '
                              . $xoopsDB->prefix('content')
                              . ' WHERE storyid='
@@ -41,14 +39,18 @@ function tabMaker()
                              . ' ELSE '
                              . $thisid
                              . ' END AND visible=1');
+    $q=1;
     while ($myrow = $xoopsDB->fetchArray($query)) {
+        $visible = $myrow['visible'];
+        if (1 == $visible) {
         $tabs[$q]['storyid']   = $myrow['storyid'];
         $tabs[$q]['parent_id'] = $myrow['parent_id'];
-        $tabs[$q]['blockid']   = $myrow['blockid'];
+        $tabs[$q]['blockid'] = $myrow['blockid'];
         $tabs[$q]['submenu']   = $myrow['submenu'];
         $tabs[$q]['title']     = $myrow['title'];
-        $tabs[$q]['visible']   = $myrow['visible'];
         $q++;
+        } else {
+        }
     }
     return $tabs;
 }
