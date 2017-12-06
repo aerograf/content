@@ -1,5 +1,4 @@
 <?php
-use Xmf\Request;
 
 $pathIcon32    = \Xmf\Module\Admin::menuIconPath('');
 
