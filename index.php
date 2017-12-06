@@ -14,30 +14,30 @@ $xoopsTpl->assign('tabs', $tabdata);
 function tabMaker()
 {
     global $xoopsDB;
-    $thisid = $_REQUEST['id'];
+    $thisId = $_REQUEST['id'];
     $query1 = $xoopsDB->query('SELECT parent_id FROM '
                               . $xoopsDB->prefix('content')
                               . ' WHERE storyid='
-                              . $thisid);
+                              . $thisId);
     while ($myrow1 = $xoopsDB->fetchArray($query1)) {
-        $thisid_parent = $myrow1['parent_id'];
+        $thisId_parent = $myrow1['parent_id'];
     }
 
     $tabs = [];
     $query = $xoopsDB->query('SELECT storyid, parent_id, blockid, submenu, title, visible FROM '
                              . $xoopsDB->prefix('content')
                              . ' WHERE storyid='
-                             . $thisid
+                             . $thisId
                              . ' OR parent_id='
-                             . $thisid
+                             . $thisId
                              . ' OR storyid='
-                             . $thisid_parent
+                             . $thisId_parent
                              . ' OR parent_id= CASE WHEN '
-                             . $thisid_parent
+                             . $thisId_parent
                              . ' >0 THEN '
-                             . $thisid_parent
+                             . $thisId_parent
                              . ' ELSE '
-                             . $thisid
+                             . $thisId
                              . ' END AND visible=1');
     $q=1;
     while ($myrow = $xoopsDB->fetchArray($query)) {
