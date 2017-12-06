@@ -162,7 +162,7 @@ function print_menu($menuItems, $fullList, $level, $depth)
     global $xoopsModule, $xoopsRequestUri, $xoopsDB, $xoopsUser, $allParents, $padding;
 
     $TempMyList = '';
-    $MyList     = '';
+    $myList     = '';
     foreach ($menuItems as $menuItem) {
         $temp = ($level * 9) + 3;
         if ('content' === $menuItem['type']) {
@@ -172,32 +172,32 @@ function print_menu($menuItems, $fullList, $level, $depth)
                 $contentURL = XOOPS_URL . '/modules/content/index.php?id=' . $menuItem['storyid'];
             }
             if (0 == $level) {
-                $MyList .= "\n\t<a class=\"menuMain\" href=\"" . $contentURL . '">' . $menuItem['title'] . '</a>';
+                $myList .= "\n\t<a class=\"menuMain\" href=\"" . $contentURL . '">' . $menuItem['title'] . '</a>';
             } else {
-                $MyList .= "\n\t<a class=\"menuSub\" style=\"padding-left : " . ($level * $padding) . 'px;" href="' . $contentURL . '">' . $menuItem['title'] . '</a>';
+                $myList .= "\n\t<a class=\"menuSub\" style=\"padding-left : " . ($level * $padding) . 'px;" href="' . $contentURL . '">' . $menuItem['title'] . '</a>';
             }
             $children = return_children($fullList, $menuItem['storyid']);
             if ($children) {
                 if (in_array($menuItem['storyid'], $allParents)) {
-                    $MyList .= '' . print_menu($children, $fullList, $level + 1, $depth) . '';
+                    $myList .= '' . print_menu($children, $fullList, $level + 1, $depth) . '';
                 }
             }
         } else { // Its a Module
             $contentURL = $menuItem['url'];
-            $MyList .= "\n\t<a class=\"menuMain\" href=\"" . $contentURL . '">' . $menuItem['title'] . '</a>';
+            $myList .= "\n\t<a class=\"menuMain\" href=\"" . $contentURL . '">' . $menuItem['title'] . '</a>';
             if ($menuItem['sublinks']) {
                 foreach ($menuItem['sublinks'] as $sublink) {
-                    $MyList .= '<a class="menuSub" href="' . $sublink['url'] . '">' . $sublink['title'] . "</a>\n";
+                    $myList .= '<a class="menuSub" href="' . $sublink['url'] . '">' . $sublink['title'] . "</a>\n";
                 }
             }
         }
     }
     if (0 == $level) {
         if (is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin()) {
-            $MyList .= "\n\t<a class=\"menuMain\" href=\"" . XOOPS_URL . '/modules/content/admin/index.php?op=submit&id=0&return=1' . '">' . _MB_CONTENT_MENUADDITEM . '</a>';
+            $myList .= "\n\t<a class=\"menuMain\" href=\"" . XOOPS_URL . '/modules/content/admin/index.php?op=submit&id=0&return=1' . '">' . _MB_CONTENT_MENUADDITEM . '</a>';
         }
     }
-    return $MyList;
+    return $myList;
 }
 
 /**

@@ -100,12 +100,12 @@ function return_children($items, $parent_id)
  */
 function print_menu($menuItems, $fullList, $level, $depth)
 {
-    $MyList = '';
+    $myList = '';
     if ($level + 1 > $depth) {
         $depth = $level + 1;
     }
     if (0 == $level) {
-        $MyList .= '<ul>';
+        $myList .= '<ul>';
     }
     foreach ($menuItems as $menuItem) {
         if ('content' === $menuItem['type']) {
@@ -118,26 +118,26 @@ function print_menu($menuItems, $fullList, $level, $depth)
             $contentURL = $menuItem['url'];
         }
 
-        $MyList .= "\n\t<li><a href=\"" . $contentURL . '">' . $menuItem['title'] . '</a>';
+        $myList .= "\n\t<li><a href=\"" . $contentURL . '">' . $menuItem['title'] . '</a>';
 
         if ('content' === $menuItem['type']) {
             if (return_children($fullList, $menuItem['storyid'])) {
-                $MyList .= '<ul>' . print_menu(return_children($fullList, $menuItem['storyid']), $fullList, $level + 1, $depth) . '</ul>';
+                $myList .= '<ul>' . print_menu(return_children($fullList, $menuItem['storyid']), $fullList, $level + 1, $depth) . '</ul>';
             }
         } else {
             if ($menuItem['sublinks']) {
-                $MyList .= "<ul>\n";
+                $myList .= "<ul>\n";
                 foreach ($menuItem['sublinks'] as $sublink) {
-                    $MyList .= '<li><a href="' . $sublink['url'] . '">' . $sublink['title'] . "</a></li>\n";
+                    $myList .= '<li><a href="' . $sublink['url'] . '">' . $sublink['title'] . "</a></li>\n";
                 }
-                $MyList .= "</ul>\n";
+                $myList .= "</ul>\n";
             }
         }
         
-        $MyList .= "</li>\n";
+        $myList .= "</li>\n";
     }
     if (0 == $level) {
-        $MyList .= '</ul>';
+        $myList .= '</ul>';
     }
-    return $MyList;
+    return $myList;
 }

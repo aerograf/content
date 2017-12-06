@@ -168,7 +168,7 @@ function find_url_sec($items, $item_id)
 function print_sec_menu($menuItems, $fullList, $level, $depth)
 {
     global $_GET, $current_page_id, $allParents, $padding;
-    $MyList = '';
+    $myList = '';
     if ($level + 1 > $depth) {
         $depth = $level + 1;
     }
@@ -184,23 +184,23 @@ function print_sec_menu($menuItems, $fullList, $level, $depth)
         } else {
             $contentURL = XOOPS_URL . '/modules/content/index.php?id=' . $menuItem['storyid'];
         }
-        $MyList .= '<a class="' . $my_style . '"  style="padding-left : ' . ($depth * $padding) . 'px;"';
+        $myList .= '<a class="' . $my_style . '"  style="padding-left : ' . ($depth * $padding) . 'px;"';
         if (1 == $menuItem['newwindow']) {
-            $MyList .= ' target="_blank"';
+            $myList .= ' target="_blank"';
         }
-        $MyList .= ' href="' . $contentURL . '"';
+        $myList .= ' href="' . $contentURL . '"';
         if ($menuItem['storyid'] == $current_page_id) {
-            $MyList .= ' id="current-nav-item"';
+            $myList .= ' id="current-nav-item"';
         }
-        $MyList .= '>' . $menuItem['title'] . "</a>\n";
+        $myList .= '>' . $menuItem['title'] . "</a>\n";
         $children = return_children_sec($fullList, $menuItem['storyid']);
         if ($children) {
             if (in_array($menuItem['storyid'], $allParents)) {
-                $MyList .= print_sec_menu($children, $fullList, $level + 1, $depth);
+                $myList .= print_sec_menu($children, $fullList, $level + 1, $depth);
             }
         }
     }
-    return $MyList;
+    return $myList;
 }
 
 /**
