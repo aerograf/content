@@ -108,10 +108,10 @@ if ('add' === $op || 'link' === $op) {
     $description = $myts->htmlSpecialChars($description);
     
     
-    if ($_FILES[fileupload]) {
+    if ($_FILES['fileupload']) {
         $uploadpath      = XOOPS_ROOT_PATH . '/modules/content/content/';
-        $source          = $_FILES[fileupload][tmp_name];
-        $fileupload_name = $_FILES[fileupload][name];
+        $source          = $_FILES['fileupload']['tmp_name'];
+        $fileupload_name = $_FILES['fileupload']['name'];
         if (('none' !== $source) && ('' != $source)) {
             $dest=$uploadpath.$fileupload_name;
             if (file_exists($uploadpath.$fileupload_name)) {

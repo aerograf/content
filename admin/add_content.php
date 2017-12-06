@@ -28,10 +28,10 @@ if ('add' === $op || 'link' === $op) {
 
     $hp = (0 == $rows)? 1 : 0;
     
-    if ($_FILES[imageupload]) {
+    if ($_FILES['imageupload']) {
         $uploadpath      = XOOPS_ROOT_PATH . '/modules/content/headers/';
-        $source          = $_FILES[imageupload][tmp_name];
-        $fileupload_name = $_FILES[imageupload][name];
+        $source          = $_FILES['imageupload']['tmp_name'];
+        $fileupload_name = $_FILES['imageupload']['name'];
         if (('none' !== $source) && ('' != $source)) {
             $dest=$uploadpath.$fileupload_name;
             if (file_exists($uploadpath.$fileupload_name)) {
@@ -105,10 +105,10 @@ if ('add' === $op || 'link' === $op) {
 } elseif ('pagewrap' === $op) {
     $myts = MyTextSanitizer::getInstance();
     
-    if ($_FILES[fileupload]) {
+    if ($_FILES['fileupload']) {
         $uploadpath      = XOOPS_ROOT_PATH . '/modules/content/content/';
-        $source          = $_FILES[fileupload][tmp_name];
-        $fileupload_name = $_FILES[fileupload][name];
+        $source          = $_FILES['fileupload']['tmp_name'];
+        $fileupload_name = $_FILES['fileupload']['name'];
         if (('none' !== $source) && ('' != $source)) {
             $dest=$uploadpath.$fileupload_name;
             if (file_exists($uploadpath.$fileupload_name)) {
