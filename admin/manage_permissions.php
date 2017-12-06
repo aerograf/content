@@ -156,8 +156,8 @@ if ('update' === $op) {
 					<td colspan='2'><strong>" . _AM_CONTENT_PERMITGLOBAL . "</strong></td>
 				</tr>
 				<tr class='even'>
-					<td><strong>" . _AM_CONTENT_PERMITADMIN . "</strong></td>
-					<td>" . $permitadmin->render() . '</td>
+					<td><strong>" . _AM_CONTENT_PERMITADMIN . '</strong></td>
+					<td>' . $permitadmin->render() . '</td>
 				</tr>
 			</table> ';
     }
@@ -172,7 +172,7 @@ if ('update' === $op) {
     if ('2' == $xoopsModuleConfig['cont_permits_advnaced']) {
         echo "
 					<td width='60' nowrap><b><nobr>" . _AM_CONTENT_PERMITWRITE . "</nobr></b></td>
-					<td width='60' nowrap><b><nobr>" . _AM_CONTENT_PERMITADD . "</b></td>";
+					<td width='60' nowrap><b><nobr>" . _AM_CONTENT_PERMITADD . '</b></td>';
     }
     echo '		</tr>';
     $contentItems = [];

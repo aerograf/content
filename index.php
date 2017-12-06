@@ -181,7 +181,7 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
 
         //Should we redirect or continue with this page
         if (isset($address) && strlen($address) > 0) {
-            header("location: " . $address, true, 301);
+            header('location: ' . $address, true, 301);
             //echo $address;
             exit;
         }
