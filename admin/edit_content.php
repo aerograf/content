@@ -82,7 +82,7 @@ if ('add' === $op || 'link' === $op) {
                 . $nohtml . "', nosmiley='"
                 . $nosmiley . "', nobreaks='"
                 . $nobreaks . "', nocomments='"
-                . (int)$nocomments . "', address='"
+                . $nocomments . "', address='"
                 . $externalURL
                 . "', submenu='"
                 . $submenu . "', newwindow='"
