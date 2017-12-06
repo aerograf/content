@@ -241,7 +241,7 @@ function print_item($tcontent, $dirname, $allMenuItems, $txtSant)
             echo '<img src="../assets/images/child_mark.png" alt="" width="6" height="17" border="0" align="absmiddle">';
         }
         echo '<img src="../assets/images/page.png" alt="" border="0" align="absmiddle">';
-    }
+    } 
     echo "
 				<a href='edit_content.php?id=".$tcontent['storyid'] . (isset($showshort) ? '&showshort=' . $showshort : '') . "'>" . $txtSant->htmlSpecialChars($tcontent['title'], 0, 0, 0) . "</a></td>
 				<td>$menu</td>

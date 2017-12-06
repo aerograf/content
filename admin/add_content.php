@@ -187,7 +187,7 @@ if ('add' === $op || 'link' === $op) {
     $criteria->add(new Criteria('isactive', 1));
     $modules        = $moduleHandler->getList($criteria);
     asort($modules);
-  
+    
     xoops_cp_header();
     $adminObject = \Xmf\Module\Admin::getInstance();
     $adminObject->displayNavigation(basename(__FILE__));
@@ -217,7 +217,7 @@ if ('add' === $op || 'link' === $op) {
     foreach ($allMenuItems as $ct_item) {
         $categoria_select->addOption($ct_item['storyid'], str_repeat('&nbsp;&nbsp;', $ct_item['depth'] + 1) . str_repeat('-', $ct_item['depth']) . $ct_item['title']);
     }
-
+    
     $text_box    = new XoopsFormText(_AM_CONTENT_LINKNAME, 'title', 50, 255);
     
     $opProcedure = new XoopsFormRadio(_AM_CONTENT_CNTTYP, 'op');
@@ -252,7 +252,7 @@ if ('add' === $op || 'link' === $op) {
         $editor_configs['value'] = $message;
     }
     $editor = new XoopsFormEditor(_AM_CONTENT_CONTENT, $xoopsModuleConfig['cont_form_options'], $editor_configs);
-
+    
         
     //user permissions
     $moduleHandler   = xoops_getHandler('module');
