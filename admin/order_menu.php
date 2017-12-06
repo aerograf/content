@@ -50,7 +50,7 @@
                 $menuModule[$i]['id']   = $modules[$i]->getVar('mid');
                 $menuModule[$i]['type'] = 'module';
                 $sublinks               = $modules[$i]->subLink();
-                if ((count($sublinks) > 0) && (!empty($xoopsModule)) && ($i == $xoopsModule->getVar('mid'))) {
+                if ((!empty($xoopsModule)) && (count($sublinks) > 0) && ($i == $xoopsModule->getVar('mid'))) {
                     foreach ($sublinks as $sublink) {
                         $menuModule[$i]['sublinks'][] = [
                                                       'text' => $sublink['name'],
@@ -66,7 +66,7 @@
         $block = [];
         $myts  = MyTextSanitizer::getInstance();
         
-        if ($xoopsModule && ('Content' === $xoopsModule->name() || 'content' === $xoopsModule->dirname()) && isset($_GET['id'])) {
+        if (isset($_GET['id']) && $xoopsModule && ('Content' === $xoopsModule->name() || 'content' === $xoopsModule->dirname())) {
             $result = $xoopsDB->query("SELECT CASE parent_id WHEN 0 THEN storyid ELSE parent_id END 'sortorder' FROM "
                             . $xoopsDB->prefix('content')
                             . " WHERE visible='1' AND storyid="

@@ -27,7 +27,7 @@ function site_block_nav($options)
             $menuModule[$i]['type']     = 'module';
 
             $sublinks = $modules[$i]->subLink();
-            if ((count($sublinks) > 0) && (!empty($xoopsModule)) && ($i == $xoopsModule->getVar('mid'))) {
+            if ((!empty($xoopsModule)) && (count($sublinks) > 0) && ($i == $xoopsModule->getVar('mid'))) {
                 foreach ($sublinks as $sublink) {
                     $menuModule[$i]['sublinks'][] = [
                                           'title' => $sublink['name'],

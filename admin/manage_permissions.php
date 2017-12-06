@@ -194,7 +194,7 @@ if ('update' === $op) {
     }
     $allItems = return_children($contentItems, 0);
     foreach ($sortedContent as $tcontent) {
-        if ((isset($tcontent['depth']) && 0 == $tcontent['depth']) || '' != $filterSQL) {
+        if ('' != $filterSQL || (isset($tcontent['depth']) && 0 == $tcontent['depth'])) {
             print_item($tcontent, $xoopsModule->dirname(), $allItems, $myts, $groupPermHandler->getGroupIds('content_page_view', $tcontent['storyid'], $module->getVar('mid')), $groupPermHandler->getGroupIds('content_page_write', $tcontent['storyid'], $module->getVar('mid')),
                        $groupPermHandler->getGroupIds('content_page_add', $tcontent['storyid'], $module->getVar('mid')));
             foreach (return_children($contentItems, $tcontent['storyid'], 1) as $child) {

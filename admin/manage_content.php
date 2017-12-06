@@ -178,7 +178,7 @@ if ('update' === $op) {
     }
     $allItems = return_children($contentItems, 0);
     foreach ($sortedContent as $tcontent) {
-        if ((isset($tcontent['depth']) && 0 == $tcontent['depth']) || '' != $filterSQL) {
+        if ('' != $filterSQL || (isset($tcontent['depth']) && 0 == $tcontent['depth'])) {
             print_item($tcontent, $xoopsModule->dirname(), $allItems, $myts);
             foreach (return_children($contentItems, $tcontent['storyid'], 1) as $child) {
                 print_item($child, $xoopsModule->dirname(), $allItems, $myts);

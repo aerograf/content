@@ -86,7 +86,7 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
     $xoopsUser ? $groups = $xoopsUser->getGroups() : $groups = XOOPS_GROUP_ANONYMOUS;
     $allowedItems          = $groupPermHandler->getItemIds('content_page_view', $groups, $module->getVar('mid'));
 
-    if (!in_array($id, $allowedItems) && 0 != $id) {
+    if (0 != $id && !in_array($id, $allowedItems)) {
         redirect_header(XOOPS_URL, 2, _NOPERM, true);
     }
 
@@ -107,7 +107,7 @@ list($storyid, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocommen
                                    . ' WHERE homepage=1');
     }
     $showerror= isset($_GET['showerror'])? (int)$_GET['showerror'] :0;
-    if (0 == $xoopsDB->getRowsNum($result) || 1 == $showerror) {
+    if (1 == $showerror || 0 == $xoopsDB->getRowsNum($result)) {
         $result = $xoopsDB->queryF('SELECT storyid, ptitle, title, keywords,page_description, text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address, date, header_img FROM '
                                    . $xoopsDB->prefix('content')
                                    . ' WHERE epage=1');
