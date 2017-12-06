@@ -213,7 +213,7 @@ if ('add' === $op || 'link' === $op) {
         
     $editor    = new XoopsFormEditor(_AM_CONTENT_CONTENT, $xoopsModuleConfig['cont_form_options'], $editor_configs);
         
-    $option_tray = new XoopsFormElementTray(_OPTIONS, '<br />');
+    $option_tray = new XoopsFormElementTray(_OPTIONS, '<br >');
     $option_tray->addElement($newwindow_checkbox);
     $option_tray->addElement($visible_checkbox);
     
@@ -366,11 +366,11 @@ if ('add' === $op || 'link' === $op) {
 		</script>
 			";
     if (isset($showshort)) {
-        echo "<input type='hidden' name='showshort' value='" . $showshort . "' />";
+        echo "<input type='hidden' name='showshort' value='" . $showshort . "' >";
     }
     echo '</form>';
     echo "  
-	<script src='../assets/js/prototype.js' type='text/javascript'/>
+	<script src='../assets/js/prototype.js' type='text/javascript'>
 	<script>
   <!--
 			function newWindow(filePath,winName,winProperties){NewWin = window.open(filePath,winName,winProperties); NewWin.moveTo(50,50); NewWin.focus();}

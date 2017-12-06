@@ -186,14 +186,14 @@ if ('update' === $op) {
         }
     }
       
-    echo "</table><br />
+    echo "</table><br >
 	  	<div style='text-align:center;'>
-			<input type='hidden' name='op' value='update' />";
+			<input type='hidden' name='op' value='update' >";
     if (isset($showshort)) {
-        echo "<input type='hidden' name='showshort' value='" . $showshort . "' />";
+        echo "<input type='hidden' name='showshort' value='" . $showshort . "' >";
     }
             
-    echo"<input type='submit' name='submit' value=" . _SUBMIT . ' /></div>';
+    echo"<input type='submit' name='submit' value=" . _SUBMIT . ' ></div>';
     echo '</form><br>';
 
     require_once __DIR__ . '/footer.php';
@@ -245,9 +245,9 @@ function print_item($tcontent, $dirname, $allMenuItems, $txtSant)
     echo "
 				<a href='edit_content.php?id=".$tcontent['storyid'] . (isset($showshort) ? '&showshort=' . $showshort : '') . "'>" . $txtSant->htmlSpecialChars($tcontent['title'], 0, 0, 0) . "</a></td>
 				<td>$menu</td>
-				<td><nobr>" . str_repeat('--->', $tcontent['depth']) . "<input type='hidden' name='id[]' value='" . $tcontent['storyid'] . "' /><input type='text' name='blockid["
+				<td><nobr>" . str_repeat('--->', $tcontent['depth']) . "<input type='hidden' name='id[]' value='" . $tcontent['storyid'] . "' ><input type='text' name='blockid["
                     .    $tcontent['storyid'] . "]' size='2' maxlength='2' value='"
-                    . $tcontent['blockid'] . "'/></nobr></td>
+                    . $tcontent['blockid'] . "'></nobr></td>
 				<td align='center'><input type='radio' name='homepage[]' value='" . $tcontent['storyid'] . "' " . (('1' == $tcontent['homepage']) ? 'checked' : '') . "></td>
 				<td align='center'><input type='radio' name='epage[]' value='" . $tcontent['storyid'] . "' " . (('1' == $tcontent['epage']) ? 'checked' : '') . "></td>
 				<td align='center'>

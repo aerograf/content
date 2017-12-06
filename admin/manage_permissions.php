@@ -204,10 +204,10 @@ if ('update' === $op) {
         }
     }
 
-    echo "</table><br />
+    echo "</table><br >
 	  	<div align='center'>
-			<input type='hidden' name='op' value='update' />
-			<input type='submit' name='submit' value=" . _SUBMIT . ' /></div>';
+			<input type='hidden' name='op' value='update' >
+			<input type='submit' name='submit' value=" . _SUBMIT . ' ></div>';
     echo '</form><br>';
 
     require_once __DIR__ . '/footer.php';
@@ -239,7 +239,7 @@ function print_item($tcontent, $dirname, $allMenuItems, $txtSant, $page_groups_r
     if (!isset($tcontent['depth'])) {
         $tcontent['depth'] = 0;
     }
-    echo "  <td><input type='hidden' name='id[]' value='" . $tcontent['storyid'] . "' />";
+    echo "  <td><input type='hidden' name='id[]' value='" . $tcontent['storyid'] . "' >";
     if (isset($tcontent['depth']) && isparent($allMenuItems, $tcontent['storyid'])) {
         if (isset($tcontent['depth']) && 0 != $tcontent['depth']) {
             echo '<img src="../assets/images/spacer.gif" alt="" width="' . ($tcontent['depth'] * 8) . '" height="10" border="0" align="absmiddle">';

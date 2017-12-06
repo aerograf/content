@@ -120,9 +120,9 @@ function print_header()
 				<head>
 					<title>' . $xoopsConfig['sitename'] . '</title>';
         $admincss = file_exists(XOOPS_THEME_URL . '/' . getTheme() . '/admin.css') ? XOOPS_THEME_URL . '/' . getTheme() . '/admin.css' : XOOPS_URL . '/admin.css';
-        echo '<link rel="stylesheet" type="text/css" media="all" href="'.XOOPS_URL.'/xoops.css" />';
-        echo '<link rel="stylesheet" type="text/css" media="all" href="'.XOOPS_URL.'/modules/system/style.css" />';
-        echo '<link rel="stylesheet" type="text/css" media="screen" href="' . $admincss . '" />';
+        echo '<link rel="stylesheet" type="text/css" media="all" href="'.XOOPS_URL.'/xoops.css" >';
+        echo '<link rel="stylesheet" type="text/css" media="all" href="'.XOOPS_URL.'/modules/system/style.css" >';
+        echo '<link rel="stylesheet" type="text/css" media="screen" href="' . $admincss . '" >';
                     
         echo'	
 					<style>
@@ -171,18 +171,18 @@ function ct_xoops_confirm($hiddens, $action, $msg, $submit='', $addtoken = true,
     foreach ($hiddens as $name => $value) {
         if (is_array($value)) {
             foreach ($value as $caption => $newvalue) {
-                echo '<input type="radio" name="'.$name.'" value="'.htmlspecialchars($newvalue).'" /> '.$caption;
+                echo '<input type="radio" name="'.$name.'" value="'.htmlspecialchars($newvalue).'" > '.$caption;
             }
-            echo '<br />';
+            echo '<br >';
         } else {
-            echo '<input type="hidden" name="'.$name.'" value="'.htmlspecialchars($value).'" />';
+            echo '<input type="hidden" name="'.$name.'" value="'.htmlspecialchars($value).'" >';
         }
     }
     if (false !== $addtoken) {
         echo $GLOBALS['xoopsSecurity']->getTokenHTML();
     }
     echo '
-        <input type="submit" name="confirm_submit" value="'.$submit.'" /> <input type="button" name="confirm_back" value="' . _CANCEL . '" onclick="javascript:'.$cancel.';" />
+        <input type="submit" name="confirm_submit" value="'.$submit.'" > <input type="button" name="confirm_back" value="' . _CANCEL . '" onclick="javascript:'.$cancel.';" >
       </form>
     </div>
     ';

@@ -28,13 +28,13 @@
 </div>
 <br>
 <div class="printandemail"style="text-align:left;display:inline-block;vertical-align:middle;padding-left:10px;width:49%;">
-  <a href="<{$link_print}>" target="_new"><img src="<{$link_image}>print.png" alt="print" style="border:0;padding-right:5px;" /></a>
-  <a href="<{$mail_link}>"><img src="<{$link_image}>email.png" alt="email" style="border:0;" /></a>
+  <a href="<{$link_print}>" target="_new"><img src="<{$link_image}>print.png" alt="print" style="border:0;padding-right:5px;" ></a>
+  <a href="<{$mail_link}>"><img src="<{$link_image}>email.png" alt="email" style="border:0;" ></a>
 </div>
 <{if $xoops_isadmin == 1}>
 <div style="text-align:right;display:inline-block;vertical-align:middle;width:49%;">
-  <a href="<{$link_addpage}>"><img src="<{$link_image}>add.png" alt="add" style="border:0;padding-right:5px;" /></a>
-  <a href="<{$link_editpage}>"><img src="<{$link_image}>edit.png" alt="edit" style="border:0;" /></a>
+  <a href="<{$link_addpage}>"><img src="<{$link_image}>add.png" alt="add" style="border:0;padding-right:5px;" ></a>
+  <a href="<{$link_editpage}>"><img src="<{$link_image}>edit.png" alt="edit" style="border:0;" ></a>
 </div>
 <{/if}>
  

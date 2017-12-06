@@ -409,7 +409,7 @@ if ('add' === $op || 'link' === $op) {
         echo $return_field->render();
     }
     if (isset($showshort)) {
-        echo "<input type='hidden' name='showshort' value='" . $showshort . "' />";
+        echo "<input type='hidden' name='showshort' value='" . $showshort . "' >";
     }
     echo '</form><br>';
 

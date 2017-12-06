@@ -64,7 +64,7 @@ class ContentModuleAdmin
         $ret .= "<div class=\"xo-buttons\">\n";
         foreach (array_keys($this -> _itemButton) as $i) {
             $ret .= "<a class='ui-corner-all tooltip' href='" . $this -> _itemButton[$i]['link'] . "' title='" . $this -> _itemButton[$i]['title'] . "'>";
-            $ret .= "<img src='" . $path . $this -> _itemButton[$i]['icon'] . "' title='" . $this -> _itemButton[$i]['title'] . "' />" . $this -> _itemButton[$i]['title'] . $this -> _itemButton[$i]['extra'];
+            $ret .= "<img src='" . $path . $this -> _itemButton[$i]['icon'] . "' title='" . $this -> _itemButton[$i]['title'] . "' >" . $this -> _itemButton[$i]['title'] . $this -> _itemButton[$i]['extra'];
             $ret .= "</a>\n";
             $ret .= $delimeter;
         }
@@ -106,11 +106,11 @@ class ContentModuleAdmin
                 $date = explode('/', $this->_obj->getInfo('release_date'));
                 $release_date = formatTimestamp(mktime(0, 0, 0, $date[1], $date[2], $date[0]), 's');
                 $line .= "<table>\n<tr>\n<td style='width:100px;'>\n";
-                $line .= "<img src='" . XOOPS_URL . '/modules/' . $this->_obj->getVar('dirname') . '/' . $this->_obj->getInfo('image') . "' alt='" . $this->_obj->getVar('name') . "' style='float:left;margin-right:10px;' />\n";
+                $line .= "<img src='" . XOOPS_URL . '/modules/' . $this->_obj->getVar('dirname') . '/' . $this->_obj->getInfo('image') . "' alt='" . $this->_obj->getVar('name') . "' style='float:left;margin-right:10px;' >\n";
                 $line .= "</td><td>\n";
                 $line .= "<div style='margin-top:1px;margin-bottom:4px;font-size:18px;line-height:18px;color:#2F5376;font-weight:bold;'>\n";
                 $line .= $this->_obj->getInfo('name') . ' ' . $this->_obj->getInfo('version') . ' ' . $this->_obj->getInfo('status_version') ;
-                $line .= "<br />\n";
+                $line .= "<br >\n";
                 $line .= "</div>\n";
                 $line .= "<div style='line-height:16px;font-weight:bold;'>\n";
                 $line .= 'by ' . $this->_obj->getInfo('author') ;
@@ -123,13 +123,13 @@ class ContentModuleAdmin
                 if ('' != $this->_obj->getInfo('credits')) {
                     $line .= 'Credits: ' . $this->_obj->getInfo('credits') ;
                 }
-                $line .= "<br />\n";
+                $line .= "<br >\n";
 
                 $line .= '<a href="http://' . $this->_obj->getInfo('license_url') . '" target="_blank" >' . $this->_obj->getInfo('license') . "</a>\n";
-                $line .= "<br />\n";
+                $line .= "<br >\n";
 
                 $line .= '<a href="http://' . $this->_obj->getInfo('website') . '" target="_blank" >' . $this->_obj->getInfo('website') . "</a>\n";
-                $line .= "<br />\n";
+                $line .= "<br >\n";
                 if ('' != $value) {
                     $line .= '<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
                               <input type="hidden" name="cmd" value="_s-xclick">
@@ -166,11 +166,11 @@ class ContentModuleAdmin
             foreach (array_keys($this -> _itemLineLabel) as $k) {
                 if ($this -> _itemLineLabel[$k]['label'] == $this -> _itemLabel[$i]['title']) {
                     $ret .= $this -> _itemLineLabel[$k]['line'];
-                    $ret .= '<br />';
+                    $ret .= '<br >';
                 }
             }
             $ret .= "</fieldset>\n";
-            $ret .= "<br/>\n";
+            $ret .= "<br>\n";
         }
         return $ret;
     }
@@ -247,7 +247,7 @@ class ContentModuleAdmin
     {
         $line = "<fieldset><legend class=\"label\">\n";
         $line .= $title;
-        $line .= "</legend><br/>\n";
+        $line .= "</legend><br>\n";
         $line .= "<div class=\"txtchangelog\">\n";
         $language = $GLOBALS['xoopsConfig']['language'];
         if (!is_file(XOOPS_ROOT_PATH . '/modules/' . $this->_obj->getVar('dirname') . '/docs/changelog.txt')) {
@@ -294,9 +294,9 @@ class ContentModuleAdmin
         foreach (array_keys($this->_obj->adminmenu) as $i) {
             if ('admin/index.php' !== $this->_obj->adminmenu[$i]['link']) {
                 if (isset($this->_obj->adminmenu[$i]['menu'])) {
-                    $ret .= '<a href="../' . $this->_obj->adminmenu[$i]['link'] . '" title="' . $this->_obj->adminmenu[$i]['title'] . '">' . '<img src="' . $path . $this->_obj->adminmenu[$i]['menu'] . '" alt="' . $this->_obj->adminmenu[$i]['title'] . '" />';
+                    $ret .= '<a href="../' . $this->_obj->adminmenu[$i]['link'] . '" title="' . $this->_obj->adminmenu[$i]['title'] . '">' . '<img src="' . $path . $this->_obj->adminmenu[$i]['menu'] . '" alt="' . $this->_obj->adminmenu[$i]['title'] . '" >';
                 } else {
-                    $ret .= '<a href="../' . $this->_obj->adminmenu[$i]['link'] . '" title="' . $this->_obj->adminmenu[$i]['title'] . '">' . '<img src="' . $path . $this->_obj->adminmenu[$i]['icon'] . '" alt="' . $this->_obj->adminmenu[$i]['title'] . '" />';
+                    $ret .= '<a href="../' . $this->_obj->adminmenu[$i]['link'] . '" title="' . $this->_obj->adminmenu[$i]['title'] . '">' . '<img src="' . $path . $this->_obj->adminmenu[$i]['icon'] . '" alt="' . $this->_obj->adminmenu[$i]['title'] . '" >';
                 }
                 $ret .= '<span>' . $this->_obj->adminmenu[$i]['title'] . '</span>';
                 $ret .= '</a>';
@@ -304,7 +304,7 @@ class ContentModuleAdmin
         }
         if ($this->_obj->getInfo('help')) {
             $ret .= '<a href="' . $pathsystem . 'help.php?mid=' . $this->_obj->getVar('mid', 's') . '&amp;' . $this->_obj->getInfo('help') . '" title="' . _AM_SYSTEM_HELP . '">' .
-                    "<img style='width:32px;' src=\"" . $path . '/assets/images/help.png" alt="' . _AM_SYSTEM_HELP . '" /> ';
+                    "<img style='width:32px;' src=\"" . $path . '/assets/images/help.png" alt="' . _AM_SYSTEM_HELP . '" > ';
             $ret .= '<span>' . _AM_SYSTEM_HELP . '</span>';
             $ret .= '</a>';
         }
@@ -332,10 +332,10 @@ class ContentModuleAdmin
             $ret .= "<td colspan=\"2\">\n";
             $ret .= '<fieldset><legend class="label">';
             $ret .= $this -> _itemConfigLabel;
-            $ret .= "</legend><br/>\n";
+            $ret .= "</legend><br>\n";
             foreach (array_keys($this -> _itemLineConfigLabel) as $i) {
                 $ret .= $this -> _itemLineConfigLabel[$i];
-                $ret .= '<br />';
+                $ret .= '<br >';
             }
             $ret .= "</fieldset>\n";
             $ret .= "</td>\n";

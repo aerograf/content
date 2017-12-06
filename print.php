@@ -16,13 +16,13 @@ if (empty($id)) {
    echo '<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">';
    echo '<html>';
    echo '<head>';
-   echo '	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>';
+   echo '	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">';
    echo '	<title>' . $title . '-' . $xoopsConfig['sitename'] . '-' . _MD_CONTENT_PRINTERFRIENDLY . '</title>';
-   echo '	<meta name="AUTHOR" content="' . $xoopsConfig['sitename'] . '"/>';
-   echo '	<meta name="COPYRIGHT" content="Copyright (c) 2005' . $xoopsConfig['sitename'] . '"/>';
-   echo '	<meta name="DESCRIPTION" content="' . $xoopsConfig['slogan'] . '"/>';
-   echo '	<meta name="GENERATOR" content="' . XOOPS_VERSION . '"/>';
-   echo '	<link rel="stylesheet" type="text/css" media="screen" href="' . XOOPS_URL . '/modules/content/assets/css/print.css" />';
+   echo '	<meta name="AUTHOR" content="' . $xoopsConfig['sitename'] . '">';
+   echo '	<meta name="COPYRIGHT" content="Copyright (c) 2005' . $xoopsConfig['sitename'] . '">';
+   echo '	<meta name="DESCRIPTION" content="' . $xoopsConfig['slogan'] . '">';
+   echo '	<meta name="GENERATOR" content="' . XOOPS_VERSION . '">';
+   echo '	<link rel="stylesheet" type="text/css" media="screen" href="' . XOOPS_URL . '/modules/content/assets/css/print.css" >';
    echo '</head>';
    
 

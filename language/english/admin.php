@@ -40,7 +40,7 @@ define('_AM_CONTENT_MODULENAME', 'Module');
 define('_AM_CONTENT_DISABLECOM', 'Disable comments');
 define('_AM_CONTENT_DBUPDATED', 'Database Updated Successfully!');
 define('_AM_CONTENT_ERRORINSERT', 'Error while updating database!');
-define('_AM_CONTENT_RUSUREDEL', 'Are you sure you want to delete this content? <br />All comments linked to the content will be removed');
+define('_AM_CONTENT_RUSUREDEL', 'Are you sure you want to delete this content? <br >All comments linked to the content will be removed');
 define('_AM_CONTENT_RUSUREDELF', 'Are you sure you want to delete this file?');
 define('_AM_CONTENT_UPLOADED', 'File Uploaded Successfully!');
 define('_AM_CONTENT_FDELETED', 'File Deleted Successfully!');

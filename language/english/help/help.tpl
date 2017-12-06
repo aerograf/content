@@ -8,7 +8,7 @@
 	</p>
     
 	<h4 class="odd">Install/uninstall</h4>
-	<p>No special measures necessary, follow the standard installation process – extract the "сontent" folder into the ../modules directory. Install the module through Admin -> System Module -> Modules. If you need detailed instructions on how to install a module, please see the <a href="http://goo.gl/adT2i">XOOPS Operations Manual</a>.<br /><br />
+	<p>No special measures necessary, follow the standard installation process – extract the "сontent" folder into the ../modules directory. Install the module through Admin -> System Module -> Modules. If you need detailed instructions on how to install a module, please see the <a href="http://goo.gl/adT2i">XOOPS Operations Manual</a>.<br ><br >
     </p>
 
 	<h4 class="odd">Bugs</h4>

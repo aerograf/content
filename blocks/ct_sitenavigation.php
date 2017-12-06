@@ -206,7 +206,7 @@ function print_menu($menuItems, $fullList, $level, $depth)
  */
 function edit_block_nav($options)
 {
-    $form  = '&nbsp;' . _MB_CONTENT_PADDING . '&nbsp;<input type="text" name="options[]" value="' . $options[0] . '" size="5" />&nbsp;pixels';
+    $form  = '&nbsp;' . _MB_CONTENT_PADDING . '&nbsp;<input type="text" name="options[]" value="' . $options[0] . '" size="5" >&nbsp;pixels';
 
     return $form;
 }
