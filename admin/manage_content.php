@@ -22,7 +22,7 @@ if ('update' === $op) {
                      . "', epage='"
                      . $ep
                      . "', nocomments='"
-                     . ($nocomments[$storyid] ? 0 : 1)
+                     //. ($nocomments[$storyid] ? 0 : 1)
                      . "', submenu='"
                      . (int)$submenu[$storyid] . "', date=NOW() WHERE storyid='"
                      . (int)$storyid . "'";
