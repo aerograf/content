@@ -340,8 +340,6 @@ if ('add' === $op || 'link' === $op) {
 			function showform(det){
 				if (det == 'add'){
 					$('contentt').style.display = '';
-					if (FCKeditorAPI.GetInstance('message'))
-						FCKeditorAPI.GetInstance('message').MakeEditable();
 				}else{
 					$('contentt').style.display = 'none';
 				}
