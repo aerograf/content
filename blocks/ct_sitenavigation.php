@@ -178,7 +178,7 @@ function print_menu($menuItems, $fullList, $level, $depth)
             }
             $children = return_children($fullList, $menuItem['storyid']);
             if ($children) {
-                if (in_array($menuItem['storyid'], $allParents)) {
+                if (is_array($allParents) && in_array($menuItem['storyid'], $allParents)) {
                     $myList .= '' . print_menu($children, $fullList, $level + 1, $depth) . '';
                 }
             }
