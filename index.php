@@ -26,19 +26,11 @@ function tabMaker()
     $tabs = [];
     $query = $xoopsDB->query('SELECT storyid, parent_id, blockid, submenu, title, visible FROM '
                              . $xoopsDB->prefix('content')
-                             . ' WHERE storyid='
-                             . $thisId
-                             . ' OR parent_id='
-                             . $thisId
-                             . ' OR storyid='
-                             . $thisId_parent
-                             . ' OR parent_id= CASE WHEN '
-                             . $thisId_parent
-                             . ' >0 THEN '
-                             . $thisId_parent
-                             . ' ELSE '
-                             . $thisId
-                             . ' END AND visible=1');
+                             . ' WHERE storyid=' . $thisId
+                             . ' OR parent_id=' . $thisId
+                             . ' OR storyid=' . $thisId_parent
+                             . ' OR parent_id= CASE WHEN ' . $thisId_parent . ' >0 THEN ' . $thisId_parent . ' ELSE ' . $thisId
+                             . ' END AND visible=1 ORDER BY parent_id, blockid');
     $q=1;
     while ($myrow = $xoopsDB->fetchArray($query)) {
         $visible = $myrow['visible'];
