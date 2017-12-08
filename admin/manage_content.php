@@ -149,7 +149,7 @@ if ('update' === $op) {
 					<td style='width:60px'><b>" . _AM_CONTENT_POSITION . "</b></td>
 					<td style='width:60px'><b>" . _AM_CONTENT_LINKID . "</b></td>
 					<td style='width:40px'><b>" . _AM_CONTENT_HOMEPAGE . "</b></td>
-					<td style='width:40px'><b>" . _AM_CONTENT_ERROR . "</b></td>
+					<!--<td style='width:40px'><b>" . _AM_CONTENT_ERROR . "</b></td>-->
 					<td style='width:50px'><b>" . _AM_CONTENT_VISIBLE . "</b></td>
 					<td style='width:100px'><b>" . _AM_CONTENT_ACTION . '</b></td>
 				</tr>';
@@ -249,7 +249,7 @@ function print_item($tcontent, $dirname, $allMenuItems, $txtSant)
                     .    $tcontent['storyid'] . "]' size='2' maxlength='2' value='"
                     . $tcontent['blockid'] . "'></nobr></td>
 				<td align='center'><input type='radio' name='homepage[]' value='" . $tcontent['storyid'] . "' " . (('1' == $tcontent['homepage']) ? 'checked' : '') . "></td>
-				<td align='center'><input type='radio' name='epage[]' value='" . $tcontent['storyid'] . "' " . (('1' == $tcontent['epage']) ? 'checked' : '') . "></td>
+				<!--<td align='center'><input type='radio' name='epage[]' value='" . $tcontent['storyid'] . "' " . (('1' == $tcontent['epage']) ? 'checked' : '') . "></td>-->
 				<td align='center'>
 					<input type='checkbox'  name='visible[".$tcontent['storyid']."]' value='1' " . (('1' == $tcontent['visible']) ? 'CHECKED' : '') . "></td>
 				<td><nobr><a href='" . XOOPS_URL . '/modules/' . $dirname . '/index.php?id=' . $tcontent['storyid'] . "'><img src='../assets/images/go.png' alt=" . _AM_CONTENT_GO . ' title=' . _AM_CONTENT_GO . "></a>
