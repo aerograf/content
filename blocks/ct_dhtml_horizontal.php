@@ -53,7 +53,7 @@ function site_block_horz_dhtml_nav()
         }
     }
 
-    $menu = array_merge($menuModule, return_children($contentItems, 0));
+    $menu = array_merge($menuModule, return_children_h($contentItems, 0));
 
     foreach ($menu as $key => $row) {
         $priority[$key]  = $row['priority'];
@@ -62,7 +62,7 @@ function site_block_horz_dhtml_nav()
     array_multisort($priority, SORT_ASC, $menu);
     $block             = [];
     $block['ct_depth'] = 0;
-    $block['ct_menu']  = print_menu($menu, $contentItems, 0, $block['ct_depth']);
+    $block['ct_menu']  = print_menu_h($menu, $contentItems, 0, $block['ct_depth']);
     return $block;
 }
 
@@ -71,7 +71,7 @@ function site_block_horz_dhtml_nav()
  * @param $parent_id
  * @return array
  */
-function return_children($items, $parent_id)
+function return_children_h($items, $parent_id)
 {
     $myItems = [];
     foreach ($items as $item) {
@@ -89,7 +89,7 @@ function return_children($items, $parent_id)
  * @param $depth
  * @return string
  */
-function print_menu($menuItems, $fullList, $level, $depth)
+function print_menu_h($menuItems, $fullList, $level, $depth)
 {
     $myList = '';
     if ($level + 1 > $depth) {
@@ -117,8 +117,8 @@ function print_menu($menuItems, $fullList, $level, $depth)
         }
         $myList .= '><a href="' . $contentURL . '">' . $menuItem['title'] . '</a>';
         if ('content' === $menuItem['type']) {
-            if (return_children($fullList, $menuItem['storyid'])) {
-                $myList .= '<ul>' . print_menu(return_children($fullList, $menuItem['storyid']), $fullList, $level + 1, $depth) . '</ul>';
+            if (return_children_h($fullList, $menuItem['storyid'])) {
+                $myList .= '<ul>' . print_menu_h(return_children_h($fullList, $menuItem['storyid']), $fullList, $level + 1, $depth) . '</ul>';
             }
         } else {
             if ($menuItem['sublinks']) {

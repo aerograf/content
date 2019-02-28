@@ -260,7 +260,7 @@ function print_item($tcontent, $dirname, $allMenuItems, $txtSant, $page_groups_r
         echo '<img src="../assets/images/page.png" alt="" border="0" align="absmiddle" height="16" width="16" >';
     }
     echo "
-				<a href='edit_content.php?id=" . $tcontent['storyid'] . "'>" . $txtSant->makeTboxData4Show($tcontent['title'], 0, 0, 0) . '</a></td>
+				<a href='edit_content.php?id=" . $tcontent['storyid'] . "'>" . $txtSant->htmlSpecialChars($tcontent['title'], 0, 0, 0) . '</a></td>
 				<td>' . $permitRead->render() . '</td>';
     if ('2' == $xoopsModuleConfig['cont_permits_advnaced']) {
         echo '

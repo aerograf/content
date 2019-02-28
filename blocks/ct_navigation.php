@@ -39,7 +39,7 @@ function content_block_nav()
                 $contentURL = XOOPS_URL . '/modules/content/index.php?id=' . $tcontent['storyid'];
             }
             $link['id']            = $tcontent['storyid'];
-            $link['title']         = $myts->makeTboxData4Show($tcontent['title']);
+            $link['title']         = $myts->htmlSpecialChars($tcontent['title']);
             $link['newwindow']     = $tcontent['newwindow'];
             $link['parent']        = $tcontent['parent_id'];
             $link['currentParent'] = $currentParent;

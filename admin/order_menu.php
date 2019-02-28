@@ -83,7 +83,7 @@
         while ($tcontent = $xoopsDB->fetchArray($result)) {
             if (0 == $tcontent['parent_id']) {
                 $menu[] = [
-                    'text' => $myts->makeTboxData4Show($tcontent['title']),
+                    'text' => $myts->htmlSpecialChars($tcontent['title']),
                     'url' => XOOPS_URL . '/modules/content/index.php?id=' . $tcontent['storyid'],
                     'priority' => $tcontent['menu_block'],
                     'id' => $tcontent['storyid'],
@@ -92,7 +92,7 @@
                 $j = count($menu);
             } else {
                 $menu[$j-1]['sublinks'][] = [
-                                  'text' => $myts->makeTboxData4Show($tcontent['title']),
+                                  'text' => $myts->htmlSpecialChars($tcontent['title']),
                                   'url' => XOOPS_URL . '/modules/content/index.php?id=' . $tcontent['storyid']
                                   ];
             }
